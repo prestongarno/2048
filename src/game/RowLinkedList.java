@@ -37,21 +37,28 @@ public class RowLinkedList {
         /**If there's no value in the row*/
         if(head == null){
             head = cell;
-            head.setRowNext(null);
-            head.setRowPrevious(null);
+            tail = head;
+            head.setColumnNext(tail);
+            head.setRowPrevious(tail);
             return cell;
         }
-        /**If there's only one cell in the linked list*/
+
+/*
         if(tail == null){
-            if(head.column == cell.column && head.row == cell.row){
-                throw new IllegalArgumentException("Not allowed to overlap cells!");
+            if(cell.row < head.row){
+                this.tail = cell;
+            } else {
+                if(head.column == cell.column && head.row == cell.row) {
+                    throw new IllegalArgumentException("Not allowed to overlap cells!");
+                }
+                head.setRowNext(cell);
+                cell.setRowPrevious(head);
+                cell.setRowNext(null);
+                this.tail = cell;
+                return cell;
             }
-            head.setRowNext(cell);
-            cell.setRowPrevious(head);
-            cell.setRowNext(null);
-            this.tail = cell;
-            return cell;
         }
+*/
         /**If the cell (param) is the furthest left
          * set the head to that cell*/
         if(cell.row < head.row){
@@ -60,32 +67,48 @@ public class RowLinkedList {
             cell.setRowPrevious(null);
             head = cell;
             return cell;
-        }
-        /**otherwise, go down the Column until the correct spot is found*/
-        Cell placeHolder = head.getRowNext();
-        while(placeHolder != null && placeHolder.column <= cell.column){
-            if(placeHolder.column == cell.column && placeHolder.row == cell.row){
-                throw new IllegalArgumentException("Not allowed to overlap cells!");
+        } else {
+            /**otherwise, go down the Column until the correct spot is found*/
+            Cell placeHolder = head.getRowNext();
+            while(placeHolder != null && placeHolder.column <= cell.column){
+                if(placeHolder.column == cell.column && placeHolder.row == cell.row){
+                    throw new IllegalArgumentException("Not allowed to overlap cells!");
+                }
+                cell.setRowPrevious(placeHolder);
+                placeHolder = placeHolder.getRowNext();
             }
-            cell.setRowPrevious(placeHolder);
-            placeHolder = placeHolder.getRowNext();
+            //if the placeholder is null, the cell is the new tail
+            if(placeHolder == null){
+                this.tail = cell;
+            } else { //if not null, cell is inserted between placeHolder and placeHolder's next
+                cell.setRowNext(cell.getRowPrevious().getRowNext());
+                placeHolder.setRowNext(cell);
+            }
         }
-        //if the placeholder is null, the cell is the new tail
-        if(placeHolder == null){
-            this.tail = cell;
-        } else { //if not null, cell is inserted between placeHolder and placeHolder's next
-            cell.setRowNext(cell.getRowPrevious().getRowNext());
-            placeHolder.setRowNext(cell);
+
+        if(head.equals(tail)){
+            Cell c = cell;
+            Cell cNext = c.getRowNext();
+            while(cNext != null){
+                cNext = c.getRowNext();
+                if(cNext != null){
+                    c = cNext;
+                }
+            }
+            tail = c;
         }
-        return cell;
-    }
+        return cell;    }
 
     public void shiftToTail(){
-        this.shiftToTail(this.tail);
+        if(head != null){
+            this.shiftToTail(this.tail);
+        }
     }
 
     public void shiftToHead(){
-        this.shiftToHead(this.head);
+        if(head != null){
+            this.shiftToHead(this.head);
+        }
     }
 
     /**

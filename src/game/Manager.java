@@ -10,19 +10,55 @@ import java.util.Random;
  */
 public class Manager implements NumberSlider
 {
-    private int[][] board;
     private int winningValue;
+    private int rows, columns;
     private static final Random random = new Random();
-    private final Map<Integer, Cell> activeCells;
+    private RowLinkedList[] rowsRowLinkedLists;
+    private ColumnLinkedList[] columnLinkedLists;
 
     public Manager(int rows, int columns){
-        this.board = new int[rows][columns];
         this.winningValue = 2048;
-        activeCells = new HashMap<Integer, Cell>(12);
+        this.rows = rows;
+        this.columns = columns;
+        //create the linked lists
+        this.rowsRowLinkedLists = new RowLinkedList[rows];
+        for (int i = 0; i < rowsRowLinkedLists.length; i++) {
+            rowsRowLinkedLists[i] = new RowLinkedList();
+        }
+        this.columnLinkedLists = new ColumnLinkedList[columns];
+        for (int i = 0; i < columnLinkedLists.length; i++) {
+            columnLinkedLists[i] = new ColumnLinkedList();
+        }
+        RowLinkedList.columnsRef = columnLinkedLists;
+        ColumnLinkedList.rowsRef = rowsRowLinkedLists;
+        //insert a random value to start the game
+        this.placeRandomValue();
     }
 
     @Override
     public void resizeBoard(int height, int width, int winningValue) {
+        this.setWinningValue(winningValue);
+        ColumnLinkedList[] cls = new ColumnLinkedList[width];
+        for (int i = 0; i < cls.length; i++) {
+            if(i < this.columnLinkedLists.length){
+                cls[i] = columnLinkedLists[i];
+            } else {
+                cls[i] = new ColumnLinkedList();
+            }
+        }
+        RowLinkedList[] rls = new RowLinkedList[height];
+        for (int i = 0; i < rls.length; i++) {
+            if(i < this.rowsRowLinkedLists.length){
+                rls[i] = rowsRowLinkedLists[i];
+            } else {
+                rls[i] = new RowLinkedList();
+            }
+        }
+
+        this.rowsRowLinkedLists = rls;
+        this.columnLinkedLists = cls;
+        RowLinkedList.columnsRef = columnLinkedLists;
+        ColumnLinkedList.rowsRef = rowsRowLinkedLists;
     }
 
     private void setWinningValue(int winningValue)
@@ -31,74 +67,89 @@ public class Manager implements NumberSlider
             if(i == winningValue) {
                this.winningValue = winningValue;
             }
-            throw new IllegalArgumentException("Winning value must be a multiple of 2!");
+            throw new IllegalArgumentException("Winning value must be something within 2!");
         }
     }
 
     @Override
     public void reset() {
-        for (int c = 0; c < board.length; c++) {
-            for (int r = 0; r < board[c].length; r++) {
-                int temp = board[c][r];
-                Cell atTemp = this.getCell(r, c);
-            }
-        }
-        this.placeRandomValue();
-    }
 
-    private Cell getCell(int r, int c) {
-        return activeCells.get("Cell " + r + ", " + c);
     }
 
     @Override
     public void setValues(int[][] ref) {
-        for (int r = 0; r < board.length; r++) {
-            if(ref[r].length != this.board[r].length)
-            {
-                throw new IllegalArgumentException("Array at [ "+ r + ", 0 ]" +"doesn't match the game board");
-            }
-            for (int c = 0; c < board[c].length; c++) {
-                board[r][c] = ref[r][c];
-            }
-        }
     }
 
     @Override
     public Cell placeRandomValue() {
-        int row, column;
-        Cell randomCell = null;
-        while (randomCell != null){
-            row = random.nextInt(board.length);
-            column = random.nextInt(board[row].length);
-            if(this.board[row][column] == 0){
-                int value;
-                if(System.currentTimeMillis() % 2 == 0)
-                {
-                    value = 2;
-                } else {
-                    value = 4;
-                }
-
-                this.board[row][column] = value;
-                randomCell = new Cell(row, column, value);
-
+        // TODO: 2/14/17 throw an exception in the linked list impl's if a cell being inserted already exists at that location
+        IllegalArgumentException ig = new IllegalArgumentException("placeHolder");
+        Cell randomCell = new Cell(0,0,0);
+        while (ig != null){
+            randomCell.row = random.nextInt(rows);
+            randomCell.column = random.nextInt(columns);
+            int value;
+            if(System.currentTimeMillis() % 2 == 0)
+            {
+                value = 2;
+            } else {
+                value = 4;
             }
+            randomCell.value = value;
+
+            try{
+                ColumnLinkedList.rowsRef[randomCell.row].insert(randomCell);
+                RowLinkedList.columnsRef[randomCell.column].insert(randomCell);
+                ig = null;
+            } catch (IllegalArgumentException i){
+                ig = i;
+            }
+
         }
         return randomCell;
     }
 
     @Override
     public boolean slide(SlideDirection dir) {
-        if(dir != SlideDirection.DOWN){
-            throw new UnsupportedOperationException("Only implemented for Down direction");
+        switch (dir)
+        {
+            case UP:
+                for(ColumnLinkedList cl : this.columnLinkedLists){
+                    cl.shiftToHead();
+                }
+                break;
+            case DOWN:
+                for(ColumnLinkedList cl : this.columnLinkedLists){
+                    cl.shiftToTail();
+                }
+                break;
+            case LEFT:
+                for(RowLinkedList rl : this.rowsRowLinkedLists){
+                    rl.shiftToHead();
+                }
+                break;
+            case RIGHT:
+                for(RowLinkedList rl : this.rowsRowLinkedLists){
+                    rl.shiftToTail();
+                }
+                break;
         }
-        //iterate through hashmap values
-        //
         return true;
     }
 
     @Override
     public ArrayList<Cell> getNonEmptyTiles() {
+        ArrayList<Cell> ar = new ArrayList<>();
+        for(ColumnLinkedList cl : this.columnLinkedLists){
+            Cell c = cl.getHead();
+            ar.add(c);
+            if(c!= null){
+                while (c.getColumnNext() != null){
+                    ar.add(c.getColumnNext());
+                    c = c.getColumnNext();
+                }
+            }
+        }
         return null;
     }
 

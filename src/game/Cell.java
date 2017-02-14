@@ -54,5 +54,42 @@ public class Cell implements Comparable<Cell> {
     public String toString() {
         return "Cell " + row + ", " + column;
     }
+
+    /*********************************************************************************
+     * Overly complicated double linked list code
+     */
+    private Cell rowNext, rowPrevious, columnNext, columnPrevious;
+
+    public Cell getRowNext() {
+        return rowNext;
+    }
+
+    public void setRowNext(Cell rowNext) {
+        this.rowNext = rowNext;
+    }
+
+    public Cell getRowPrevious() {
+        return rowPrevious;
+    }
+
+    public void setRowPrevious(Cell rowPrevious) {
+        this.rowPrevious = rowPrevious;
+    }
+
+    public Cell getColumnNext() {
+        return columnNext;
+    }
+
+    public void setColumnNext(Cell columnNext) {
+        this.columnNext = columnNext;
+    }
+
+    public Cell getColumnPrevious() {
+        return columnPrevious;
+    }
+
+    public void setColumnPrevious(Cell columnPrevious) {
+        this.columnPrevious = columnPrevious;
+    }
 }
 

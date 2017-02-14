@@ -4,13 +4,9 @@ package game;
  * Created by preston on 2/14/17.
  */
 public class RowLinkedList {
+
     private Cell head;
     private Cell tail;
-
-    /**Reference to all of the Columns, responsibility of the
-     * game board to make sure this is updated/correct
-     * Here it's assumed this is always right*/
-    public static ColumnLinkedList[] columnsRef;
     
     public RowLinkedList(){
         this.head = null;
@@ -37,84 +33,60 @@ public class RowLinkedList {
         /**If there's no value in the row*/
         if(head == null){
             head = cell;
-            tail = head;
-            head.setColumnNext(tail);
-            head.setRowPrevious(tail);
+            /*tail = head;*/
+            head.setRowNext(null);
+            head.setRowPrevious(null);
             return cell;
         }
 
-/*
-        if(tail == null){
-            if(cell.row < head.row){
-                this.tail = cell;
-            } else {
-                if(head.column == cell.column && head.row == cell.row) {
-                    throw new IllegalArgumentException("Not allowed to overlap cells!");
-                }
-                head.setRowNext(cell);
-                cell.setRowPrevious(head);
-                cell.setRowNext(null);
-                this.tail = cell;
-                return cell;
-            }
-        }
-*/
         /**If the cell (param) is the furthest left
          * set the head to that cell*/
-        if(cell.row < head.row){
+        if(cell.column < head.column){
             head.setRowPrevious(cell);
+            if(head.getRowNext() == null){
+                this.tail = head;
+            }
             cell.setRowNext(head);
             cell.setRowPrevious(null);
             head = cell;
-            return cell;
         } else {
             /**otherwise, go down the Column until the correct spot is found*/
-            Cell placeHolder = head.getRowNext();
-            while(placeHolder != null && placeHolder.column <= cell.column){
-                if(placeHolder.column == cell.column && placeHolder.row == cell.row){
-                    throw new IllegalArgumentException("Not allowed to overlap cells!");
-                }
+            Cell placeHolder = head;
+            cell.setColumnPrevious(head);
+            while(placeHolder != null && placeHolder.column < cell.column){
                 cell.setRowPrevious(placeHolder);
                 placeHolder = placeHolder.getRowNext();
             }
+            cell.getRowPrevious().setRowNext(cell);
             //if the placeholder is null, the cell is the new tail
             if(placeHolder == null){
                 this.tail = cell;
-            } else { //if not null, cell is inserted between placeHolder and placeHolder's next
+            } else if(placeHolder.column == cell.column) { //not allowed to insert overlapping cells
+                    throw new IllegalArgumentException("Not allowed to overlap cells!");
+            }else { //if not null, cell is inserted between placeHolder and placeHolder's next
                 cell.setRowNext(cell.getRowPrevious().getRowNext());
-                placeHolder.setRowNext(cell);
+                cell.getRowPrevious().setRowNext(cell);
             }
         }
+        return cell;
+    }
 
-        if(head.equals(tail)){
-            Cell c = cell;
-            Cell cNext = c.getRowNext();
-            while(cNext != null){
-                cNext = c.getRowNext();
-                if(cNext != null){
-                    c = cNext;
-                }
-            }
-            tail = c;
-        }
-        return cell;    }
-
-    public void shiftToTail(){
+    public void shiftToTail(ColumnLinkedList[] columnsRef){
         if(head != null){
-            this.shiftToTail(this.tail);
+            this.shiftToTail(this.tail, columnsRef);
         }
     }
 
-    public void shiftToHead(){
+    public void shiftToHead(ColumnLinkedList[] columnsRef){
         if(head != null){
-            this.shiftToHead(this.head);
+            this.shiftToHead(this.head, columnsRef);
         }
     }
 
     /**
      * Call this to shift the row towards the tail
      */
-    private void shiftToTail(Cell current){
+    private void shiftToTail(Cell current, ColumnLinkedList[] columnsRef){
         if(current.equals(head)){
             return;
         }
@@ -140,64 +112,67 @@ public class RowLinkedList {
             current.row = columnsRef.length;
         }
 
-
         if(current.row != oldRow){
-            this.removeCellFromColumn(current, oldRow);
+            this.removeCellFromColumn(current, oldRow, columnsRef);
             columnsRef[current.column].insert(current);
         }
-        shiftToTail(current.getRowPrevious());
+        shiftToTail(current.getRowPrevious(), columnsRef);
     }
 
-    private void shiftToHead(Cell current)
+    private void shiftToHead(Cell current, ColumnLinkedList[] columnsRef)
     {
-        if(current.equals(tail)){
-            current.column = current.getRowPrevious().column + 1;
+        /********************* BASE CASE*****************/
+        if(current == null){
             return;
         }
-
-        //if only one tile in the Row
-        if(current.equals(this.head) && current.getRowNext() == null){
-            current.column = 0;
-            return;
-        }
-
-        // TODO: 2/14/17 REMOVE THE OTHER COMBINED VALUE FROM IT'S OTHER DIMENSIONAL ROW
-        if(current.value == current.getRowNext().value){
+        /**************** CHECK IF THE CELL HAS A NEXT TO COMBINE*********/
+        //if it has a next, it's not a head or a tail
+        if(current.getRowNext() != null && current.value == current.getRowNext().value){
             current.value = current.value * 2;
-            if(current.getRowNext().getRowNext() != null){
+            Cell nextNext = current.getRowNext().getRowNext();
+            if(nextNext != null){
                 current.getRowNext().getRowNext().setColumnPrevious(current);
             } else {
-                current.setColumnNext(null);
-                tail = current;
+                current.setRowNext(null);
+                this.tail = current;
             }
+        } else { /******* if no next, it must be a tail ********/
+            this.tail = current;
         }
 
+        /*******************************************/
+        //shift the column it's in here
         int oldColumn = current.column;
         if(current.getRowPrevious() != null){
             current.column = current.getRowPrevious().column + 1;
         } else {
-            current.column= 0;
+            current.column = 0;
+        }
+        //update the appropriate column if it moved
+        if(oldColumn != current.column){
+            this.removeCellFromColumn(current, oldColumn, columnsRef);
+            columnsRef[current.column].insert(current);
         }
 
-        if(oldColumn != current.column){
-            this.removeCellFromColumn(current, oldColumn);
-            columnsRef[current.row].insert(current);
-        }
-        shiftToHead(current.getRowNext());
+        shiftToHead(current.getRowNext(), columnsRef);
     }
 
-    private void removeCellFromColumn(Cell current, int oldRow){
-        if(current.getColumnPrevious() != null && current.getColumnNext() != null)
-        { //if it's old row had values on either side
-            current.getColumnPrevious().setRowNext(current.getColumnNext());
-            current.getColumnNext().setRowPrevious(current.getColumnPrevious());
-        } else if(current == columnsRef[oldRow].getHead()){
-            //if current cell was the head of the old row
+    private void removeCellFromColumn(Cell current, int oldRow, ColumnLinkedList[] columnsRef){
+/*        if(current == columnsRef[oldRow].getHead()){
+            columnsRef[oldRow].setHead(current.getRowNext());
+        } else if(current == columnsRef[oldRow].getTail()){
+            columnsRef[oldRow].setTail(current.getRowPrevious());
+        } else {
+            current.getRowNext().setRowPrevious(current.getRowPrevious());
+            current.getRowPrevious().setRowNext(current.getRowNext());
+        }*/
+        if(current == columnsRef[oldRow].getHead()){
             columnsRef[oldRow].setHead(current.getColumnNext());
-        }else if(current.getColumnPrevious() != null){
-            //if the current cell was the tail of the old row
-            current.getColumnPrevious().setRowNext(null);
+        } else if(current == columnsRef[oldRow].getTail()){
             columnsRef[oldRow].setTail(current.getColumnPrevious());
+        } else {
+            current.getColumnNext().setColumnPrevious(current.getColumnPrevious());
+            current.getColumnPrevious().setColumnNext(current.getColumnNext());
         }
     }
 }

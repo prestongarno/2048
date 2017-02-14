@@ -1,8 +1,6 @@
 package game;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 
 /**
@@ -13,26 +11,24 @@ public class Manager implements NumberSlider
     private int winningValue;
     private int rows, columns;
     private static final Random random = new Random();
-    private RowLinkedList[] rowsRowLinkedLists;
-    private ColumnLinkedList[] columnLinkedLists;
+    private RowLinkedList[] rowsLists;
+    private ColumnLinkedList[] columnsLists;
 
     public Manager(int rows, int columns){
         this.winningValue = 2048;
         this.rows = rows;
         this.columns = columns;
         //create the linked lists
-        this.rowsRowLinkedLists = new RowLinkedList[rows];
-        for (int i = 0; i < rowsRowLinkedLists.length; i++) {
-            rowsRowLinkedLists[i] = new RowLinkedList();
+        this.rowsLists = new RowLinkedList[rows];
+        for (int i = 0; i < rowsLists.length; i++) {
+            rowsLists[i] = new RowLinkedList();
         }
-        this.columnLinkedLists = new ColumnLinkedList[columns];
-        for (int i = 0; i < columnLinkedLists.length; i++) {
-            columnLinkedLists[i] = new ColumnLinkedList();
+        this.columnsLists = new ColumnLinkedList[columns];
+        for (int i = 0; i < columnsLists.length; i++) {
+            columnsLists[i] = new ColumnLinkedList();
         }
-        RowLinkedList.columnsRef = columnLinkedLists;
-        ColumnLinkedList.rowsRef = rowsRowLinkedLists;
         //insert a random value to start the game
-        this.placeRandomValue();
+        //this.placeRandomValue();
     }
 
     @Override
@@ -40,25 +36,23 @@ public class Manager implements NumberSlider
         this.setWinningValue(winningValue);
         ColumnLinkedList[] cls = new ColumnLinkedList[width];
         for (int i = 0; i < cls.length; i++) {
-            if(i < this.columnLinkedLists.length){
-                cls[i] = columnLinkedLists[i];
+            if(i < this.columnsLists.length){
+                cls[i] = columnsLists[i];
             } else {
                 cls[i] = new ColumnLinkedList();
             }
         }
         RowLinkedList[] rls = new RowLinkedList[height];
         for (int i = 0; i < rls.length; i++) {
-            if(i < this.rowsRowLinkedLists.length){
-                rls[i] = rowsRowLinkedLists[i];
+            if(i < this.rowsLists.length){
+                rls[i] = rowsLists[i];
             } else {
                 rls[i] = new RowLinkedList();
             }
         }
 
-        this.rowsRowLinkedLists = rls;
-        this.columnLinkedLists = cls;
-        RowLinkedList.columnsRef = columnLinkedLists;
-        ColumnLinkedList.rowsRef = rowsRowLinkedLists;
+        this.rowsLists = rls;
+        this.columnsLists = cls;
     }
 
     private void setWinningValue(int winningValue)
@@ -98,8 +92,7 @@ public class Manager implements NumberSlider
             randomCell.value = value;
 
             try{
-                ColumnLinkedList.rowsRef[randomCell.row].insert(randomCell);
-                RowLinkedList.columnsRef[randomCell.column].insert(randomCell);
+                this.insertCell(randomCell);
                 ig = null;
             } catch (IllegalArgumentException i){
                 ig = i;
@@ -114,23 +107,23 @@ public class Manager implements NumberSlider
         switch (dir)
         {
             case UP:
-                for(ColumnLinkedList cl : this.columnLinkedLists){
-                    cl.shiftToHead();
+                for(ColumnLinkedList cl : this.columnsLists){
+                    cl.shiftToHead(this.rowsLists);
                 }
                 break;
             case DOWN:
-                for(ColumnLinkedList cl : this.columnLinkedLists){
-                    cl.shiftToTail();
+                for(ColumnLinkedList cl : this.columnsLists){
+                    cl.shiftToTail(this.rowsLists);
                 }
                 break;
             case LEFT:
-                for(RowLinkedList rl : this.rowsRowLinkedLists){
-                    rl.shiftToHead();
+                for(RowLinkedList rl : this.rowsLists){
+                    rl.shiftToHead(this.columnsLists);
                 }
                 break;
             case RIGHT:
-                for(RowLinkedList rl : this.rowsRowLinkedLists){
-                    rl.shiftToTail();
+                for(RowLinkedList rl : this.rowsLists){
+                    rl.shiftToTail(this.columnsLists);
                 }
                 break;
         }
@@ -140,7 +133,7 @@ public class Manager implements NumberSlider
     @Override
     public ArrayList<Cell> getNonEmptyTiles() {
         ArrayList<Cell> ar = new ArrayList<>();
-        for(ColumnLinkedList cl : this.columnLinkedLists){
+        for(ColumnLinkedList cl : this.columnsLists){
             Cell c = cl.getHead();
             ar.add(c);
             if(c!= null){
@@ -161,5 +154,50 @@ public class Manager implements NumberSlider
     @Override
     public void undo() {
 
+    }
+
+    public void insertCell(Cell toBeInserted)
+    {
+        RowLinkedList row = this.rowsLists[toBeInserted.row];
+        ColumnLinkedList column = this.columnsLists[toBeInserted.column];
+        row.insert(toBeInserted);
+        column.insert(toBeInserted);
+    }
+
+    public void prettyPrintGameBoard() {
+        System.out.print("\nCol [");
+        for (int i = 0; i < this.columns; i++) {
+            System.out.print(" C" + i);
+        }
+        System.out.print(" ]");
+        for (int i = 0; i < this.rowsLists.length; i++) {
+            System.out.print("\nR"+i+": [ ");
+            RowLinkedList rl = this.rowsLists[i];
+            Cell temp = rl.getHead();
+            if (temp == null) {
+                for (int j = 0; j < this.columns; j++) {
+                    System.out.print(" - ");
+                }
+                System.out.print("]");
+            } else {
+                int columnCounter = 0;
+                while (temp != null && columnCounter < this.columns) {
+                    for (int j = columnCounter; j < temp.column; j++) {
+                        System.out.print(" - ");
+                        columnCounter += 1;
+                    }
+                    System.out.print(" " + temp.value + " ");
+                    columnCounter += 1;
+                    temp = temp.getRowNext();
+                }
+                if(columnCounter < this.columns){
+                    for (int j = columnCounter; j < this.columns; j++) {
+                        System.out.print(" - ");
+                    }
+                }
+                System.out.print(" ]");
+            }
+        }
+        System.out.println("\n>------------------------------------------<");
     }
 }

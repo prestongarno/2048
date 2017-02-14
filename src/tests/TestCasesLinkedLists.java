@@ -9,37 +9,67 @@ import static org.junit.Assert.assertNotNull;
 
 public class TestCasesLinkedLists {
 
-    static final Manager m = new Manager(4,4);
-
     @Test
     public void testPlaceRandomValue(){
+        Manager m = new Manager(4,4);
         Cell c = m.placeRandomValue();
+        m.prettyPrintGameBoard();
+        assertNotNull(c);
+    }
+
+    @Test
+    public void testPlaceRandomValueAndShiftLeft(){
+        Manager m = new Manager(4,4);
+        Cell c = m.placeRandomValue();
+        m.prettyPrintGameBoard();
+        m.slide(SlideDirection.LEFT);
+        m.prettyPrintGameBoard();
         assertNotNull(c);
     }
 
     @Test
     public void testSimpleOneTileShiftRow(){
+        Manager m = new Manager(8,8);
         Cell testCell = new Cell(0,2,4);
-        ColumnLinkedList.rowsRef[0].setHead(testCell);
-        ColumnLinkedList.rowsRef[0].shiftToHead();
-        System.out.println(testCell);
+        m.insertCell(testCell);
+        m.prettyPrintGameBoard();
+        m.slide(SlideDirection.LEFT);
+        m.prettyPrintGameBoard();
         assertEquals(0, testCell.column);
     }
 
     @Test
-    public void testSimpleOneTileShiftRow2(){
-        Manager m = new Manager(4,4);
+    public void testTwoTileShiftRow(){
+        Manager m = new Manager(8,8);
         Cell testCell = new Cell(0,2,4);
-        Cell secondTestCell = new Cell(0,3,2);
-        ColumnLinkedList.rowsRef[0].setHead(testCell);
-        ColumnLinkedList.rowsRef[0].insert(secondTestCell);
-        ColumnLinkedList.rowsRef[0].shiftToHead();
-        System.out.println(testCell + " -> " + secondTestCell);
-        assertEquals(1, secondTestCell.column);
+        Cell testCell2 = new Cell(0,4,8);
+        m.insertCell(testCell);
+        m.insertCell(testCell2);
+        m.prettyPrintGameBoard();
+        m.slide(SlideDirection.LEFT);
+        m.prettyPrintGameBoard();
+        assertEquals(0, testCell.column);
+        assertEquals(1, testCell2.column);
+    }
+
+    @Test
+    public void testTwoTilePlaceRandomAndShiftLeft(){
+        Manager m = new Manager(8,8);
+        Cell testCell = new Cell(0,2,4);
+        Cell testCell2 = new Cell(0,4,8);
+        m.insertCell(testCell);
+        m.insertCell(testCell2);
+        m.placeRandomValue();
+        m.prettyPrintGameBoard();
+        m.slide(SlideDirection.LEFT);
+        m.prettyPrintGameBoard();
+        assertEquals(0, testCell.column);
+        assertEquals(1, testCell2.column);
     }
 
     @Test
     public void test2PresetsInsertRandomShift(){
+        Manager m = new Manager(4,4);
         System.out.println(m.placeRandomValue());
         System.out.println(m.placeRandomValue());
         System.out.println(m.placeRandomValue());
@@ -54,17 +84,17 @@ public class TestCasesLinkedLists {
 
     @Test
     public void insertOnBothAxesCheckHeadSetCorrectly(){
-        Manager m = new Manager(4,4);
+        /*Manager m = new Manager(4,4);
         Cell cell1 = new Cell(2,2,2048);
         RowLinkedList.columnsRef[2].insert(cell1);
         ColumnLinkedList.rowsRef[2].insert(cell1);
         assertEquals(RowLinkedList.columnsRef[2].getHead(), cell1);
-        assertEquals(ColumnLinkedList.rowsRef[2].getHead(), cell1);
+        assertEquals(ColumnLinkedList.rowsRef[2].getHead(), cell1);*/
     }
 
     @Test
     public void insertMultipleOnBothAxesCheckTailSetCorrectly(){
-        Manager m = new Manager(4,4);
+        /*Manager m = new Manager(4,4);
         Cell cell1 = new Cell(2,2,2048);
         Cell cell2 = new Cell(2,3,4);
         RowLinkedList.columnsRef[cell1.column].insert(cell1);
@@ -76,7 +106,7 @@ public class TestCasesLinkedLists {
         assertEquals(cell2, ColumnLinkedList.rowsRef[2].getTail());
         //assertEquals(cell2, RowLinkedList.columnsRef[2].getHead());
         m.slide(SlideDirection.LEFT);
-/*        assertEquals(0, cell1.column);
+        assertEquals(0, cell1.column);
         assertEquals(1, cell2.column);*/
     }
 }

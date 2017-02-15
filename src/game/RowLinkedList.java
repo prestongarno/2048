@@ -52,15 +52,18 @@ public class RowLinkedList {
         } else {
             /**otherwise, go down the Column until the correct spot is found*/
             Cell placeHolder = head;
-            cell.setColumnPrevious(head);
-            while(placeHolder != null && placeHolder.column < cell.column){
-                cell.setRowPrevious(placeHolder);
+            cell.setRowPrevious(head);
+            while(placeHolder.column < cell.column){
                 placeHolder = placeHolder.getRowNext();
+                if(placeHolder != null){
+                    cell.setRowPrevious(placeHolder);
+                } else {break;}
             }
             cell.getRowPrevious().setRowNext(cell);
             //if the placeholder is null, the cell is the new tail
             if(placeHolder == null){
                 this.tail = cell;
+                this.tail.setRowNext(null);
             } else if(placeHolder.column == cell.column) { //not allowed to insert overlapping cells
                     throw new IllegalArgumentException("Not allowed to overlap cells!");
             }else { //if not null, cell is inserted between placeHolder and placeHolder's next
@@ -130,13 +133,15 @@ public class RowLinkedList {
         if(current.getRowNext() != null && current.value == current.getRowNext().value){
             current.value = current.value * 2;
             Cell nextNext = current.getRowNext().getRowNext();
+            this.removeCellFromColumn(current.getRowNext(), current.getRowNext().column, columnsRef);
             if(nextNext != null){
-                current.getRowNext().getRowNext().setColumnPrevious(current);
+                current.getRowNext().getRowNext().setRowPrevious(current);
+                current.setRowNext(nextNext);
             } else {
                 current.setRowNext(null);
                 this.tail = current;
             }
-        } else { /******* if no next, it must be a tail ********/
+        } else if(current.getRowNext() == null){ /******* if no next, it must be a tail ********/
             this.tail = current;
         }
 
@@ -158,17 +163,9 @@ public class RowLinkedList {
     }
 
     private void removeCellFromColumn(Cell current, int oldRow, ColumnLinkedList[] columnsRef){
-/*        if(current == columnsRef[oldRow].getHead()){
-            columnsRef[oldRow].setHead(current.getRowNext());
-        } else if(current == columnsRef[oldRow].getTail()){
-            columnsRef[oldRow].setTail(current.getRowPrevious());
-        } else {
-            current.getRowNext().setRowPrevious(current.getRowPrevious());
-            current.getRowPrevious().setRowNext(current.getRowNext());
-        }*/
-        if(current == columnsRef[oldRow].getHead()){
+        if(current.equals(columnsRef[oldRow].getHead())){
             columnsRef[oldRow].setHead(current.getColumnNext());
-        } else if(current == columnsRef[oldRow].getTail()){
+        } else if(current.equals(columnsRef[oldRow].getTail())){
             columnsRef[oldRow].setTail(current.getColumnPrevious());
         } else {
             current.getColumnNext().setColumnPrevious(current.getColumnPrevious());

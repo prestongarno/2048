@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 public class TestCasesLinkedLists {
 
@@ -74,39 +75,78 @@ public class TestCasesLinkedLists {
         System.out.println(m.placeRandomValue());
         System.out.println(m.placeRandomValue());
         System.out.println(m.placeRandomValue());
+        m.prettyPrintGameBoard();
         m.slide(SlideDirection.LEFT);
+        m.prettyPrintGameBoard();
     }
 
     @Test
-    public void testLinkedListCorrectHeadAndTail(){
-
-    }
-
-    @Test
-    public void insertOnBothAxesCheckHeadSetCorrectly(){
-        /*Manager m = new Manager(4,4);
-        Cell cell1 = new Cell(2,2,2048);
-        RowLinkedList.columnsRef[2].insert(cell1);
-        ColumnLinkedList.rowsRef[2].insert(cell1);
-        assertEquals(RowLinkedList.columnsRef[2].getHead(), cell1);
-        assertEquals(ColumnLinkedList.rowsRef[2].getHead(), cell1);*/
-    }
-
-    @Test
-    public void insertMultipleOnBothAxesCheckTailSetCorrectly(){
-        /*Manager m = new Manager(4,4);
-        Cell cell1 = new Cell(2,2,2048);
-        Cell cell2 = new Cell(2,3,4);
-        RowLinkedList.columnsRef[cell1.column].insert(cell1);
-        ColumnLinkedList.rowsRef[cell1.row].insert(cell1);
-        RowLinkedList.columnsRef[cell2.column].insert(cell2);
-        ColumnLinkedList.rowsRef[cell2.row].insert(cell2);
-        assertEquals(cell1, RowLinkedList.columnsRef[2].getHead());
-        assertEquals(cell1, ColumnLinkedList.rowsRef[2].getHead());
-        assertEquals(cell2, ColumnLinkedList.rowsRef[2].getTail());
-        //assertEquals(cell2, RowLinkedList.columnsRef[2].getHead());
+    public void testSlideLeftWith3DiffValues(){
+        Manager m = new Manager(6,6);
+        m.insertCell(new Cell(0,1,2));
+        m.insertCell(new Cell(0,2,8));
+        m.insertCell(new Cell(0,3,4));
+        m.prettyPrintGameBoard();
         m.slide(SlideDirection.LEFT);
-        assertEquals(0, cell1.column);
-        assertEquals(1, cell2.column);*/
+        m.prettyPrintGameBoard();
+    }
+
+    @Test
+    public void testSlideLeftWith3DiffValuesPutInBackwards(){
+        Manager m = new Manager(6,6);
+        m.insertCell(new Cell(0,4,2));
+        m.insertCell(new Cell(0,3,8));
+        m.insertCell(new Cell(0,1,4));
+        m.prettyPrintGameBoard();
+        m.slide(SlideDirection.LEFT);
+        m.prettyPrintGameBoard();
+    }
+
+    //failing  -> setting all to 8
+    @Test
+    public void testCombine2WithextraSameValue(){
+        Manager m = new Manager(6,6);
+        m.insertCell(new Cell(0,4,4));
+        m.insertCell(new Cell(0,3,4));
+        m.insertCell(new Cell(0,1,4));
+        m.prettyPrintGameBoard();
+        m.slide(SlideDirection.LEFT);
+        m.prettyPrintGameBoard();
+    }
+
+    //failing  -> setting all to 8
+    @Test
+    public void testCombine2WithextraSameValue2(){
+        Manager m = new Manager(6,6);
+        m.insertCell(new Cell(0,4,2));
+        m.insertCell(new Cell(0,3,2));
+        m.insertCell(new Cell(0,1,2));
+        m.prettyPrintGameBoard();
+        m.slide(SlideDirection.LEFT);
+        m.prettyPrintGameBoard();
+    }
+
+    @Test
+    public void testPlacingRandomValuesToNAndSlideLeft()
+    {
+        Manager m = new Manager(8,8);
+        for (int i = 0; i < 8; i++) {
+            m.placeRandomValue();
+        }
+        m.prettyPrintGameBoard();
+        m.slide(SlideDirection.LEFT);
+        m.prettyPrintGameBoard();
+    }
+
+    @Test
+    public void firstTestSlideUp()
+    {
+        Manager m = new Manager(8,8);
+        for (int i = 0; i < 10; i++) {
+            m.placeRandomValue();
+        }
+        m.prettyPrintGameBoard();
+        m.slide(SlideDirection.UP);
+        m.prettyPrintGameBoard();
     }
 }

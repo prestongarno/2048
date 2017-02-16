@@ -76,23 +76,22 @@ public class Manager implements NumberSlider
 
     @Override
     public Cell placeRandomValue() {
-        // TODO: 2/14/17 throw an exception in the linked list impl's if a cell being inserted already exists at that location
-        IllegalArgumentException ig = new IllegalArgumentException("placeHolder");
+        IllegalArgumentException ig = new IllegalArgumentException("to start while loop");
         Cell randomCell = new Cell(0,0,0);
         while (ig != null){
             randomCell.row = random.nextInt(rows);
             randomCell.column = random.nextInt(columns);
-            int value;
-            if(System.currentTimeMillis() % 2 == 0)
-            {
-                value = 2;
-            } else {
+            int value = random.nextInt(2);
+            //random value weighted 2/3 - 1/3 in favor of 2
+            if(value == 2){
                 value = 4;
+            } else {
+                value = 2;
             }
             randomCell.value = value;
 
             try{
-                this.insertCell(randomCell);
+                this.add(randomCell);
                 ig = null;
             } catch (IllegalArgumentException i){
                 ig = i;
@@ -108,22 +107,24 @@ public class Manager implements NumberSlider
         {
             case UP:
                 for(ColumnLinkedList cl : this.columnsLists){
-                    cl.shiftToHead(this.rowsLists);
+                    //cl.shiftToHead(this.rowsLists);
+                    this.shiftColumnToHead(cl.getHead(), cl);
                 }
                 break;
             case DOWN:
                 for(ColumnLinkedList cl : this.columnsLists){
-                    cl.shiftToTail(this.rowsLists);
+                    //cl.shiftToTail(this.rowsLists);
                 }
                 break;
             case LEFT:
                 for(RowLinkedList rl : this.rowsLists){
-                    rl.shiftToHead(this.columnsLists);
+                    //rl.shiftToHead(this.columnsLists);
+                    this.shiftRowToHead(rl.getHead(), rl);
                 }
                 break;
             case RIGHT:
                 for(RowLinkedList rl : this.rowsLists){
-                    rl.shiftToTail(this.columnsLists);
+                    //r/l.shiftToTail(this.columnsLists);
                 }
                 break;
         }
@@ -137,9 +138,9 @@ public class Manager implements NumberSlider
             Cell c = cl.getHead();
             ar.add(c);
             if(c!= null){
-                while (c.getColumnNext() != null){
-                    ar.add(c.getColumnNext());
-                    c = c.getColumnNext();
+                while (c.getcBelow() != null){
+                    ar.add(c.getcBelow());
+                    c = c.getcBelow();
                 }
             }
         }
@@ -156,12 +157,14 @@ public class Manager implements NumberSlider
 
     }
 
-    public void insertCell(Cell toBeInserted)
+    public void add(Cell... toBeInserted)
     {
-        RowLinkedList row = this.rowsLists[toBeInserted.row];
-        ColumnLinkedList column = this.columnsLists[toBeInserted.column];
-        row.insert(toBeInserted);
-        column.insert(toBeInserted);
+        for(Cell cell : toBeInserted){
+            RowLinkedList row = this.rowsLists[cell.row];
+            ColumnLinkedList column = this.columnsLists[cell.column];
+            row.insert(cell);
+            column.insert(cell);
+        }
     }
 
     public void prettyPrintGameBoard() {
@@ -188,7 +191,7 @@ public class Manager implements NumberSlider
                     }
                     System.out.print(" " + temp.value + " ");
                     columnCounter += 1;
-                    temp = temp.getRowNext();
+                    temp = temp.getcRight();
                 }
                 if(columnCounter < this.columns){
                     for (int j = columnCounter; j < this.columns; j++) {
@@ -200,4 +203,104 @@ public class Manager implements NumberSlider
         }
         System.out.println("\n>------------------------------------------<");
     }
+
+    /********************************************************/
+    //Shift the rows/Columns methods
+
+    private void shiftColumnToHead(Cell current, ColumnLinkedList columnLinkedList)
+    {
+        /********************* BASE CASE*****************/
+        if(current == null){
+            return;
+        }
+        /**************** CHECK IF THE CELL HAS A NEXT TO COMBINE*********/
+        //if it has a next, it's not a head or a tail
+        if(current.getcBelow() != null && current.value == current.getcBelow().value){
+            current.value = current.value * 2;
+            Cell nextNext = current.getcBelow().getcBelow();
+            this.rowsLists[current.getcBelow().row].remove(current.getcBelow());
+            if(nextNext != null){
+                current.getcBelow().getcBelow().setcAbove(current);
+                current.setcRight(nextNext);
+            } else {
+                current.setcBelow(null);
+                columnLinkedList.setTail(current);
+            }
+        } else if(current.getcRight() == null){ /******* if no next, it must be a tail ********/
+            current.setcRight(null);
+            columnLinkedList.setTail(current);
+        }
+
+        /*******************************************/
+        //shift the column it's in here
+        int oldRow = current.row;
+        if(current.getcAbove() != null){
+            current.row = current.getcAbove().row + 1;
+        } else {
+            current.row = 0;
+            columnLinkedList.setHead(current);
+        }
+        //update the appropriate column if it moved
+        if(oldRow != current.row){
+            this.rowsLists[oldRow].remove(current);
+            this.rowsLists[current.row].insert(current);
+        }
+
+        shiftColumnToHead(current.getcBelow(), columnLinkedList);
+    }
+
+    private void shiftColumnToTail(Cell current){
+    }
+
+    private void shiftRowToHead(Cell current, RowLinkedList rowLinkedList)
+    {
+        /********************* BASE CASE*****************/
+        if(current == null){
+            return;
+        }
+        /**************** CHECK IF THE CELL HAS A NEXT TO COMBINE*********/
+        //if it has a next, it's not a head or a tail
+        if(current.getcRight() != null && current.value == current.getcRight().value){
+            current.value = current.value * 2;
+            Cell nextNext = current.getcRight().getcRight();
+            this.columnsLists[current.getcRight().column].remove(current.getcRight());
+            rowLinkedList.remove(current.getcRight());
+            if(nextNext != null){
+                current.getcRight().getcRight().setcLeft(current);
+                current.setcRight(nextNext);
+            } else {
+                current.setcRight(null);
+                rowLinkedList.setTail(current);
+            }
+        } else if(current.getcRight() == null){ /******* if no next, it must be a tail ********/
+            current.setcRight(null);
+            rowLinkedList.setTail(current);
+        }
+
+        /*******************************************/
+        //shift the column it's in here
+        int oldColumn = current.column;
+        if(current.getcLeft() != null){
+            current.column = current.getcLeft().column + 1;
+        } else {
+            current.column = 0;
+            rowLinkedList.setHead(current);
+        }
+        //update the appropriate column if it moved
+        if(oldColumn != current.column){
+            this.columnsLists[oldColumn].remove(current);
+            this.columnsLists[current.column].insert(current);
+        }
+
+        shiftRowToHead(current.getcRight(), rowLinkedList);
+    }
+
+    public RowLinkedList getRowList(int index){
+        return this.rowsLists[index];
+    }
+
+    public ColumnLinkedList getColumn(int index){
+        return this.columnsLists[index];
+    }
+
 }

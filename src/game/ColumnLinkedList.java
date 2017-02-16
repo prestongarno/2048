@@ -22,155 +22,124 @@ public class ColumnLinkedList {
         return tail;
     }
 
-    public void setHead(Cell head) {
-        this.head = head;
+    public void setHead(Cell cell) {
+        if(this.head != null && cell != null) {
+            if(head.row < cell.row){
+                cell.setcBelow(head.getcBelow());
+                head.setcBelow(null);
+                head.setcAbove(null);
+                cell.setcAbove(null);
+            } else {
+                //meanse we're inserting before head
+                this.head.setcAbove(cell);
+                cell.setcBelow(head);
+                cell.setcAbove(null);
+                if(this.tail == null){
+                    tail = head;
+                    head.setcBelow(null);
+                }
+            }
+        } else if(cell == null && this.head != null){
+            head.setcAbove(null);
+            head = null;
+        }
+        this.head = cell;
     }
 
-    public void setTail(Cell tail) {
-        this.tail = tail;
+    public void setTail(Cell cell) {
+        if(this.head == null)
+            throw new IllegalArgumentException("Head doesn't exist yet, can't set tail");
+        if(this.tail != null){
+            if(tail.row < cell.row){
+                tail.setcBelow(cell);
+                cell.setcAbove(tail);
+            } else {
+                if(tail.equals(this.head)){
+                    tail.setcBelow(null);
+                    tail.setcAbove(null);
+                    this.tail = null;
+                } else {
+                    tail.getcAbove().setcBelow(cell);
+
+                }
+            }
+        } else if(cell != null){
+            this.head.setcBelow(cell);
+            cell.setcAbove(this.head);
+        }
+        this.tail = cell;
+        if(this.tail != null){this.tail.setcBelow(null);}
     }
 
     public Cell insert(Cell cell){
-        /**If there's no value in the row*/
-        if(head == null){
-            head = cell;
-            /*tail = head;*/
-            head.setColumnNext(null);
-            head.setColumnPrevious(null);
-            return cell;
-        }
-
-        /**If the cell (param) is the furthest left
-         * set the head to that cell*/
-        if(cell.row < head.row){
-            head.setColumnPrevious(cell);
-            if(head.getColumnNext() == null){
-                this.tail = head;
-                this.tail.setColumnNext(null);
-            }
-            cell.setColumnNext(head);
-            cell.setColumnPrevious(null);
-            head = cell;
+        if(this.head == null || cell.row < head.row){
+            this.setHead(cell);
         } else {
             /**otherwise, go down the Column until the correct spot is found*/
             Cell placeHolder = head;
-            cell.setColumnPrevious(head);
-            while(placeHolder != null && placeHolder.column < cell.column){
-                cell.setColumnPrevious(placeHolder);
-                placeHolder = placeHolder.getColumnNext();
+            cell.setcAbove(head);
+            // FIXME: 2/15/17 not stylish enough
+            while(placeHolder.row < cell.row){
+                placeHolder = placeHolder.getcBelow();
+                if (placeHolder != null && placeHolder.row < cell.row) {
+                    cell.setcAbove(placeHolder);
+                } else {break;}
             }
-            cell.getColumnPrevious().setColumnNext(cell);
             //if the placeholder is null, the cell is the new tail
             if(placeHolder == null){
-                this.tail = cell;
-                this.tail.setColumnNext(null);
+                this.setTail(cell);
             } else if(placeHolder.row == cell.row) { //not allowed to insert overlapping cells
                 throw new IllegalArgumentException("Not allowed to overlap cells!");
             }else { //if not null, cell is inserted between placeHolder and placeHolder's next
-                cell.setColumnNext(cell.getColumnPrevious().getColumnNext());
-                cell.getColumnPrevious().setColumnNext(cell);
+                cell.setcBelow(cell.getcAbove().getcBelow());;
+                cell.getcBelow().setcAbove(cell);
+                cell.getcAbove().setcBelow(cell);
             }
         }
         return cell;
     }
 
-    public void shiftToTail(RowLinkedList[] rowsRef){
-        if(head != null){
-            this.shiftToTail(this.tail, rowsRef);
-        }
-    }
-
-    public void shiftToHead(RowLinkedList[] rowsRef){
-        if(head != null){
-            this.shiftToHead(this.head, rowsRef);
-        }
-    }
-
-    /**
-     * Call this to shift the row towards the tail
-     */
-    private void shiftToTail(Cell current, RowLinkedList[] rowsRef){
-        if(current.equals(head)){
-            return;
-        }
-
-        //if the cells equal and need to be combined
-        if(current.value == current.getColumnPrevious().value){
-            current.value = current.value * 2;
-            if(current.getColumnPrevious().getColumnPrevious() != null){
-                current.getColumnPrevious().getColumnPrevious().setColumnNext(current);
-            } else { //if previous one's previous is null, current is the new head
-                current.setColumnPrevious(null);
-                head = current;
+    public void remove(Cell cell){
+        if(cell.getcAbove() != null && cell.getcBelow() != null){
+            cell.getcBelow().setcAbove(cell.getcAbove());
+            cell.getcAbove().setcBelow(cell.getcBelow());
+        } else if(cell.getcBelow() == null){
+            //it's a tail
+            this.tail = cell.getcAbove();
+            if(this.tail != null){
+                this.tail.setcBelow(null);
             }
-            return;
-        }
-
-        //set the current cell's row to the correct value and call this method on the previous cell
-        int oldRow = current.row;
-        if(current.getColumnNext() != null){
-            current.row = current.getColumnNext().row - 1;
-        } else {
-            current.row = rowsRef.length;
-        }
-
-
-        if(current.row != oldRow){
-            this.removeCellFromRow(current, oldRow, rowsRef);
-            rowsRef[current.column].insert(current);
-        }
-        shiftToTail(current.getColumnPrevious(), rowsRef);
-    }
-
-    private void shiftToHead(Cell current, RowLinkedList[] rowsRef)
-    {
-        /********************* BASE CASE*****************/
-        if(current == null){
-            return;
-        }
-        /**************** CHECK IF THE CELL HAS A NEXT TO COMBINE*********/
-        //if it has a next, it's not a head or a tail
-        if(current.getColumnNext() != null && current.value == current.getColumnNext().value){
-            current.value = current.value * 2;
-            Cell nextNext = current.getColumnNext().getColumnNext();
-            this.removeCellFromRow(current.getColumnNext(), current.getColumnNext().row, rowsRef);
-            if(nextNext != null){
-                current.getColumnNext().getColumnNext().setColumnPrevious(current);
-                current.setRowNext(nextNext);
-            } else {
-                current.setColumnNext(null);
-                this.tail = current;
+        } else if(cell.getcAbove() == null){
+            //its a head
+            this.head = cell.getcBelow();
+            if(this.head != null){
+                this.head.setcAbove(null);
             }
-        } else if(current.getRowNext() == null){ /******* if no next, it must be a tail ********/
-            current.setRowNext(null);
-            this.tail = current;
         }
-
-        /*******************************************/
-        //shift the column it's in here
-        int oldColumn = current.row;
-        if(current.getColumnPrevious() != null){
-            current.row = current.getColumnPrevious().row + 1;
-        } else {
-            current.row = 0;
-        }
-        //update the appropriate column if it moved
-        if(oldColumn != current.row){
-            this.removeCellFromRow(current, oldColumn, rowsRef);
-            rowsRef[current.row].insert(current);
-        }
-
-        shiftToHead(current.getColumnNext(), rowsRef);
+        cell.setcAbove(null);
+        cell.setcBelow(null);
+/*        if(!cell.equals(head) && !cell.equals(tail)) {
+        cell.getcBelow().setcAbove(cell.getcAbove());
+        cell.getcAbove().setcBelow(cell.getcBelow());
+    } else if(cell.equals(getHead())){
+        setHead(cell.getcBelow());
+    } else if(cell.equals(getTail())){
+        setTail(cell.getcAbove());
+    }*/
     }
 
-    private void removeCellFromRow(Cell current, int oldRow, RowLinkedList[] rowsRef){
-        if(current.equals(rowsRef[oldRow].getHead())){
-            rowsRef[oldRow].setHead(current.getRowNext());
-        } else if(current.equals(rowsRef[oldRow].getTail())){
-            rowsRef[oldRow].setTail(current.getRowPrevious());
+    public void prettyPrint(){
+        System.out.print("\n");
+        if(head == null){
+            System.out.println("<-- empty row -->");
         } else {
-            current.getRowNext().setRowPrevious(current.getRowPrevious());
-            current.getRowPrevious().setRowNext(current.getRowNext());
+            Cell c = head;
+            System.out.print("[ ");
+            while (c != null){
+                System.out.print("-" + c.value + "-");
+                c = c.getcBelow();
+            }
+            System.out.print(" ]");
         }
     }
 }

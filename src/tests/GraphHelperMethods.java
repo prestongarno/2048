@@ -1,9 +1,9 @@
 package tests;
 
 import GraphGame.Cell;
-import GraphGame.Edge;
+import GraphGame.Cell.*;
+import GraphGame.Direction;
 import GraphGame.GraphBoard;
-import com.sun.corba.se.impl.orbutil.graph.Graph;
 import org.junit.Test;
 
 import java.util.Iterator;
@@ -87,22 +87,22 @@ public class GraphHelperMethods {
     public void testRelationshipEnumWorks(){
         Cell c = new Cell(0,0,0);
         Cell c1 = new Cell(0,1,0);
-        assertEquals(Edge.Direction.RIGHT, Edge.calcRelationshipToParent(c1, c));
+        assertEquals(Direction.RIGHT, Edge.calculateRelationShip(c, c1));
     }
 
     @Test
     public void testRelationshipEnumWorks2(){
         Cell c = new Cell(0,0,0);
         Cell c1 = new Cell(0,1,0);
-        assertEquals(Edge.Direction.RIGHT, c1.isTo(c));
+        assertEquals(Direction.RIGHT, c1.isTo(c));
     }
 
     @Test
     public void testRelationshipEnumWorks3(){
         Cell c = new Cell(0,0,0);
         Cell c1 = new Cell(1,1,0);
-        assertEquals(Edge.Direction.BTM_RIGHT, Edge.calcRelationshipToParent(c1, c));
-        assertEquals(Edge.Direction.TOP_LEFT, Edge.calcRelationshipToParent(c, c1));
+        assertEquals(Direction.BTM_RIGHT, Edge.calculateRelationShip(c, c1));
+        assertEquals(Direction.TOP_LEFT, Edge.calculateRelationShip(c1, c));
     }
 
     @Test
@@ -156,11 +156,11 @@ public class GraphHelperMethods {
         for (int i = 0; i < 200; i++) {
             Cell target = new Cell(row, column, value);
             (gg.walk(target, gg.start)).addEdge(target);
-            Iterator<Edge> it = target.edges.iterator();
+            Iterator<Edge> it = target.methodThatShouldOnlyBeCalledWhenUsingUnitTestsGetEdges().iterator();
             while(it.hasNext()){
                 Edge e = it.next();
-                if(e != null && !e.cell.hasEdge(target)){
-                    e.cell.addEdge(target);
+                if(e != null && !e.get().hasEdge(target)){
+                    e.get().addEdge(target);
                 }
             }
             gg.printBoard(gg.start);

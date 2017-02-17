@@ -1,6 +1,6 @@
 package GraphGame;
 
-import GraphGame.Edge.Direction.*;
+import GraphGame.Direction.*;
 import sun.print.DialogOwner;
 
 /**
@@ -36,7 +36,7 @@ public class GraphBoard {
 
     public Cell walkTo(Cell target){
         Cell closest = this.start;
-        Cell[] branches = this.start.getEdges(Edge.Direction.BTM_RIGHT, Edge.Direction.RIGHT, Edge.Direction.BELOW);
+        Cell[] branches = this.start.getEdges(Direction.BTM_RIGHT, Direction.RIGHT, Direction.BELOW);
         for(Cell c: branches) {
             c = walk(target, c);
         }
@@ -48,7 +48,7 @@ public class GraphBoard {
     }
 
     public Cell walk(Cell target, Cell current){
-        Cell[] branches = current.getEdges(Edge.Direction.BTM_RIGHT, Edge.Direction.RIGHT, Edge.Direction.BELOW);
+        Cell[] branches = current.getEdges(Direction.BTM_RIGHT, Direction.RIGHT, Direction.BELOW);
         if(branches.length != 0){
             Cell next = current;
             for (Cell c : branches) {
@@ -75,10 +75,10 @@ public class GraphBoard {
             }
             System.out.print(" " + c.value + " ");
             blankTracker = c.column;
-            c = c.get(Edge.Direction.RIGHT);
+            c = c.get(Direction.RIGHT);
         }
         System.out.print(" ]\n");
-        Cell[] bigC = current.getEdges(Edge.Direction.BTM_LEFT, Edge.Direction.BELOW, Edge.Direction.BTM_RIGHT);
+        Cell[] bigC = current.getEdges(Direction.BTM_LEFT, Direction.BELOW, Direction.BTM_RIGHT);
         if(bigC != null && bigC.length > 0){
             printBoard(bigC[0]);
         } else {

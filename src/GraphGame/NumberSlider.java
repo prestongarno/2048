@@ -1,4 +1,6 @@
-package game;
+package GraphGame;
+
+import game.GameStatus;
 
 import java.util.ArrayList;
 /**

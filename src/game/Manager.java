@@ -1,12 +1,19 @@
+/*
 package game;
+
+import GraphGame.Cell;
+import GraphGame.NumberSlider;
+import GraphGame.SlideDirection;
 
 import java.util.ArrayList;
 import java.util.Random;
 
+*/
 /**
  * Created by preston on 2/7/17.
- */
-public class Manager implements NumberSlider
+ *//*
+
+public class Manager //implements NumberSlider
 {
     private int winningValue;
     private int rows, columns;
@@ -30,7 +37,8 @@ public class Manager implements NumberSlider
         //insert a random value to start the game
         //this.placeRandomValue();
     }
-
+*/
+/*
     @Override
     public void resizeBoard(int height, int width, int winningValue) {
         this.setWinningValue(winningValue);
@@ -204,16 +212,28 @@ public class Manager implements NumberSlider
         System.out.println("\n>------------------------------------------<");
     }
 
-    /********************************************************/
+    *//*
+*/
+/********************************************************//*
+*/
+/*
     //Shift the rows/Columns methods
 
     private void shiftColumnToHead(Cell current, ColumnLinkedList columnLinkedList)
     {
-        /********************* BASE CASE*****************/
+        *//*
+*/
+/********************* BASE CASE*****************//*
+*/
+/*
         if(current == null){
             return;
         }
-        /**************** CHECK IF THE CELL HAS A NEXT TO COMBINE*********/
+        *//*
+*/
+/**************** CHECK IF THE CELL HAS A NEXT TO COMBINE*********//*
+*/
+/*
         //if it has a next, it's not a head or a tail
         if(current.getcBelow() != null && current.value == current.getcBelow().value){
             current.value = current.value * 2;
@@ -226,12 +246,20 @@ public class Manager implements NumberSlider
                 current.setcBelow(null);
                 columnLinkedList.setTail(current);
             }
-        } else if(current.getcRight() == null){ /******* if no next, it must be a tail ********/
+        } else if(current.getcRight() == null){ *//*
+*/
+/******* if no next, it must be a tail ********//*
+*/
+/*
             current.setcRight(null);
             columnLinkedList.setTail(current);
         }
 
-        /*******************************************/
+        *//*
+*/
+/*******************************************//*
+*/
+/*
         //shift the column it's in here
         int oldRow = current.row;
         if(current.getcAbove() != null){
@@ -254,11 +282,19 @@ public class Manager implements NumberSlider
 
     private void shiftRowToHead(Cell current, RowLinkedList rowLinkedList)
     {
-        /********************* BASE CASE*****************/
+        *//*
+*/
+/********************* BASE CASE*****************//*
+*/
+/*
         if(current == null){
             return;
         }
-        /**************** CHECK IF THE CELL HAS A NEXT TO COMBINE*********/
+        *//*
+*/
+/**************** CHECK IF THE CELL HAS A NEXT TO COMBINE*********//*
+*/
+/*
         //if it has a next, it's not a head or a tail
         if(current.getcRight() != null && current.value == current.getcRight().value){
             current.value = current.value * 2;
@@ -272,12 +308,20 @@ public class Manager implements NumberSlider
                 current.setcRight(null);
                 rowLinkedList.setTail(current);
             }
-        } else if(current.getcRight() == null){ /******* if no next, it must be a tail ********/
+        } else if(current.getcRight() == null){ *//*
+*/
+/******* if no next, it must be a tail ********//*
+*/
+/*
             current.setcRight(null);
             rowLinkedList.setTail(current);
         }
 
-        /*******************************************/
+        *//*
+*/
+/*******************************************//*
+*/
+/*
         //shift the column it's in here
         int oldColumn = current.column;
         if(current.getcLeft() != null){
@@ -301,6 +345,8 @@ public class Manager implements NumberSlider
 
     public ColumnLinkedList getColumn(int index){
         return this.columnsLists[index];
-    }
+    }*//*
+
 
 }
+*/

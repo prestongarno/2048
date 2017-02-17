@@ -1,4 +1,4 @@
-import game.Cell;
+import GraphGame.Cell;
 
 /**
  * Created by preston on 2/15/17.

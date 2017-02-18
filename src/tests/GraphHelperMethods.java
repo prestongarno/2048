@@ -108,48 +108,48 @@ public class GraphHelperMethods {
     @Test
     public void abstractBoardCreationFactoryImplementor(){
         GraphBoard gg = createBoard();
-        gg.printBoard(gg.start);
+        gg.printGraphicalBoard(gg.start);
     }
 
     @Test
     public void abstractBoardCreationFactoryImplementor2(){
         GraphBoard gg = createBoard();
-        gg.printBoard(gg.start);
+        gg.printGraphicalBoard(gg.start);
         Cell target = new Cell(3, 3, 2);
         (gg.walkTo(target)).addEdge(target);
-        gg.printBoard(gg.start);
+        gg.printGraphicalBoard(gg.start);
     }
 
     @Test
     public void abstractBoardCreationFactoryImplementor3(){
         GraphBoard gg = createBoard();
-        gg.printBoard(gg.start);
+        gg.printGraphicalBoard(gg.start);
         Cell target = new Cell(100, 100, 2);
         (gg.walkTo(target)).addEdge(target);
-        gg.printBoard(gg.start);
+        gg.printGraphicalBoard(gg.start);
     }
 
     @Test
     public void abstractBoardCreationFactoryImplementor4(){
         GraphBoard gg = createBoard();
-        gg.printBoard(gg.start);
+        gg.printGraphicalBoard(gg.start);
         Cell target = new Cell(2, 5, 2);
         (gg.walk(target, gg.start)).addEdge(target);
-        gg.printBoard(gg.start);
+        gg.printGraphicalBoard(gg.start);
     }
 
     @Test
     public void abstractBoardCreationFactoryImplementor5(){
         GraphBoard gg = createBoard();
-        gg.printBoard(gg.start);
+        gg.printGraphicalBoard(gg.start);
         Cell target = new Cell(2, 3, 2);
         (gg.walk(target, gg.start)).addEdge(target);
-        gg.printBoard(gg.start);
+        gg.printGraphicalBoard(gg.start);
     }
     @Test
     public void abstractBoardCreationFactoryImplementor6(){
         GraphBoard gg = createBoard();
-        gg.printBoard(gg.start);
+        gg.printGraphicalBoard(gg.start);
         int row = 3;
         int column = 0;
         int value = 2;
@@ -163,7 +163,7 @@ public class GraphHelperMethods {
                     e.get().addEdge(target);
                 }
             }
-            gg.printBoard(gg.start);
+            gg.printGraphicalBoard(gg.start);
             row += 2;
             column += 2;
             value += 2;
@@ -184,54 +184,54 @@ public class GraphHelperMethods {
         Cell c21 = new Cell(2,1,5);
         Cell c22 = new Cell(2,2,2);
 
-        c00.edges.add(new Edge(c01,c00));
-        c00.edges.add(new Edge(c10,c00));
-        c00.edges.add(new Edge(c11,c00));
+        c00.methodThatShouldOnlyBeCalledWhenUsingUnitTestsGetEdges().add(new Edge(c01,c00));
+        c00.methodThatShouldOnlyBeCalledWhenUsingUnitTestsGetEdges().add(new Edge(c10,c00));
+        c00.methodThatShouldOnlyBeCalledWhenUsingUnitTestsGetEdges().add(new Edge(c11,c00));
         
-        c01.edges.add(new Edge(c00,c01));
-        c01.edges.add(new Edge(c10,c01));
-        c01.edges.add(new Edge(c11,c01));
-        c01.edges.add(new Edge(c02,c01));
-        c01.edges.add(new Edge(c12,c01));
+        c01.methodThatShouldOnlyBeCalledWhenUsingUnitTestsGetEdges().add(new Edge(c00,c01));
+        c01.methodThatShouldOnlyBeCalledWhenUsingUnitTestsGetEdges().add(new Edge(c10,c01));
+        c01.methodThatShouldOnlyBeCalledWhenUsingUnitTestsGetEdges().add(new Edge(c11,c01));
+        c01.methodThatShouldOnlyBeCalledWhenUsingUnitTestsGetEdges().add(new Edge(c02,c01));
+        c01.methodThatShouldOnlyBeCalledWhenUsingUnitTestsGetEdges().add(new Edge(c12,c01));
 
-        c10.edges.add(new Edge(c01,c10));
-        c10.edges.add(new Edge(c12,c10));
-        c10.edges.add(new Edge(c11,c10));
+        c10.methodThatShouldOnlyBeCalledWhenUsingUnitTestsGetEdges().add(new Edge(c01,c10));
+        c10.methodThatShouldOnlyBeCalledWhenUsingUnitTestsGetEdges().add(new Edge(c12,c10));
+        c10.methodThatShouldOnlyBeCalledWhenUsingUnitTestsGetEdges().add(new Edge(c11,c10));
 
-        c10.edges.add(new Edge(c00,c10));
-        c10.edges.add(new Edge(c01,c10));
-        c10.edges.add(new Edge(c11,c10));
-        c10.edges.add(new Edge(c21,c10));
-        c10.edges.add(new Edge(c20,c10));
+        c10.methodThatShouldOnlyBeCalledWhenUsingUnitTestsGetEdges().add(new Edge(c00,c10));
+        c10.methodThatShouldOnlyBeCalledWhenUsingUnitTestsGetEdges().add(new Edge(c01,c10));
+        c10.methodThatShouldOnlyBeCalledWhenUsingUnitTestsGetEdges().add(new Edge(c11,c10));
+        c10.methodThatShouldOnlyBeCalledWhenUsingUnitTestsGetEdges().add(new Edge(c21,c10));
+        c10.methodThatShouldOnlyBeCalledWhenUsingUnitTestsGetEdges().add(new Edge(c20,c10));
 
-        c11.edges.add(new Edge(c00,c11));
-        c11.edges.add(new Edge(c01,c11));
-        c11.edges.add(new Edge(c02,c11));
-        c11.edges.add(new Edge(c10,c11));
-        c11.edges.add(new Edge(c12,c11));
-        c11.edges.add(new Edge(c20,c11));
-        c11.edges.add(new Edge(c21,c11));
-        c11.edges.add(new Edge(c22,c11));
+        c11.methodThatShouldOnlyBeCalledWhenUsingUnitTestsGetEdges().add(new Edge(c00,c11));
+        c11.methodThatShouldOnlyBeCalledWhenUsingUnitTestsGetEdges().add(new Edge(c01,c11));
+        c11.methodThatShouldOnlyBeCalledWhenUsingUnitTestsGetEdges().add(new Edge(c02,c11));
+        c11.methodThatShouldOnlyBeCalledWhenUsingUnitTestsGetEdges().add(new Edge(c10,c11));
+        c11.methodThatShouldOnlyBeCalledWhenUsingUnitTestsGetEdges().add(new Edge(c12,c11));
+        c11.methodThatShouldOnlyBeCalledWhenUsingUnitTestsGetEdges().add(new Edge(c20,c11));
+        c11.methodThatShouldOnlyBeCalledWhenUsingUnitTestsGetEdges().add(new Edge(c21,c11));
+        c11.methodThatShouldOnlyBeCalledWhenUsingUnitTestsGetEdges().add(new Edge(c22,c11));
 
-        c12.edges.add(new Edge(c01,c12));
-        c12.edges.add(new Edge(c02,c12));
-        c12.edges.add(new Edge(c11,c12));
-        c12.edges.add(new Edge(c21,c12));
-        c12.edges.add(new Edge(c22,c12));
+        c12.methodThatShouldOnlyBeCalledWhenUsingUnitTestsGetEdges().add(new Edge(c01,c12));
+        c12.methodThatShouldOnlyBeCalledWhenUsingUnitTestsGetEdges().add(new Edge(c02,c12));
+        c12.methodThatShouldOnlyBeCalledWhenUsingUnitTestsGetEdges().add(new Edge(c11,c12));
+        c12.methodThatShouldOnlyBeCalledWhenUsingUnitTestsGetEdges().add(new Edge(c21,c12));
+        c12.methodThatShouldOnlyBeCalledWhenUsingUnitTestsGetEdges().add(new Edge(c22,c12));
 
-        c21.edges.add(new Edge(c10,c21));
-        c21.edges.add(new Edge(c11,c21));
-        c21.edges.add(new Edge(c12,c21));
-        c21.edges.add(new Edge(c20,c21));
-        c21.edges.add(new Edge(c22,c21));
+        c21.methodThatShouldOnlyBeCalledWhenUsingUnitTestsGetEdges().add(new Edge(c10,c21));
+        c21.methodThatShouldOnlyBeCalledWhenUsingUnitTestsGetEdges().add(new Edge(c11,c21));
+        c21.methodThatShouldOnlyBeCalledWhenUsingUnitTestsGetEdges().add(new Edge(c12,c21));
+        c21.methodThatShouldOnlyBeCalledWhenUsingUnitTestsGetEdges().add(new Edge(c20,c21));
+        c21.methodThatShouldOnlyBeCalledWhenUsingUnitTestsGetEdges().add(new Edge(c22,c21));
 
-        c22.edges.add(new Edge(c12,c22));
-        c22.edges.add(new Edge(c21,c22));
-        c22.edges.add(new Edge(c11,c22));
+        c22.methodThatShouldOnlyBeCalledWhenUsingUnitTestsGetEdges().add(new Edge(c12,c22));
+        c22.methodThatShouldOnlyBeCalledWhenUsingUnitTestsGetEdges().add(new Edge(c21,c22));
+        c22.methodThatShouldOnlyBeCalledWhenUsingUnitTestsGetEdges().add(new Edge(c11,c22));
 
-        c20.edges.add(new Edge(c10,c20));
-        c20.edges.add(new Edge(c21,c20));
-        c20.edges.add(new Edge(c11,c20));
+        c20.methodThatShouldOnlyBeCalledWhenUsingUnitTestsGetEdges().add(new Edge(c10,c20));
+        c20.methodThatShouldOnlyBeCalledWhenUsingUnitTestsGetEdges().add(new Edge(c21,c20));
+        c20.methodThatShouldOnlyBeCalledWhenUsingUnitTestsGetEdges().add(new Edge(c11,c20));
 
         gg.start = c00;
         return gg;

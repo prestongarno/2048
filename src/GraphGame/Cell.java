@@ -4,9 +4,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.lang.ref.WeakReference;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by preston on 2/7/17.
@@ -31,14 +29,12 @@ public class Cell implements Comparable<Cell> {
         row = r;
         column = c;
         value = v;
-        this.edges = new ArrayList<>(0);
-        if (edges != null) {
-            for (Edge e : edges) {
-                this.edges.add(e);
-            }
+        this.edges = new ArrayList<>(8);
+        if (edges[0] != null) {
+            Collections.addAll(this.edges, edges);
         }
     }
-    
+
     @Override
     public int compareTo(@NotNull Cell other) {
         if (this.row < other.row) return -1;
@@ -66,27 +62,53 @@ public class Cell implements Comparable<Cell> {
         return "Cell(v" + this.value + ") [" + row + "," + column + "]";
     }
 
-
     //============================================================//
     //===================/**the edges*/================================//
-    public final ArrayList<Edge> edges;
+    private final List<Edge> edges;
     //============================================================//
-    public ArrayList<Edge> methodThatShouldOnlyBeCalledWhenUsingUnitTestsGetEdges(){return this.edges;}
+    public List<Edge> methodThatShouldOnlyBeCalledWhenUsingUnitTestsGetEdges(){return this.edges;}
+
     /**
      * Adds the edge to the current cell
-     * @return the previous edge that was here, or null
+     * @return the previous edge that was here, or the parameter Cell
+     * if the current one is closer to this cell, or null
      */
-    public Edge addEdge(Cell c)
+    public Cell addEdge(Cell c)
     {
-        if(this.hasEdge(c))
-            throw new IllegalArgumentException("Edge already exists!");
-        Edge oldEdge = null;
-        Direction direction = Edge.calculateRelationShip(this, c);
-        if(this.hasEdge(direction)){
-            oldEdge = this.getEdge(direction);
+        Direction d = Edge.calculateRelationShip(this, c);
+        Edge currentEdge = this.getEdge(d);
+        Cell curr = (currentEdge == null) ? null : currentEdge.get();
+        if(Cell.getCloserTo(curr, c, this) == c){
+            edges.remove(currentEdge);
+            edges.add(new Edge(c,this));
+            return curr;
+        } else {
+            throw new IllegalArgumentException("Should'nt try to add an edge that shouldn't be added!!!");
         }
-        this.edges.add(new Edge(c, this));
-        return oldEdge;
+    }
+
+    public static void updateAdjacents(Cell original, Cell toUpdate){
+        if(toUpdate == null)
+            return;
+        Cell[] edges = toUpdate.getEdges();
+        for(int i = 0; i < edges.length; i++){
+            Cell cell = edges[i];
+            Cell adjacent = cell.get(original.isTo(cell));
+            if(original != cell && getCloserTo(original, adjacent, cell) == original && !cell.hasEdge(original)){
+                original.addEdge(cell);
+                updateAdjacents(original, cell.addEdge(original));
+            }
+        }
+    }
+
+    public Edge getCloserEdge(Edge e1, Edge e2){
+        if(e1 == null | e2 == null)
+            return (e1 == null) ? e2 : e1;
+        return (e1.distanceToParent < e2.distanceToParent) ? e1 : e2;
+    }
+
+    public boolean hasAdjacents(){
+        return edges.get(0) != null;
     }
 
     /**
@@ -152,13 +174,18 @@ public class Cell implements Comparable<Cell> {
         return edges.contains(e);
     }
 
-    public Edge getEdge(Direction direction){
+    private Edge getEdge(Direction direction){
         for(Edge e : edges){
             if(e != null && e.dir == direction){
                 return e;
             }
         }
         return null;
+    }
+
+    public Cell getEdgeCell(Direction d){
+        Edge e = this.getEdge(d);
+        return (e != null) ? e.get() : null;
     }
 
     /**
@@ -174,23 +201,39 @@ public class Cell implements Comparable<Cell> {
     /**
      * Get all edges that exist in multiple specified directions
      * @param constraints the direction of edges to get
-     * @return
+     * @return All edges that exist in parameter directions
      */
-    public Cell[] getEdges(Direction... constraints){
-        List<Edge> ll = new LinkedList<>();
-        for(Direction d : constraints){
-            Edge edgee = this.getEdge(d);
-            if(edgee != null){
-                ll.add(this.getEdge(d));
+    public Cell[] getEdges(@Nullable Direction... constraints){
+        if(this.edges == null || this.edges.isEmpty()){
+            return new Cell[0];
+        } else {
+            if(constraints == null || constraints.length == 0){
+                constraints = Direction.values();
+            }
+
+            Cell[] cells = new Cell[constraints.length];
+            int amountCounter = 0;
+            for (Direction constraint : constraints) {
+                Edge edgee = this.getEdge(constraint);
+                if (edgee != null) {
+                    cells[amountCounter++] = edgee.get();
+                }
+            }
+            return (amountCounter+1 == constraints.length) ? cells : Arrays.copyOf(cells, amountCounter);
+        }
+    }
+
+    public Cell[] getAllNonNullEdges(){
+    Cell[] cArr = new Cell[this.edges.size()];
+        for (int i = 0; i < this.edges.size(); i++) {
+            Edge edge = this.edges.get(i);
+            if(edge != null){
+                cArr[i] = edge.get();
+            } else {
+                cArr[i] = null;
             }
         }
-        Cell[] c = new Cell[ll.size()];
-        int count = 0;
-        for(Edge e : ll){
-            c[count] = e.cell;
-            count++;
-        }
-        return c;
+        return cArr;
     }
 
     /**
@@ -212,12 +255,21 @@ public class Cell implements Comparable<Cell> {
         return Math.abs(this.row - cell.row) + Math.abs(this.column - cell.column);
     }
 
+    public static Cell getCloserTo(Cell c1, Cell c2, Cell target){
+        if(c1 == null | c2 == null)
+            return (c1 == null) ? c2 : c1;
+        return (c1.distanceTo(target) < c2.distanceTo(target)) ? c1 : c2;
+    }
+
     /**
      * Compares the distance to 0,0 (origin) of the board
      * @param other cell to compare
      * @return true if this Cell is closer to the origin
      */
     public boolean closerToOrigin(Cell other) {
+        if(other == null){
+            return true;
+        }
         int thisTotal = this.row + this.column;
         int thatTotal = other.row + other.column;
 
@@ -246,8 +298,7 @@ public class Cell implements Comparable<Cell> {
             this.distanceToParent = edge.distanceTo(parent.row, parent.column);
             this.cell = edge;
             this.parent = new WeakReference<Cell>(parent);
-            this.calculateRelationShip();
-            this.dir = calculateRelationShip();
+            dir = calculateRelationShip(parent, edge);
         }
 
         /**
@@ -263,33 +314,6 @@ public class Cell implements Comparable<Cell> {
         @Nullable
         public Cell getParent(){
             return this.parent.get();
-        }
-
-        /** Calculates where this edge stands on the parent.get()
-         * @return where this edge stands on the parent.get()
-         */
-        private Direction calculateRelationShip(){
-            if(this.parent.get() != null) {
-                if (cell.row > parent.get().row && cell.column > parent.get().column) {
-                    return Direction.BTM_RIGHT;
-                } else if (cell.row > parent.get().row && cell.column < parent.get().column) {
-                    return Direction.BTM_LEFT;
-                } else if (cell.row < parent.get().row && cell.column < parent.get().column) {
-                    return Direction.TOP_LEFT;
-                } else if (cell.row < parent.get().row && cell.column > parent.get().column) {
-                    return Direction.TOP_RIGHT;
-                } else if (cell.row > parent.get().row) {
-                    return Direction.BELOW;
-                } else if (cell.row < parent.get().row) {
-                    return Direction.ABOVE;
-                } else if (cell.column < parent.get().column) {
-                    return Direction.LEFT;
-                } else {
-                    return Direction.RIGHT;
-                }
-            } else {
-                return null;
-            }
         }
 
         /**

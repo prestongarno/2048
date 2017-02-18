@@ -1,8 +1,5 @@
 package GraphGame;
 
-import GraphGame.Direction.*;
-import sun.print.DialogOwner;
-
 /**
  * Created by preston on 2/15/17.
  */
@@ -31,6 +28,10 @@ public class GraphBoard {
     }
 
     private void setStart(Cell start) {
+        /*if(this.start!= null){
+            start.addEdge(this.start);
+            Cell.updateAdjacents(start, this.start);
+        }*/
         this.start = start;
     }
 
@@ -42,17 +43,19 @@ public class GraphBoard {
         }
 
         for(Cell e : branches){
-            closest = this.getCloserToTarget(e,closest,target);
+            closest = Cell.getCloserTo(e,closest,target);
         }
         return closest;
     }
 
     public Cell walk(Cell target, Cell current){
+        if(current == null)
+            return null;
         Cell[] branches = current.getEdges(Direction.BTM_RIGHT, Direction.RIGHT, Direction.BELOW);
-        if(branches.length != 0){
+        if(branches != null && branches.length != 0){
             Cell next = current;
             for (Cell c : branches) {
-                next = this.getCloserToTarget(c,next, target);
+                next = Cell.getCloserTo(c,next, target);
             }
             return (next.equals(current)) ? current : walk(target, next);
         } else {
@@ -60,11 +63,18 @@ public class GraphBoard {
         }
     }
 
-    public Cell getCloserToTarget(Cell c1, Cell c2, Cell target){
-        return (c1.distanceTo(target) < c2.distanceTo(target)) ? c1 : c2;
+    public void insertCell(Cell c) {
+        Cell closest = walk(c, start);
+        if(closest != null){
+            c.addEdge(closest);
+            Cell upsetCell = closest.addEdge(c);
+            Cell.updateAdjacents(c, closest);
+        } else if (c.closerToOrigin(start)){
+            this.start = c;
+        }
     }
 
-    public void printBoard(Cell current){
+    public void printGraphicalBoard(Cell current){
         System.out.print("[ ");
         Cell c = current;
         int blankTracker = 0;
@@ -80,7 +90,7 @@ public class GraphBoard {
         System.out.print(" ]\n");
         Cell[] bigC = current.getEdges(Direction.BTM_LEFT, Direction.BELOW, Direction.BTM_RIGHT);
         if(bigC != null && bigC.length > 0){
-            printBoard(bigC[0]);
+            printGraphicalBoard(bigC[0]);
         } else {
             System.out.println("<>---------------------------------------------<>");
         }

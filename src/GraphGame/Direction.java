@@ -6,7 +6,7 @@ package GraphGame;
 public enum Direction {
     TOP_LEFT, BTM_RIGHT, BTM_LEFT, ABOVE, BELOW, LEFT, RIGHT, TOP_RIGHT;
 
-    Direction opposite(){
+    public Direction opposite(){
         switch (this)
         {
             case ABOVE:
@@ -26,7 +26,6 @@ public enum Direction {
             case BTM_RIGHT:
                 return TOP_LEFT;
         }
-        throw new NullPointerException("Why doesn't a compiler let a switch statement on an enum not have any return" +
-                "statment if all other possibilities are exhausted? I guess ");
+        throw new NullPointerException("can't add directions...");
     }
 }

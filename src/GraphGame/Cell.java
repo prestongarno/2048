@@ -1,5 +1,6 @@
 package GraphGame;
 
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -45,6 +46,7 @@ public class Cell implements Comparable<Cell> {
      *
      * @return the previous edge that was here, or null
      * if the current one is closer to this cell/no cell existed here before
+     * Wait hold up - return the previous cell, makes things x10000 easier
      */
     public Cell addEdge(Cell c) {
         Direction d = Edge.isTo(this, c);
@@ -55,7 +57,7 @@ public class Cell implements Comparable<Cell> {
             edges.add(new Edge(c, this));
             return curr;
         } else {
-            return null;
+            return (currentEdge != null) ? currentEdge.get() : null;
         }
     }
 
@@ -247,6 +249,31 @@ public class Cell implements Comparable<Cell> {
             else closest = (closest.distanceToParent < e.distanceToParent) ? closest : e;
         }
         return closest;
+    }
+
+    /**
+     * @return a new cell object with only the same row, column, and value
+     */
+    @Contract("_ -> !null")
+    public static Cell createDummy(Cell cell){
+        return (cell == null) ? null : new Cell(cell.row,cell.column,cell.value);
+    }
+
+    /**
+     * Create a deep copy of this cell
+     * Includes copies of all of this cell's edges,
+     * Does NOT extend beyond that (used for unit tests)
+     * @return a new Cell with same
+     * number of edges and edge values as this
+     */
+    @Contract("_ -> !null")
+    public static Cell createDummyWithEdges(Cell c){
+        Cell copy = new Cell(c.row, c.column, c.value);
+        ArrayList<Edge> e = new ArrayList<>(8);
+        for(Cell ccells : c.getEdges()){
+            copy.addEdge(createDummy(ccells));
+        }
+       return copy;
     }
 
     @Override

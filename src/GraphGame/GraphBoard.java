@@ -111,6 +111,18 @@ public class GraphBoard {
     }
 
     /**
+     * New and improved walk function
+     * @return an adjacent cell if not on the board, or a cell if it exists
+     */
+    public Cell directWalk(Cell target, Cell start){
+        //base case - param is null
+        if(start == null)
+            return null;
+        Cell next = directWalk(target, start.addEdge(target));
+        return (next == null) ? start : next;
+    }
+
+    /**
      * Insert a cell into the board
      * @param c the cell to insert
      * @return The parameter cell that was inserted, or null if the spot is occupied

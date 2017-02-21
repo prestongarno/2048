@@ -1,13 +1,16 @@
 package GraphGame;
 
+
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.Iterator;
 
-/**
+import static GraphGame.Direction.*;
+
+/***********************************
  * Created by preston on 2/15/17.
- */
+ ***********************************/
 public class GraphBoard {
 
     private int numRows;
@@ -19,71 +22,6 @@ public class GraphBoard {
     public GraphBoard(int numRows, int numColumns) {
         this.numRows = numRows;
         this.numColumns = numColumns;
-    }
-
-    // TODO: 2/21/17 make a method doStuffToCells() that takes a lambda as param to easily do whatever to the entire board
-    /**
-     * Useless method I might need later
-     *
-     * @param original the cell that was inserted/changed
-     * @param toUpdate this cell must contain original cell as an edge
-     */
-    public static void update(Cell original, Cell toUpdate) {
-        /*if (toUpdate == null)
-            return;
-        Cell adjacent = toUpdate.get(original.isTo(toUpdate));
-        if (original != toUpdate && Cell.getCloserTo(original, adjacent, toUpdate) == original
-                && !toUpdate.hasEdge(original)){
-            original.addEdge(toUpdate);
-            update(original, toUpdate.addEdge(original));
-        }*/
-    }
-
-    /**
-     * Method that locates adjacents
-     * of a cell that is new to the area
-     *
-     * Also points the adjacent cells at the target cell
-     * And updates the other Cells that got upset by that move
-     * Until the board is updated technically
-     *
-     * @param orig cell to be inserted
-     * @param adjacent the current closest known adjacent
-     * @return a list of the closest cells to be inserted
-     */
-    public HashMap<Direction, Cell> getAdjacentsForNewCell(
-            Cell orig,
-            Cell adjacent,
-            HashMap<Direction, Cell> map){
-
-        if(adjacent == null){
-            return map;
-        }
-        //Get the current closest value
-        Direction to = adjacent.isTo(orig);
-        Cell curr = map.get(to);
-        if(curr == null){
-            map.put(to, adjacent);
-        }
-
-        if(curr != adjacent && Cell.getCloserTo(curr, adjacent, orig) == adjacent){
-
-            map.replace(to, adjacent);
-            Cell toUpdate = adjacent.addEdge(orig);
-
-            //if(toUpdate !=)
-            //update(adjacent, toUpdate);
-            Cell[] edgeCells = adjacent.getEdges();
-            for (int i = 0; i <edgeCells.length; i++) {
-                //get the direction this cell stands to the cell being inserted
-                //Direction dd = edgeCells[i].isTo(orig);
-                Cell cConst = edgeCells[i].getCloserConstrained(orig);
-                if(cConst!=orig) {
-                    map = getAdjacentsForNewCell(orig, cConst, map);
-                }
-            }
-        }
-        return map;
     }
 
     public int getNumRows() {
@@ -107,7 +45,55 @@ public class GraphBoard {
         }
     }
 
+    public interface GraphAction {
+        void executeOn(Cell cell);
+    }
+
     /**
+     * Method performs an action on the every cell on the board
+     * // TODO: 2/20/17 add direction parameter to make this work for the slide() methods
+     * @param graphAction the func interface to execute
+     */
+    public void doStuff(Cell startingPoint, GraphAction graphAction)
+    {
+        Cell rowStart = this.start;
+        while(rowStart != null){
+            rowStart = sweepHorizontal(rowStart, graphAction);
+        }
+    }
+
+    /**
+     * Iterates through the "row" of cells
+     * @param start start cell of the row
+     * @param graphAction the action to perform on every cell in this row
+     * @return the start of the next row
+     */
+    private static Cell sweepHorizontal(Cell start, GraphAction graphAction)
+    {
+        Cell nextRowStart = null;
+
+        while(start != null)
+        {
+            graphAction.executeOn(start);
+
+            Cell[] below = start.getEdges(BTM_LEFT, BTM_RIGHT, BELOW);
+            for(Cell c : below){
+                if(nextRowStart == null || c.row <= nextRowStart.row){
+                    nextRowStart = (c.closerToOrigin(nextRowStart)) ? c : nextRowStart;
+                }
+            }
+            start = start.get(RIGHT);
+        }
+
+        return nextRowStart;
+    }
+
+    /**************************
+     * Print a cell
+     *************************/
+    public static final GraphAction printCell = System.out::println;
+
+    /***********************************
      * <pre>
      *  Better walk function. Reasoning:<br>
      *  1) A cell's edges do not always have this cell as an edge in the opposite direction<br>
@@ -122,23 +108,22 @@ public class GraphBoard {
      * @param target the target cell
      * @param current the start cell
      * @return the cell at the location
-     */
+     *<br>**********************************/
     public Cell directWalk(Cell target, Cell current) {
-        //System.out.println(current + " --> " + target);
+
         if (current.isTo(target) == null){
             return current;
         } else {
-            //Cell next = current.addEdge(target);
             target.addEdge(current);
             return directWalk(target, current.addEdge(target));
         }
     }
 
-    /**
+    /***********************************
      * Insert a cell into the board
      * @param cell the cell to insert
      * @return The parameter cell that was inserted, or null if the spot is occupied
-     */
+     * <br>***********************************/
     public Cell addCell(Cell cell) {
         if(cell.row < 0 | cell.column < 0 | cell.row> numRows | cell.column> numColumns)
             throw new IllegalArgumentException("Illegal location!");
@@ -155,9 +140,8 @@ public class GraphBoard {
         }
 
         if(current != cell) {
+            // FIXME: 2/20/17 handle duplicate cells
             return null;
-            //means it's an occupied
-            //cell = current; //meaningless hack to get around this for now
         }
 
         HashMap<Direction, Cell> nap = new HashMap<>(8);
@@ -170,6 +154,12 @@ public class GraphBoard {
         return cell;
     }
 
+    /***********************************<br>
+     * Insert a cell into the board at
+     * @param x location
+     * @param y location
+     * @return The parameter cell that was inserted, or null if the spot is occupied
+     * <br>***********************************/
     public Cell addCell(int x, int y){
         if(x < 0 | y < 0 | x > numRows | y > numColumns)
             throw new IllegalArgumentException("Illegal location!");
@@ -184,11 +174,56 @@ public class GraphBoard {
         return this.addCell(cell);
     }
 
-    /**
+    /***********************************
+     * Method that locates adjacents of a cell
+     * Also points the adjacent cells at the target cell
+     *
+     * @param orig cell to be inserted
+     * @param adjacent the current closest known adjacent
+     * @return a set of the closest cells to be inserted
+     ***********************************/
+    public HashMap<Direction, Cell> getAdjacentsForNewCell(
+            Cell orig,
+            Cell adjacent,
+            HashMap<Direction, Cell> map){
+
+        if(adjacent == null){
+            return map;
+        }
+        //Get the current closest value
+        Direction to = adjacent.isTo(orig);
+        Cell curr = map.get(to);
+        if(curr == null){
+            map.put(to, adjacent);
+        }
+
+        // enters block if the current closest cell
+        // is further from orig than the adjacent cell
+        if(curr != adjacent && Cell.getCloserTo(curr, adjacent, orig) == adjacent){
+
+            map.replace(to, adjacent);
+            //add new cell to the cell's edges
+            Cell toUpdate = adjacent.addEdge(orig);
+
+            //will recurse  if this cell has an edge cell that is closer to
+            // the added cell, which also lies in the same direction relative to added cell
+            Cell[] edgeCells = adjacent.getEdges();
+            for (int i = 0; i <edgeCells.length; i++) {
+
+                Cell cConst = edgeCells[i].getCloserConstrained(orig);
+                if(cConst!=orig) {
+                    map = getAdjacentsForNewCell(orig, cConst, map);
+                }
+            }
+        }
+        return map;
+    }
+
+    /**********************************
      * Get a cell at an x,y point
      * @param x value
      * @param y value
-     */
+     ***********************************/
     @Nullable
     public Cell getCell(int x, int y)
     {
@@ -202,41 +237,31 @@ public class GraphBoard {
         return currentCell;
     }
 
-    /**
+    /***********************************
      * Print the game board
      * @param current the cell to highlight
-     */
+     ***********************************/
     public void printGraphicalBoard(Cell current) {
-        if (current == null){
-            System.out.println("<>--------------------");
-            return;
-        }
-        System.out.print("[ ");
-        Cell c = current;
-        int blankTracker = -1;
-
-        while (c != null){
-            while (++blankTracker < c.column){
-                System.out.print("-");
-            }
-            blankTracker = c.column;
-            System.out.print(c.value);
-            c = c.get(Direction.RIGHT);
-        }
-        while (++blankTracker < this.getNumColumns()){
-            System.out.print("-");
-        }
-        System.out.print("]\n");
-        Cell[] bigC = current.getEdges(Direction.BTM_LEFT,
-                Direction.BELOW, Direction.BTM_RIGHT);
-        if(bigC.length == 0 && current.hasEdge(Direction.RIGHT)){
-            while(current.hasEdge(Direction.RIGHT) && bigC.length == 0){
-                current = current.getEdgeCell(Direction.RIGHT);
-                bigC = current.getEdges(Direction.BTM_LEFT,
-                        Direction.BELOW, Direction.BTM_RIGHT);
-            }
-        }
-        if(bigC.length > 0)
-            printGraphicalBoard(bigC[0]);
+        this.doStuff(this.start, printGraphicalBoard);
     }
+
+    public static final GraphAction printGraphicalBoard = cell -> {
+        if(!cell.hasEdge(LEFT)){
+            System.out.print("\nROW=" + cell.row + " [");
+            for (int i = 0; i < cell.column; i++) {
+                System.out.print(" - ");
+            }
+        }
+
+        System.out.print(cell.value);
+        Cell next = cell.get(RIGHT);
+
+        if(next != null){
+            for (int i = cell.column; i < next.column; i++) {
+                System.out.print(" - ");
+            }
+        } else {
+            System.out.print("]");
+        }
+    };
 }

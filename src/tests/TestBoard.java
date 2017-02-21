@@ -10,17 +10,17 @@ import GraphGame.GraphBoard;
  */
 public final class TestBoard {
 
-    public static final Cell c00 = new Cell(0,0,2);
-    public static final Cell c01 = new Cell(0,1,2);
-    public static final Cell c10 = new Cell(1,0,2);
+    public static Cell c00 = new Cell(0,0,2);
+    public static Cell c01 = new Cell(0,1,2);
+    public static Cell c10 = new Cell(1,0,2);
 
-    public static final Cell c11 = new Cell(1,1,2);
-    public static final Cell c02 = new Cell(0,2,2);
-    public static final Cell c12 = new Cell(1,2,2);
+    public static Cell c11 = new Cell(1,1,2);
+    public static Cell c02 = new Cell(0,2,2);
+    public static Cell c12 = new Cell(1,2,2);
 
-    public static final Cell c20 = new Cell(2,0,2);
-    public static final Cell c21 = new Cell(2,1,2);
-    public static final Cell c22 = new Cell(2,2,2);
+    public static Cell c20 = new Cell(2,0,2);
+    public static Cell c21 = new Cell(2,1,2);
+    public static Cell c22 = new Cell(2,2,2);
 
     public static Cell getDummyC11WithEdges(){
         Cell copyC11 = Cell.createDummy(c11);
@@ -30,7 +30,21 @@ public final class TestBoard {
         }
         return copyC11;
     }
-    
+
+
+    public static void resetStaticCells(){
+        c00 = new Cell(0,0,2);
+        c01 = new Cell(0,1,2);
+        c10 = new Cell(1,0,2);
+
+        c11 = new Cell(1,1,2);
+        c02 = new Cell(0,2,2);
+        c12 = new Cell(1,2,2);
+
+        c20 = new Cell(2,0,2);
+        c21 = new Cell(2,1,2);
+        c22 = new Cell(2,2,2);
+    }
 
     public static Cell[] getAll(){
         return new Cell[]{c00,c01,c02,c10,c11,c12,c20,c21,c22};
@@ -46,7 +60,9 @@ public final class TestBoard {
      */
     public static GraphBoard createSolid3x3Board(){
 
-        GraphBoard gb = new GraphBoard(3,3);
+        GraphBoard gb = new GraphBoard(10,10);
+
+        resetStaticCells();
 
         TestBoard.c00.edges.add(new Cell.Edge(TestBoard.c01,TestBoard.c00));
         TestBoard.c00.edges.add(new Cell.Edge(TestBoard.c10,TestBoard.c00));
@@ -104,6 +120,8 @@ public final class TestBoard {
     public static GraphBoard create3x3BoardWithoutC11(){
 
         GraphBoard gb = new GraphBoard(10,10);
+
+        resetStaticCells();
 
         TestBoard.c00.edges.add(new Cell.Edge( TestBoard.c01, TestBoard.c00));
         TestBoard.c00.edges.add(new Cell.Edge(TestBoard.c10,TestBoard.c00));

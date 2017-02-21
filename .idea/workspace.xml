@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/GraphGame/GraphBoard.java" line="98" />
+    <bookmark url="file://$PROJECT_DIR$/src/GraphGame/GraphBoard.java" line="32" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d814c86-f066-460e-85af-d33f854fd2f4" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/twentyfourtyeight/GraphGame/Cell$Edge.class" afterPath="$PROJECT_DIR$/out/production/twentyfourtyeight/GraphGame/Cell$Edge.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/twentyfourtyeight/GraphGame/Cell.class" afterPath="$PROJECT_DIR$/out/production/twentyfourtyeight/GraphGame/Cell.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/twentyfourtyeight/GraphGame/GraphBoard.class" afterPath="$PROJECT_DIR$/out/production/twentyfourtyeight/GraphGame/GraphBoard.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/twentyfourtyeight/tests/GraphHelperMethods.class" afterPath="$PROJECT_DIR$/out/production/twentyfourtyeight/tests/GraphHelperMethods.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/twentyfourtyeight/tests/GraphInsert.class" afterPath="$PROJECT_DIR$/out/production/twentyfourtyeight/tests/GraphInsert.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GraphGame/Cell.java" afterPath="$PROJECT_DIR$/src/GraphGame/Cell.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GraphGame/GraphBoard.java" afterPath="$PROJECT_DIR$/src/GraphGame/GraphBoard.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tests/GraphHelperMethods.java" afterPath="$PROJECT_DIR$/src/tests/GraphHelperMethods.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tests/GraphInsert.java" afterPath="$PROJECT_DIR$/src/tests/GraphInsert.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tests/TestBoard.java" afterPath="$PROJECT_DIR$/src/tests/TestBoard.java" />
     </list>
@@ -38,91 +36,28 @@
       <content type="file-editors">
         <state>
           <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-            <file leaf-file-name="Cell.java" pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/src/GraphGame/Cell.java">
+            <file leaf-file-name="TestBoard.java" pinned="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/src/tests/TestBoard.java">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="1242">
-                    <caret line="211" column="16" lean-forward="false" selection-start-line="211" selection-start-column="16" selection-end-line="211" selection-end-column="16" />
+                  <state relative-caret-position="450">
+                    <caret line="30" column="23" lean-forward="false" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
                     <folding>
-                      <element signature="docComment;class#Cell#0" expanded="false" />
-                      <element signature="docComment;field#edges#0;class#Cell#0" expanded="false" />
-                      <element signature="docComment;field#pathCounter#0;class#Cell#0" expanded="false" />
-                      <element signature="method#Cell#3;class#Cell#0" expanded="false" />
-                      <element signature="docComment;method#addEdge#0;class#Cell#0" expanded="false" />
-                      <element signature="method#addEdge#0;class#Cell#0" expanded="false" />
-                      <element signature="docComment;method#removeEdge#0;class#Cell#0" expanded="false" />
-                      <element signature="method#removeEdge#0;class#Cell#0" expanded="false" />
-                      <element signature="docComment;method#hasAdjacents#0;class#Cell#0" expanded="false" />
-                      <element signature="docComment;method#get#0;class#Cell#0" expanded="false" />
-                      <element signature="method#get#0;class#Cell#0" expanded="false" />
-                      <element signature="docComment;method#hasEdge#0;class#Cell#0" expanded="false" />
-                      <element signature="method#hasEdge#0;class#Cell#0" expanded="false" />
-                      <element signature="docComment;method#hasEdge#1;class#Cell#0" expanded="false" />
-                      <element signature="method#hasEdge#1;class#Cell#0" expanded="false" />
-                      <element signature="docComment;method#hasEdge#2;class#Cell#0" expanded="false" />
-                      <element signature="docComment;method#getEdge#0;class#Cell#0" expanded="false" />
-                      <element signature="method#getEdge#0;class#Cell#0" expanded="false" />
-                      <element signature="docComment;method#getEdgeCell#0;class#Cell#0" expanded="false" />
-                      <element signature="method#getEdgeCell#0;class#Cell#0" expanded="false" />
-                      <element signature="docComment;method#isTo#0;class#Cell#0" expanded="false" />
-                      <element signature="docComment;method#getEdges#0;class#Cell#0" expanded="false" />
-                      <element signature="method#getEdges#0;class#Cell#0" expanded="false" />
-                      <element signature="docComment;method#distanceTo#0;class#Cell#0" expanded="false" />
-                      <element signature="docComment;method#distanceTo#1;class#Cell#0" expanded="false" />
-                      <element signature="docComment;method#closerToOrigin#0;class#Cell#0" expanded="false" />
-                      <element signature="method#closerToOrigin#0;class#Cell#0" expanded="false" />
-                      <element signature="docComment;method#getClosest#0;class#Cell#0" expanded="false" />
-                      <element signature="method#getClosest#0;class#Cell#0" expanded="false" />
-                      <element signature="method#equals#0;class#Cell#0" expanded="false" />
-                      <element signature="method#toString#0;class#Cell#0" expanded="false" />
-                      <element signature="method#hashCode#0;class#Cell#0" expanded="false" />
-                      <element signature="docComment;method#createDummy#0;class#Cell#0" expanded="false" />
-                      <element signature="method#createDummy#0;class#Cell#0" expanded="false" />
-                      <element signature="docComment;method#createDummyWithEdges#0;class#Cell#0" expanded="false" />
-                      <element signature="method#createDummyWithEdges#0;class#Cell#0" expanded="false" />
-                      <element signature="method#compareTo#0;class#Cell#0" expanded="false" />
-                      <element signature="docComment;method#unlink#0;class#Cell#0" expanded="false" />
-                      <element signature="method#unlink#0;class#Cell#0" expanded="false" />
-                      <element signature="method#getClosestEdge#0;class#Cell#0" expanded="false" />
-                      <element signature="docComment;method#getCloserConstrained#0;class#Cell#0" expanded="false" />
-                      <element signature="method#getCloserConstrained#0;class#Cell#0" expanded="false" />
-                      <element signature="class#Edge#0;class#Cell#0" expanded="false" />
-                      <element signature="docComment;field#dir#0;class#Edge#0;class#Cell#0" expanded="false" />
-                      <element signature="docComment;field#cell#0;class#Edge#0;class#Cell#0" expanded="false" />
-                      <element signature="docComment;field#parent#0;class#Edge#0;class#Cell#0" expanded="false" />
-                      <element signature="docComment;field#distanceToParent#0;class#Edge#0;class#Cell#0" expanded="false" />
-                      <element signature="docComment;method#Edge#0;class#Edge#0;class#Cell#0" expanded="false" />
-                      <element signature="method#Edge#0;class#Edge#0;class#Cell#0" expanded="false" />
-                      <element signature="docComment;method#get#0;class#Edge#0;class#Cell#0" expanded="false" />
-                      <element signature="docComment;method#getParent#0;class#Edge#0;class#Cell#0" expanded="false" />
-                      <element signature="docComment;method#isTo#0;class#Edge#0;class#Cell#0" expanded="false" />
-                      <element signature="method#isTo#0;class#Edge#0;class#Cell#0" expanded="false" />
-                      <element signature="method#toString#0;class#Edge#0;class#Cell#0" expanded="false" />
+                      <element signature="docComment;class#TestBoard#0" expanded="false" />
+                      <element signature="e#1364#1365#0" expanded="true" />
+                      <element signature="e#1434#1435#0" expanded="true" />
+                      <element signature="docComment;method#createSolid3x3Board#0;class#TestBoard#0" expanded="false" />
                     </folding>
                   </state>
                 </provider>
               </entry>
             </file>
-            <file leaf-file-name="GraphBoard.java" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/src/GraphGame/GraphBoard.java">
+            <file leaf-file-name="GraphInsert.java" pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/src/tests/GraphInsert.java">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="594">
-                    <caret line="73" column="12" lean-forward="false" selection-start-line="73" selection-start-column="12" selection-end-line="73" selection-end-column="12" />
+                  <state relative-caret-position="756">
+                    <caret line="54" column="7" lean-forward="true" selection-start-line="54" selection-start-column="7" selection-end-line="54" selection-end-column="7" />
                     <folding>
-                      <element signature="docComment;class#GraphBoard#0" expanded="false" />
-                      <element signature="method#GraphBoard#0;class#GraphBoard#0" expanded="false" />
-                      <element signature="docComment;method#getAdjacentsForNewCell#0;class#GraphBoard#0" expanded="false" />
-                      <element signature="method#setStart#0;class#GraphBoard#0" expanded="false" />
-                      <element signature="docComment;method#directWalk#0;class#GraphBoard#0" expanded="false" />
-                      <element signature="method#directWalk#0;class#GraphBoard#0" expanded="false" />
-                      <element signature="docComment;method#addCell#0;class#GraphBoard#0" expanded="false" />
-                      <element signature="method#addCell#0;class#GraphBoard#0" expanded="false" />
-                      <element signature="e#4996#5020#0" expanded="false" />
-                      <element signature="method#addCell#1;class#GraphBoard#0" expanded="false" />
-                      <element signature="docComment;method#getCell#0;class#GraphBoard#0" expanded="false" />
-                      <element signature="method#getCell#0;class#GraphBoard#0" expanded="false" />
-                      <element signature="docComment;method#printGraphicalBoard#0;class#GraphBoard#0" expanded="false" />
-                      <element signature="method#printGraphicalBoard#0;class#GraphBoard#0" expanded="false" />
+                      <element signature="imports" expanded="true" />
                     </folding>
                   </state>
                 </provider>
@@ -139,36 +74,85 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GraphInsert.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/tests/GraphInsert.java">
+      <file leaf-file-name="Cell.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GraphGame/Cell.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="111" column="31" lean-forward="true" selection-start-line="111" selection-start-column="31" selection-end-line="111" selection-end-column="31" />
+            <state relative-caret-position="594">
+              <caret line="194" column="13" lean-forward="true" selection-start-line="194" selection-start-column="13" selection-end-line="194" selection-end-column="13" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="docComment;class#Cell#0" expanded="false" />
+                <element signature="docComment;field#edges#0;class#Cell#0" expanded="false" />
+                <element signature="docComment;field#pathCounter#0;class#Cell#0" expanded="false" />
+                <element signature="method#Cell#3;class#Cell#0" expanded="false" />
+                <element signature="docComment;method#addEdge#0;class#Cell#0" expanded="false" />
+                <element signature="docComment;method#removeEdge#0;class#Cell#0" expanded="false" />
+                <element signature="method#removeEdge#0;class#Cell#0" expanded="false" />
+                <element signature="docComment;method#hasAdjacents#0;class#Cell#0" expanded="false" />
+                <element signature="docComment;method#get#0;class#Cell#0" expanded="false" />
+                <element signature="method#get#0;class#Cell#0" expanded="false" />
+                <element signature="docComment;method#hasEdge#0;class#Cell#0" expanded="false" />
+                <element signature="method#hasEdge#0;class#Cell#0" expanded="false" />
+                <element signature="docComment;method#hasEdge#1;class#Cell#0" expanded="false" />
+                <element signature="method#hasEdge#1;class#Cell#0" expanded="false" />
+                <element signature="docComment;method#hasEdge#2;class#Cell#0" expanded="false" />
+                <element signature="docComment;method#getEdge#0;class#Cell#0" expanded="false" />
+                <element signature="docComment;method#getEdgeCell#0;class#Cell#0" expanded="false" />
+                <element signature="method#getEdgeCell#0;class#Cell#0" expanded="false" />
+                <element signature="docComment;method#isTo#0;class#Cell#0" expanded="false" />
+                <element signature="docComment;method#getEdges#0;class#Cell#0" expanded="false" />
+                <element signature="docComment;method#getEdgeTo#0;class#Cell#0" expanded="false" />
+                <element signature="method#getEdgeTo#0;class#Cell#0" expanded="false" />
+                <element signature="docComment;method#distanceTo#0;class#Cell#0" expanded="false" />
+                <element signature="docComment;method#distanceTo#1;class#Cell#0" expanded="false" />
+                <element signature="docComment;method#closerToOrigin#0;class#Cell#0" expanded="false" />
+                <element signature="docComment;method#getClosest#0;class#Cell#0" expanded="false" />
+                <element signature="method#getClosest#0;class#Cell#0" expanded="false" />
+                <element signature="method#equals#0;class#Cell#0" expanded="false" />
+                <element signature="method#toString#0;class#Cell#0" expanded="false" />
+                <element signature="method#hashCode#0;class#Cell#0" expanded="false" />
+                <element signature="method#getCloserTo#0;class#Cell#0" expanded="false" />
+                <element signature="docComment;method#createDummy#0;class#Cell#0" expanded="false" />
+                <element signature="method#createDummy#0;class#Cell#0" expanded="false" />
+                <element signature="docComment;method#createDummyWithEdges#0;class#Cell#0" expanded="false" />
+                <element signature="method#createDummyWithEdges#0;class#Cell#0" expanded="false" />
+                <element signature="method#compareTo#0;class#Cell#0" expanded="false" />
+                <element signature="docComment;method#unlink#0;class#Cell#0" expanded="false" />
+                <element signature="method#unlink#0;class#Cell#0" expanded="false" />
+                <element signature="method#getClosestEdge#0;class#Cell#0" expanded="false" />
+                <element signature="docComment;method#getCloserConstrained#0;class#Cell#0" expanded="false" />
+                <element signature="method#getCloserConstrained#0;class#Cell#0" expanded="false" />
+                <element signature="class#Edge#0;class#Cell#0" expanded="false" />
+                <element signature="docComment;field#dir#0;class#Edge#0;class#Cell#0" expanded="false" />
+                <element signature="docComment;field#cell#0;class#Edge#0;class#Cell#0" expanded="false" />
+                <element signature="docComment;field#parent#0;class#Edge#0;class#Cell#0" expanded="false" />
+                <element signature="docComment;field#distanceToParent#0;class#Edge#0;class#Cell#0" expanded="false" />
+                <element signature="docComment;method#Edge#0;class#Edge#0;class#Cell#0" expanded="false" />
+                <element signature="method#Edge#0;class#Edge#0;class#Cell#0" expanded="false" />
+                <element signature="docComment;method#get#0;class#Edge#0;class#Cell#0" expanded="false" />
+                <element signature="docComment;method#getParent#0;class#Edge#0;class#Cell#0" expanded="false" />
+                <element signature="docComment;method#isTo#0;class#Edge#0;class#Cell#0" expanded="false" />
+                <element signature="method#isTo#0;class#Edge#0;class#Cell#0" expanded="false" />
+                <element signature="method#toString#0;class#Edge#0;class#Cell#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GraphHelperMethods.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/tests/GraphHelperMethods.java">
+      <file leaf-file-name="GraphBoard.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/GraphGame/GraphBoard.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3114">
-              <caret line="185" column="35" lean-forward="true" selection-start-line="185" selection-start-column="35" selection-end-line="185" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TestBoard.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/tests/TestBoard.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="327">
-              <caret line="48" column="42" lean-forward="false" selection-start-line="48" selection-start-column="42" selection-end-line="48" selection-end-column="42" />
+            <state relative-caret-position="291">
+              <caret line="48" column="13" lean-forward="false" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
               <folding>
-                <element signature="docComment;class#TestBoard#0" expanded="false" />
-                <element signature="docComment;method#createSolid3x3Board#0;class#TestBoard#0" expanded="false" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#551#552#0" expanded="true" />
+                <element signature="e#581#582#0" expanded="true" />
+                <element signature="e#615#616#0" expanded="true" />
+                <element signature="e#648#649#0" expanded="true" />
+                <element signature="e#678#679#0" expanded="true" />
+                <element signature="e#706#707#0" expanded="true" />
+                <element signature="e#7588#7589#0" expanded="true" />
+                <element signature="e#7649#7650#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -187,11 +171,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>parent</find>
-      <find>Edge.Direction</find>
-      <find>edges</find>
-      <find>getEdges()</find>
-      <find>Cell c</find>
       <find>public s</find>
       <find>Lin</find>
       <find>c2</find>
@@ -217,9 +196,13 @@
       <find>1000</find>
       <find>Cell[R=366, C=403]</find>
       <find>367</find>
+      <find>/**</find>
+      <find>***********************************/</find>
+      <find>Direction.</find>
+      <find>final</find>
+      <find>public static Cell</find>
     </findStrings>
     <replaceStrings>
-      <replace>c11</replace>
       <replace>c12</replace>
       <replace>parent.get()</replace>
       <replace>Direction</replace>
@@ -247,6 +230,9 @@
       <replace>x</replace>
       <replace>copyC11</replace>
       <replace>addCell</replace>
+      <replace>***********************************/</replace>
+      <replace>/***********************************</replace>
+      <replace>* &lt;br&gt;***********************************/</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -287,8 +273,8 @@
         <option value="$PROJECT_DIR$/src/tests/ManuallyCreatedBoard.java" />
         <option value="$PROJECT_DIR$/src/tests/GraphHelperMethods.java" />
         <option value="$PROJECT_DIR$/src/GraphGame/Cell.java" />
-        <option value="$PROJECT_DIR$/src/tests/GraphInsert.java" />
         <option value="$PROJECT_DIR$/src/tests/TestBoard.java" />
+        <option value="$PROJECT_DIR$/src/tests/GraphInsert.java" />
         <option value="$PROJECT_DIR$/src/GraphGame/GraphBoard.java" />
       </list>
     </option>
@@ -300,10 +286,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1920" />
-    <option name="y" value="-6" />
-    <option name="width" value="1920" />
-    <option name="height" value="1086" />
+    <option name="x" value="1916" />
+    <option name="y" value="-4" />
+    <option name="width" value="1928" />
+    <option name="height" value="1088" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -416,7 +402,7 @@
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -429,7 +415,93 @@
       <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="2048" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="2048" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="2048" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="2048" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="2048" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="2048" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="2048" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="2048" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GraphGame" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="2048" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="2048" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="project.structure.last.edited" value="Modules" />
@@ -451,8 +523,8 @@
       <recent name="game" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.GraphInsert.makeThisFail">
-    <configuration default="false" name="GraphInsert.makeThisFail" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.GraphInsert.targetAnyIncorrectAdcajentRefs">
+    <configuration default="false" name="GraphInsert.testNewWalkFunction" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="tests.*" />
@@ -464,7 +536,7 @@
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="tests" />
       <option name="MAIN_CLASS_NAME" value="tests.GraphInsert" />
-      <option name="METHOD_NAME" value="makeThisFail" />
+      <option name="METHOD_NAME" value="testNewWalkFunction" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -478,7 +550,7 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="false" name="GraphInsert.testA20x20Board" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="GraphInsert.testGetAdjacents" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="tests.*" />
@@ -490,7 +562,7 @@
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="tests" />
       <option name="MAIN_CLASS_NAME" value="tests.GraphInsert" />
-      <option name="METHOD_NAME" value="testA20x20Board" />
+      <option name="METHOD_NAME" value="testGetAdjacents" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -504,7 +576,7 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="false" name="GraphInsert.testHowLongToSimpleIterateOver1000x1000Array" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="GraphInsert.breakMyBoard" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="tests.*" />
@@ -516,7 +588,7 @@
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="tests" />
       <option name="MAIN_CLASS_NAME" value="tests.GraphInsert" />
-      <option name="METHOD_NAME" value="testHowLongToSimpleIterateOver1000x1000Array" />
+      <option name="METHOD_NAME" value="breakMyBoard" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -530,7 +602,7 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="false" name="GraphInsert.testAddCellInBottomRightCorner" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="GraphInsert.targetAnyIncorrectAdcajentRefs" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="tests.*" />
@@ -542,7 +614,7 @@
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="tests" />
       <option name="MAIN_CLASS_NAME" value="tests.GraphInsert" />
-      <option name="METHOD_NAME" value="testAddCellInBottomRightCorner" />
+      <option name="METHOD_NAME" value="targetAnyIncorrectAdcajentRefs" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -556,7 +628,7 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="false" name="GraphHelperMethods.testAddEdgeMethod" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="GraphInsert" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="tests.*" />
@@ -567,9 +639,9 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="tests" />
-      <option name="MAIN_CLASS_NAME" value="tests.GraphHelperMethods" />
-      <option name="METHOD_NAME" value="testAddEdgeMethod" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="tests.GraphInsert" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
@@ -963,19 +1035,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="JUnit.GraphInsert.makeThisFail" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.GraphInsert.testA20x20Board" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.GraphInsert.testHowLongToSimpleIterateOver1000x1000Array" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.GraphInsert.testAddCellInBottomRightCorner" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.GraphHelperMethods.testAddEdgeMethod" />
+      <item index="0" class="java.lang.String" itemvalue="JUnit.GraphInsert.testNewWalkFunction" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.GraphInsert.testGetAdjacents" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.GraphInsert.breakMyBoard" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.GraphInsert.targetAnyIncorrectAdcajentRefs" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.GraphInsert" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.GraphInsert.makeThisFail" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.GraphInsert.testA20x20Board" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.GraphInsert.testAddCellInBottomRightCorner" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.GraphHelperMethods.testAddEdgeMethod" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.GraphInsert.testHowLongToSimpleIterateOver1000x1000Array" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.GraphInsert.targetAnyIncorrectAdcajentRefs" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.GraphInsert" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.GraphInsert.breakMyBoard" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.GraphInsert.testGetAdjacents" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.GraphInsert.testNewWalkFunction" />
       </list>
     </recent_temporary>
   </component>
@@ -999,7 +1071,8 @@
       <workItem from="1487552238866" duration="7319000" />
       <workItem from="1487617002408" duration="4486000" />
       <workItem from="1487621604972" duration="27645000" />
-      <workItem from="1487660903811" duration="2846000" />
+      <workItem from="1487660903811" duration="4419000" />
+      <workItem from="1487671563204" duration="6409000" />
     </task>
     <task id="LOCAL-00001" summary="Using graph for gameBoard instead">
       <created>1487176116892</created>
@@ -1019,39 +1092,39 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="GraphHelperMethods_testAddEdgeMethod - 2017.02.21 at 03h 01m 44s.xml">
-      <configuration name="GraphHelperMethods.testAddEdgeMethod" configurationId="JUnit" />
+    <history-entry file="GraphInsert - 2017.02.21 at 06h 41m 50s.xml">
+      <configuration name="GraphInsert" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="GraphInsert_makeThisFail - 2017.02.21 at 02h 47m 31s.xml">
-      <configuration name="GraphInsert.makeThisFail" configurationId="JUnit" />
+    <history-entry file="GraphInsert_breakMyBoard - 2017.02.21 at 06h 10m 46s.xml">
+      <configuration name="GraphInsert.breakMyBoard" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="GraphInsert_makeThisFail - 2017.02.21 at 02h 47m 33s.xml">
-      <configuration name="GraphInsert.makeThisFail" configurationId="JUnit" />
+    <history-entry file="GraphInsert_targetAnyIncorrectAdcajentRefs - 2017.02.21 at 06h 32m 57s.xml">
+      <configuration name="GraphInsert.targetAnyIncorrectAdcajentRefs" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="GraphInsert_makeThisFail - 2017.02.21 at 02h 47m 34s.xml">
-      <configuration name="GraphInsert.makeThisFail" configurationId="JUnit" />
+    <history-entry file="GraphInsert_targetAnyIncorrectAdcajentRefs - 2017.02.21 at 06h 41m 21s.xml">
+      <configuration name="GraphInsert.targetAnyIncorrectAdcajentRefs" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="GraphInsert_makeThisFail - 2017.02.21 at 03h 02m 09s.xml">
-      <configuration name="GraphInsert.makeThisFail" configurationId="JUnit" />
+    <history-entry file="GraphInsert_targetAnyIncorrectAdcajentRefs - 2017.02.21 at 06h 52m 01s.xml">
+      <configuration name="GraphInsert.targetAnyIncorrectAdcajentRefs" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="GraphInsert_testA20x20Board - 2017.02.21 at 03h 02m 03s.xml">
-      <configuration name="GraphInsert.testA20x20Board" configurationId="JUnit" />
+    <history-entry file="GraphInsert_testGetAdjacents - 2017.02.21 at 06h 10m 28s.xml">
+      <configuration name="GraphInsert.testGetAdjacents" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="GraphInsert_testAddCellInBottomRightCorner - 2017.02.21 at 03h 01m 11s.xml">
-      <configuration name="GraphInsert.testAddCellInBottomRightCorner" configurationId="JUnit" />
+    <history-entry file="GraphInsert_testNewWalkFunction - 2017.02.21 at 06h 10m 22s.xml">
+      <configuration name="GraphInsert.testNewWalkFunction" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="GraphInsert_testAddCellInBottomRightCorner - 2017.02.21 at 03h 01m 20s.xml">
-      <configuration name="GraphInsert.testAddCellInBottomRightCorner" configurationId="JUnit" />
+    <history-entry file="GraphInsert_walkTo1000cellsAwayInTheory - 2017.02.21 at 06h 09m 03s.xml">
+      <configuration name="GraphInsert.walkTo1000cellsAwayInTheory" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="GraphInsert_testAddCellInBottomRightCorner - 2017.02.21 at 03h 01m 52s.xml">
-      <configuration name="GraphInsert.testAddCellInBottomRightCorner" configurationId="JUnit" />
+    <history-entry file="GraphInsert_walkTo1000cellsAwayInTheory - 2017.02.21 at 06h 09m 55s.xml">
+      <configuration name="GraphInsert.walkTo1000cellsAwayInTheory" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="GraphInsert_testHowLongToSimpleIterateOver1000x1000Array - 2017.02.21 at 02h 49m 17s.xml">
-      <configuration name="GraphInsert.testHowLongToSimpleIterateOver1000x1000Array" configurationId="JUnit" />
+    <history-entry file="GraphInsert_walkTo1000cellsAwayInTheory - 2017.02.21 at 06h 10m 14s.xml">
+      <configuration name="GraphInsert.walkTo1000cellsAwayInTheory" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="68530000" />
+    <option name="totallyTimeSpent" value="76512000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1063,8 +1136,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1920" y="-6" width="1920" height="1086" extended-state="6" />
-    <editor active="true" />
+    <frame x="1916" y="-4" width="1928" height="1088" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1076,8 +1149,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289183" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5026681" sideWeight="0.4918919" order="10" side_tool="false" content_ui="tabs" x="4" y="0" width="1685" height="1015" />
-      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5026681" sideWeight="0.5081081" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.66488796" sideWeight="0.4918919" order="10" side_tool="false" content_ui="tabs" x="4" y="0" width="1685" height="1015" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1089,12 +1161,13 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17235859" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.558698" sideWeight="0.4962162" order="11" side_tool="false" content_ui="tabs" x="817" y="29" width="1065" height="1007" />
+      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3660619" sideWeight="0.4962162" order="11" side_tool="false" content_ui="tabs" x="817" y="29" width="1065" height="1007" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5026681" sideWeight="0.5081081" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32881355" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1115,20 +1188,20 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/tests/GraphInsert.java</url>
-          <line>175</line>
+          <line>185</line>
           <properties />
           <option name="timeStamp" value="155" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <condition expression="c.equals(TestBoard.c22)" language="JAVA" />
           <url>file://$PROJECT_DIR$/src/tests/GraphInsert.java</url>
-          <line>105</line>
+          <line>143</line>
           <properties />
           <option name="timeStamp" value="166" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/tests/GraphInsert.java</url>
-          <line>108</line>
+          <line>146</line>
           <properties />
           <option name="timeStamp" value="168" />
         </line-breakpoint>
@@ -1138,11 +1211,23 @@
           <properties />
           <option name="timeStamp" value="169" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/tests/GraphInsert.java</url>
+          <line>175</line>
+          <properties />
+          <option name="timeStamp" value="182" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/GraphGame/Cell.java</url>
+          <line>63</line>
+          <properties />
+          <option name="timeStamp" value="188" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="180" />
+      <option name="time" value="190" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1155,6 +1240,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#10267#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1165,6 +1253,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="3" lean-forward="false" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#10267#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1182,6 +1273,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
           <caret line="13" column="29" lean-forward="true" selection-start-line="13" selection-start-column="29" selection-end-line="13" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#10267#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1197,6 +1291,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#10267#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1211,6 +1308,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#10267#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1232,6 +1332,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#10267#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1253,6 +1356,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#10267#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1274,6 +1380,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#10267#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1339,6 +1448,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2358">
           <caret line="33" column="55" lean-forward="true" selection-start-line="33" selection-start-column="55" selection-end-line="33" selection-end-column="55" />
+          <folding>
+            <element signature="e#0#10267#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1378,17 +1490,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/tests/GraphHelperMethods.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1144">
+          <caret line="185" column="35" lean-forward="false" selection-start-line="185" selection-start-column="35" selection-end-line="185" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tests/TestBoard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="30" column="23" lean-forward="false" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
+          <folding>
+            <element signature="docComment;class#TestBoard#0" expanded="false" />
+            <element signature="e#1364#1365#0" expanded="true" />
+            <element signature="e#1434#1435#0" expanded="true" />
+            <element signature="docComment;method#createSolid3x3Board#0;class#TestBoard#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/GraphGame/Cell.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1242">
-          <caret line="211" column="16" lean-forward="false" selection-start-line="211" selection-start-column="16" selection-end-line="211" selection-end-column="16" />
+        <state relative-caret-position="594">
+          <caret line="194" column="13" lean-forward="true" selection-start-line="194" selection-start-column="13" selection-end-line="194" selection-end-column="13" />
           <folding>
             <element signature="docComment;class#Cell#0" expanded="false" />
             <element signature="docComment;field#edges#0;class#Cell#0" expanded="false" />
             <element signature="docComment;field#pathCounter#0;class#Cell#0" expanded="false" />
             <element signature="method#Cell#3;class#Cell#0" expanded="false" />
             <element signature="docComment;method#addEdge#0;class#Cell#0" expanded="false" />
-            <element signature="method#addEdge#0;class#Cell#0" expanded="false" />
             <element signature="docComment;method#removeEdge#0;class#Cell#0" expanded="false" />
             <element signature="method#removeEdge#0;class#Cell#0" expanded="false" />
             <element signature="docComment;method#hasAdjacents#0;class#Cell#0" expanded="false" />
@@ -1400,21 +1532,21 @@
             <element signature="method#hasEdge#1;class#Cell#0" expanded="false" />
             <element signature="docComment;method#hasEdge#2;class#Cell#0" expanded="false" />
             <element signature="docComment;method#getEdge#0;class#Cell#0" expanded="false" />
-            <element signature="method#getEdge#0;class#Cell#0" expanded="false" />
             <element signature="docComment;method#getEdgeCell#0;class#Cell#0" expanded="false" />
             <element signature="method#getEdgeCell#0;class#Cell#0" expanded="false" />
             <element signature="docComment;method#isTo#0;class#Cell#0" expanded="false" />
             <element signature="docComment;method#getEdges#0;class#Cell#0" expanded="false" />
-            <element signature="method#getEdges#0;class#Cell#0" expanded="false" />
+            <element signature="docComment;method#getEdgeTo#0;class#Cell#0" expanded="false" />
+            <element signature="method#getEdgeTo#0;class#Cell#0" expanded="false" />
             <element signature="docComment;method#distanceTo#0;class#Cell#0" expanded="false" />
             <element signature="docComment;method#distanceTo#1;class#Cell#0" expanded="false" />
             <element signature="docComment;method#closerToOrigin#0;class#Cell#0" expanded="false" />
-            <element signature="method#closerToOrigin#0;class#Cell#0" expanded="false" />
             <element signature="docComment;method#getClosest#0;class#Cell#0" expanded="false" />
             <element signature="method#getClosest#0;class#Cell#0" expanded="false" />
             <element signature="method#equals#0;class#Cell#0" expanded="false" />
             <element signature="method#toString#0;class#Cell#0" expanded="false" />
             <element signature="method#hashCode#0;class#Cell#0" expanded="false" />
+            <element signature="method#getCloserTo#0;class#Cell#0" expanded="false" />
             <element signature="docComment;method#createDummy#0;class#Cell#0" expanded="false" />
             <element signature="method#createDummy#0;class#Cell#0" expanded="false" />
             <element signature="docComment;method#createDummyWithEdges#0;class#Cell#0" expanded="false" />
@@ -1441,29 +1573,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/tests/TestBoard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="48" column="42" lean-forward="false" selection-start-line="48" selection-start-column="42" selection-end-line="48" selection-end-column="42" />
-          <folding>
-            <element signature="docComment;class#TestBoard#0" expanded="false" />
-            <element signature="docComment;method#createSolid3x3Board#0;class#TestBoard#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/tests/GraphHelperMethods.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3114">
-          <caret line="185" column="35" lean-forward="true" selection-start-line="185" selection-start-column="35" selection-end-line="185" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/tests/GraphInsert.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="111" column="31" lean-forward="true" selection-start-line="111" selection-start-column="31" selection-end-line="111" selection-end-column="31" />
+        <state relative-caret-position="756">
+          <caret line="54" column="7" lean-forward="true" selection-start-line="54" selection-start-column="7" selection-end-line="54" selection-end-column="7" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1472,23 +1585,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GraphGame/GraphBoard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="73" column="12" lean-forward="false" selection-start-line="73" selection-start-column="12" selection-end-line="73" selection-end-column="12" />
+        <state relative-caret-position="291">
+          <caret line="48" column="13" lean-forward="false" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
           <folding>
-            <element signature="docComment;class#GraphBoard#0" expanded="false" />
-            <element signature="method#GraphBoard#0;class#GraphBoard#0" expanded="false" />
-            <element signature="docComment;method#getAdjacentsForNewCell#0;class#GraphBoard#0" expanded="false" />
-            <element signature="method#setStart#0;class#GraphBoard#0" expanded="false" />
-            <element signature="docComment;method#directWalk#0;class#GraphBoard#0" expanded="false" />
-            <element signature="method#directWalk#0;class#GraphBoard#0" expanded="false" />
-            <element signature="docComment;method#addCell#0;class#GraphBoard#0" expanded="false" />
-            <element signature="method#addCell#0;class#GraphBoard#0" expanded="false" />
-            <element signature="e#4996#5020#0" expanded="false" />
-            <element signature="method#addCell#1;class#GraphBoard#0" expanded="false" />
-            <element signature="docComment;method#getCell#0;class#GraphBoard#0" expanded="false" />
-            <element signature="method#getCell#0;class#GraphBoard#0" expanded="false" />
-            <element signature="docComment;method#printGraphicalBoard#0;class#GraphBoard#0" expanded="false" />
-            <element signature="method#printGraphicalBoard#0;class#GraphBoard#0" expanded="false" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#551#552#0" expanded="true" />
+            <element signature="e#581#582#0" expanded="true" />
+            <element signature="e#615#616#0" expanded="true" />
+            <element signature="e#648#649#0" expanded="true" />
+            <element signature="e#678#679#0" expanded="true" />
+            <element signature="e#706#707#0" expanded="true" />
+            <element signature="e#7588#7589#0" expanded="true" />
+            <element signature="e#7649#7650#0" expanded="true" />
           </folding>
         </state>
       </provider>

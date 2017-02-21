@@ -4,8 +4,10 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.lang.ref.WeakReference;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by preston on 2/7/17.
@@ -64,7 +66,8 @@ public class Cell implements Comparable<Cell> {
         Cell curr = (currentEdge == null) ? c : currentEdge.get();
         if (Cell.getCloserTo(curr, c, this) == c) {
             edges.remove(currentEdge);
-            edges.add(new Edge(c, this));
+            Edge e = new Edge(c, this);
+            edges.add(e);
         }
         return curr;
     }

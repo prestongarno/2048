@@ -1,9 +1,5 @@
 package tests;
 
-import static org.junit.Assert.*;
-import static tests.TestBoard.*;
-import static tests.TestBoard.create3x3BoardWithoutC11;
-
 import GraphGame.Cell;
 import GraphGame.Direction;
 import GraphGame.GraphBoard;
@@ -14,23 +10,65 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Random;
 
+import static org.junit.Assert.*;
+import static tests.TestBoard.*;
+
 /**
  * Created by preston on 2/17/17.
  */
 public class GraphInsert {
 
-    static final GraphBoard BOARD = new GraphBoard(8,8);
-    /*static final Cell c00 = new Cell(0,0,1);
-    static final Cell c01 = new Cell(0,1,1);
-    static final Cell c10 = new Cell(1,0,1);
+    /**
+     * Add cells to come up with a perfect 30x30 board
+     * Check all cells references for inconsistencies with
+     */
+    @Test
+    public void targetAnyIncorrectAdcajentRefs() throws Exception {
+        GraphBoard board = new GraphBoard(30,30);
+        Cell current;
+        Cell dummy;
 
-    static final Cell c11 = new Cell(1,1,1);
-    static final Cell c02 = new Cell(0,2,1);
-    static final Cell c12 = new Cell(1,2,1);
+        for (int x = 0; x < board.getNumRows(); x++) {
+            for (int y = 0; y < board.getNumColumns(); y++) {
+                current = new Cell(x,y,2);
+                board.addCell(current);
+            }
+        }
 
-    static final Cell c20 = new Cell(2,0,1);
-    static final Cell c21 = new Cell(2,1,1);
-    static final Cell c22 = new Cell(2,2,1);*/
+        //test for incorrect edges
+        board.doStuff(board.start, testForCorrectEdges);
+    }
+
+    final GraphBoard.GraphAction testForCorrectEdges = cell -> {
+        ArrayList<Cell> adjacents = GraphInsert.createDummyAdjacents(cell, 30);
+        for(Cell c : adjacents){
+            Cell actual = cell.get(c.isTo(cell));
+            System.out.println(c + " - > checking for: " + actual);
+            assertTrue(c + " - > checking for: " + actual, c.equals(actual));
+        }
+    };
+
+    /**
+     * Creates a list of cells that would be adjacent in a perfectly at-rest board
+     * @param current the cell to get adjacents
+     * @return
+     */
+    public static ArrayList<Cell> createDummyAdjacents(Cell current, int limit){
+        Cell above = new Cell(current.row-1, current.column,2);
+        Cell below = new Cell(current.row+1, current.column,2);
+        Cell btmLeft = new Cell(current.row+1, current.column-1,2);
+        Cell btmRight = new Cell(current.row+1, current.column+1,2);
+        Cell topRight = new Cell(current.row-1, current.column+1,2);
+        Cell topLeft = new Cell(current.row-1, current.column-11,2);
+        Cell[] vals = {above, below, btmLeft, btmRight, topLeft, topRight};
+        ArrayList<Cell> cells = new ArrayList<>(8);
+        for(Cell c : vals){
+            if(!(c.row < 0 || c.column < 0 || c.row > limit || c.column > limit)){
+                cells.add(c);
+            }
+        }
+        return cells;
+    }
 
     @Test
     public void testAddFirstCell(){
@@ -42,9 +80,9 @@ public class GraphInsert {
 
     @Test
     public void testBoard2CellsPointCorrectly(){
-        BOARD.addCell(c12);
+        /*BOARD.addCell(c12);
         BOARD.addCell(c22);
-        assertTrue(c12.hasEdge(c22));
+        assertTrue(c12.hasEdge(c22));*/
     }
 
     @Test
@@ -109,7 +147,7 @@ public class GraphInsert {
     }
 
     @Test
-    public void makeThisFail(){
+    public void breakMyBoard(){
         GraphBoard gg = new GraphBoard(500,500);
         Random r = new Random();
         int x, y, v;
@@ -139,35 +177,7 @@ public class GraphInsert {
                 }
             }
         }
-        //gg.printGraphicalBoard(gg.getStart());
-    }
-
-    @Test
-    public void testA20x20Board() throws Exception {
-        for (int i = 0; i < 10; i++) {
-            GraphBoard gg = new GraphBoard(20,20);
-            Random r = new Random();
-            int x, y, v;
-            Cell c;
-            ArrayList<Cell> cells = new ArrayList<>(20);
-            for (int a = 0; a < 10; a++) {
-                 cells = new ArrayList<>(20);
-                a = r.nextInt(20);
-                y = r.nextInt(20);
-                v = r.nextInt(5);
-                if (v >= 0 && v <= 2) {
-                    v = 2;
-                } else
-                    v = 4;
-                c = new Cell(a, y, v);
-                cells.add(gg.addCell(c));
-            }
-            for (Cell cz :
-                    cells) {
-                System.out.println(cz);
-            }
-            System.out.println(">>");
-        }
+        gg.printGraphicalBoard(gg.getStart());
     }
 
     @Test
@@ -230,6 +240,7 @@ public class GraphInsert {
         GraphBoard gg = TestBoard.create3x3BoardWithoutC11();
         Cell target = new Cell(1000, 1000, 999999);
         assertEquals(target, gg.directWalk(target, gg.start));
+        gg.printGraphicalBoard(gg.getStart());
     }
 
     @Test (expected = NullPointerException.class)
@@ -302,5 +313,14 @@ public class GraphInsert {
         System.out.println(newCell);
         System.out.println(TestBoard.c22);
         gb.printGraphicalBoard(gb.getStart());
+    }
+
+    @Test
+    public void printUsingSweep() throws Exception {
+        GraphBoard gb = TestBoard.createSolid3x3Board();
+        gb.addCell(3,3);
+        gb.addCell(2,9);
+        gb.addCell(0,10);
+        gb.doStuff(gb.getStart(), GraphBoard.printGraphicalBoard);
     }
 }

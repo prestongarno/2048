@@ -5,6 +5,7 @@ import GraphGame.Direction;
 import GraphGame.GraphBoard;
 import org.junit.Test;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -24,7 +25,7 @@ public class GraphInsert {
      */
     @Test
     public void targetAnyIncorrectAdcajentRefs() throws Exception {
-        GraphBoard board = new GraphBoard(30,30);
+        GraphBoard board = new GraphBoard(12,12);
         Cell current;
         Cell dummy;
 
@@ -40,11 +41,12 @@ public class GraphInsert {
     }
 
     final GraphBoard.GraphAction testForCorrectEdges = cell -> {
-        ArrayList<Cell> adjacents = GraphInsert.createDummyAdjacents(cell, 30);
+        ArrayList<Cell> adjacents = GraphInsert.createDummyAdjacents(cell, 12);
+        System.out.println("Checking Cell: " + cell);
         for(Cell c : adjacents){
             Cell actual = cell.get(c.isTo(cell));
-            System.out.println(c + " - > checking for: " + actual);
-            assertTrue(c + " - > checking for: " + actual, c.equals(actual));
+            //System.out.println(cell + " - > checking for: " + actual);
+            assertTrue("Cell[" +c.row + "," + c.column + "] - > checking for: " + actual, c.equals(actual));
         }
     };
 
@@ -56,14 +58,16 @@ public class GraphInsert {
     public static ArrayList<Cell> createDummyAdjacents(Cell current, int limit){
         Cell above = new Cell(current.row-1, current.column,2);
         Cell below = new Cell(current.row+1, current.column,2);
+        Cell left = new Cell(current.row, current.column - 1,2);
+        Cell right = new Cell(current.row, current.column+1,2);
         Cell btmLeft = new Cell(current.row+1, current.column-1,2);
         Cell btmRight = new Cell(current.row+1, current.column+1,2);
         Cell topRight = new Cell(current.row-1, current.column+1,2);
         Cell topLeft = new Cell(current.row-1, current.column-11,2);
-        Cell[] vals = {above, below, btmLeft, btmRight, topLeft, topRight};
+        Cell[] vals = {above, below, left, right, btmLeft, btmRight, topLeft, topRight};
         ArrayList<Cell> cells = new ArrayList<>(8);
         for(Cell c : vals){
-            if(!(c.row < 0 || c.column < 0 || c.row > limit || c.column > limit)){
+            if(!(c.row < 0 | c.column < 0 | c.row >= limit | c.column >= limit)){
                 cells.add(c);
             }
         }

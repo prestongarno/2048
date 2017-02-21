@@ -56,9 +56,8 @@ public class GraphBoard {
      */
     public void doStuff(Cell startingPoint, GraphAction graphAction)
     {
-        Cell rowStart = this.start;
-        while(rowStart != null){
-            rowStart = sweepHorizontal(rowStart, graphAction);
+        while(startingPoint != null){
+            startingPoint = sweepHorizontal(startingPoint, graphAction);
         }
     }
 
@@ -70,22 +69,24 @@ public class GraphBoard {
      */
     private static Cell sweepHorizontal(Cell start, GraphAction graphAction)
     {
-        Cell nextRowStart = null;
 
-        while(start != null)
+        Cell current = start;
+        Cell nextStart = null;
+
+        while(current != null)
         {
-            graphAction.executeOn(start);
+            graphAction.executeOn(current);
 
-            Cell[] below = start.getEdges(BTM_LEFT, BTM_RIGHT, BELOW);
+            Cell[] below = current.getEdges(BTM_LEFT, BTM_RIGHT, BELOW);
             for(Cell c : below){
-                if(nextRowStart == null || c.row <= nextRowStart.row){
-                    nextRowStart = (c.closerToOrigin(nextRowStart)) ? c : nextRowStart;
-                }
+                if(nextStart == null)
+                    nextStart = c;
+                else nextStart = (c.closerToOrigin(start)) ? c : nextStart;
             }
-            start = start.get(RIGHT);
+            current = current.get(RIGHT);
         }
 
-        return nextRowStart;
+        return nextStart;
     }
 
     /**************************

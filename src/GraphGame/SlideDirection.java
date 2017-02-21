@@ -1,4 +1,4 @@
-package game;
+package GraphGame;
 
 /**
  * Created by preston on 2/7/17.

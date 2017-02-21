@@ -13,11 +13,19 @@ import java.util.*;
 public class Cell implements Comparable<Cell> {
 
     //============================================================//
-    /**===================/**the edges/===========================*/
-    public final List<Edge> edges;
+    /**
+     * ===================/**the edges/===========================
+     */
+    public final List<Edge> edges; // TODO: 2/19/17 Use a HashMap instead? <-------- no, do that after it actually works
     //============================================================//
 
     public int row, column, value;
+
+    /**
+     * Integer can be used to track amount of
+     * steps a cell takes on it's way to insert/delete/slide
+     */
+    public int pathCounter;
 
     public Cell() {
         this(0, 0, 0, (Edge) null);
@@ -44,21 +52,21 @@ public class Cell implements Comparable<Cell> {
     /**
      * Adds the edge to the current cell
      *
-     * @return the previous edge that was here, or null
-     * if the current one is closer to this cell/no cell existed here before
-     * Wait hold up - return the previous cell, makes things x10000 easier
+     * @return the parameter cell if:
+     *                  - it currently has a closer edge
+     *                  - it has an edge that .equals() parameter
+     * or the previous edge that was replaced by this call
      */
+    @NotNull
     public Cell addEdge(Cell c) {
         Direction d = Edge.isTo(this, c);
         Edge currentEdge = this.getEdge(d);
-        Cell curr = (currentEdge == null) ? null : currentEdge.get();
+        Cell curr = (currentEdge == null) ? c : currentEdge.get();
         if (Cell.getCloserTo(curr, c, this) == c) {
             edges.remove(currentEdge);
             edges.add(new Edge(c, this));
-            return curr;
-        } else {
-            return (currentEdge != null) ? currentEdge.get() : null;
         }
+        return curr;
     }
 
     /**
@@ -68,17 +76,13 @@ public class Cell implements Comparable<Cell> {
      * @return the Cell that was removed
      */
     @Nullable
-    public Edge removeEdge(@NotNull Cell c) {
-        if (!this.hasEdge(c)) {
-            throw new IllegalArgumentException("No such edge!");
-        }
+    public void removeEdge(@NotNull Cell c) {
         for (Edge e : edges) {
-            if (e.cell.equals(c)) {
+            if (e.cell == c) {
                 edges.remove(e);
-                return e;
+                return;
             }
         }
-        return null;
     }
 
     /**
@@ -165,10 +169,12 @@ public class Cell implements Comparable<Cell> {
      * Find out where the cell stands in relation to another cell
      *
      * @param other the anchor cell
-     * @return the direction this cell is to the parameter cell
+     * @return the direction this cell is to the parameter cell,
+     *              returns NULL if cell's row & column equal this one's
      */
+    @Nullable
     public Direction isTo(Cell other) {
-        return Edge.isTo(other, this);
+        return (other.equals(this)) ? null : Edge.isTo(other, this);
     }
 
     /**
@@ -193,8 +199,22 @@ public class Cell implements Comparable<Cell> {
                     cells[amountCounter++] = edgee.get();
                 }
             }
-            return (amountCounter + 1 == constraints.length) ? cells : Arrays.copyOf(cells, amountCounter);
+            return (amountCounter == constraints.length) ? cells : Arrays.copyOf(cells, amountCounter);
         }
+    }
+
+    /**
+     * Gets an edge cell closer than this cell
+     *
+     * @param target the cell to compare to
+     * @return another cell that's closer to target than this, or this
+     */
+    public Cell getEdgeTo(Cell target) {
+        Cell closest = this;
+        for (Cell c : getEdges()) {
+            closest = getCloserTo(c, closest, target);
+        }
+        return closest;
     }
 
     /**
@@ -251,43 +271,6 @@ public class Cell implements Comparable<Cell> {
         return closest;
     }
 
-    /**
-     * @return a new cell object with only the same row, column, and value
-     */
-    @Contract("_ -> !null")
-    public static Cell createDummy(Cell cell){
-        return (cell == null) ? null : new Cell(cell.row,cell.column,cell.value);
-    }
-
-    /**
-     * Create a deep copy of this cell
-     * Includes copies of all of this cell's edges,
-     * Does NOT extend beyond that (used for unit tests)
-     * @return a new Cell with same
-     * number of edges and edge values as this
-     */
-    @Contract("_ -> !null")
-    public static Cell createDummyWithEdges(Cell c){
-        Cell copy = new Cell(c.row, c.column, c.value);
-        ArrayList<Edge> e = new ArrayList<>(8);
-        for(Cell ccells : c.getEdges()){
-            copy.addEdge(createDummy(ccells));
-        }
-       return copy;
-    }
-
-    @Override
-    public int compareTo(@NotNull Cell other) {
-        if (this.row < other.row) return -1;
-        if (this.row > other.row) return +1;
-
-        /* break the tie using column */
-        if (this.column < other.column) return -1;
-        if (this.column > other.column) return +1;
-
-        return this.value - other.value;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -301,16 +284,19 @@ public class Cell implements Comparable<Cell> {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("C[");
+        sb.append("Cell[R=");
         sb.append(row);
-        sb.append(",");
+        sb.append(", C=");
         sb.append(column);
         sb.append("]");
-        if(this.edges.size() > 0)
-        {
-            sb.append(" a{");
-            for(Edge e : this.edges){
-                sb.append("| " + e.cell.row + "," + e.cell.column + " |");
+        if (this.edges.size() > 0) {
+            sb.append(" Adjacents{");
+            for (Edge e : this.edges) {
+                sb.append("[");
+                sb.append(e.cell.row);
+                sb.append(",");
+                sb.append(e.cell.column);
+                sb.append("]");
             }
             sb.append("} ");
         }
@@ -329,11 +315,89 @@ public class Cell implements Comparable<Cell> {
     public static Cell getCloserTo(Cell c1, Cell c2, Cell target) {
         if (c1 == null | c2 == null)
             return (c1 == null) ? c2 : c1;
-        return (c1.distanceTo(target) < c2.distanceTo(target)) ? c1 : c2;
+        return (c1.distanceTo(target) <= c2.distanceTo(target)) ? c1 : c2;
+    }
+
+    /**
+     * @return a new cell object with only the same row, column, and value
+     */
+    @Contract("_ -> !null")
+    public static Cell createDummy(Cell cell) {
+        return (cell == null) ? null : new Cell(cell.row, cell.column, cell.value);
+    }
+
+    /**
+     * Create a deep copy of this cell
+     * Includes copies of all of this cell's edges,
+     * Does NOT extend beyond that
+     * (used for unit tests before graph complete)
+     *
+     * @return a new Cell with same
+     * number of edges and edge values as this
+     */
+    @Contract("_ -> !null")
+    public static Cell createDummyWithEdges(Cell c) {
+        Cell copy = new Cell(c.row, c.column, c.value);
+        ArrayList<Edge> e = new ArrayList<>(8);
+        for (Cell ccells : c.getEdges()) {
+            copy.addEdge(createDummy(ccells));
+        }
+        return copy;
+    }
+
+    @Override
+    public int compareTo(@NotNull Cell other) {
+        if (this.row < other.row) return -1;
+        if (this.row > other.row) return +1;
+
+        /* break the tie using column */
+        if (this.column < other.column) return -1;
+        if (this.column > other.column) return +1;
+
+        return this.value - other.value;
+    }
+
+    /**
+     * notifies only this cell's adjacent cells to
+     * remove their pointer to this cell
+     */
+    public void unlink() {
+        for(Edge e : edges){
+            e.get().removeEdge(this);
+        }
+    }
+
+    public Cell getClosestEdge() {
+        Cell c = null;
+        for (Cell curr : this.getEdges()) {
+            c = (Cell.getCloserTo(c, curr, this));
+        }
+        return c;
+    }
+
+    /**
+     * @param target the cell relative to constrain search
+     * @return this, or an edge to this cell that is closer
+     * to the target but also lies in the same direction to target
+     */
+    public Cell getCloserConstrained(Cell target)
+    {
+        Cell closest = this;
+        Direction toTarget = this.isTo(target);
+        for(Cell c : getEdges()){
+            if(c.isTo(target) == toTarget && Cell.getCloserTo(closest, c, target) == c){
+                closest = c;
+            }
+        }
+        return closest;
+    }
+
+    public String toShortString()
+    {
+        return "C[" + row + "," + column + "]";
     }
 
     public static final class Edge {
-
         /**
          * The direction that this edge is in
          */
@@ -343,9 +407,10 @@ public class Cell implements Comparable<Cell> {
          */
         private final Cell cell;
         /**
-         *  to the parent
+         * to the parent
          */
         private final Cell parent;
+
         /**
          * Distance from the parent that this cell is
          */
@@ -377,6 +442,8 @@ public class Cell implements Comparable<Cell> {
         }
 
         /**
+         * Static helper method that prob shouldn't be here
+         *
          * @param parent the original cell
          * @param other  the other cell
          * @return the Direction that other is from parent
@@ -399,6 +466,14 @@ public class Cell implements Comparable<Cell> {
             } else {
                 return Direction.RIGHT;
             }
+        }
+
+        @Override
+        public String toString() {
+            return "Edge{" +
+                    "dir=" + dir +
+                    ", cell=" + cell +
+                    '}';
         }
     }
 }

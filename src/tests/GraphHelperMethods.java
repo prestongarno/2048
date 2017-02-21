@@ -4,6 +4,7 @@ import GraphGame.Cell;
 import GraphGame.Cell.*;
 import GraphGame.Direction;
 import GraphGame.GraphBoard;
+import com.sun.org.apache.xpath.internal.SourceTree;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -101,7 +102,7 @@ public class GraphHelperMethods {
         gg.printGraphicalBoard(gg.getStart());
     }
 
-    @Test
+    /*@Test
     public void abstractBoardCreationFactoryImplementor2(){
         GraphBoard gg = TestBoard.createSolid3x3Board();
         gg.printGraphicalBoard(gg.getStart());
@@ -157,6 +158,34 @@ public class GraphHelperMethods {
             row += 2;
             column += 2;
             value += 2;
+        }
+    }
+
+    @Test
+    public void testGetCloserToOnSelf() throws Exception {
+        Cell c = new Cell(100,100,-256);
+        System.out.println(Cell.getCloserTo(c,c,c));
+        System.out.println(c.getEdgeTo(c));
+        System.out.println(c.closerToOrigin(c));
+        System.out.println(c.distanceTo(c));
+        System.out.println(c.isTo(c));
+    }*/
+
+    @Test
+    public void testGetCloserTo() throws Exception {
+        assertTrue(Cell.getCloserTo(c12, c21,c00) == c12);
+        assertEquals(c20, Cell.getCloserTo(c20, c22,c01));
+        assertEquals(c22, Cell.getCloserTo(c22, c20,c01));
+    }
+
+    @Test
+    public void testAddEdgeMethod() throws Exception {
+        Cell c = new Cell(0,0,2);
+        Cell next = new Cell(0,1,2);
+
+        String[] s = new String[0];
+        for (String ddd : s){
+            System.out.println(ddd);
         }
     }
 }

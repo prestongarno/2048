@@ -10,17 +10,27 @@ import GraphGame.GraphBoard;
  */
 public final class TestBoard {
 
-    public static Cell c00 = new Cell(0,0,2);
-    public static Cell c01 = new Cell(0,1,2);
-    public static Cell c10 = new Cell(1,0,2);
+    public static final Cell c00 = new Cell(0,0,2);
+    public static final Cell c01 = new Cell(0,1,2);
+    public static final Cell c10 = new Cell(1,0,2);
 
-    public static Cell c11 = new Cell(1,1,2);
-    public static Cell c02 = new Cell(0,2,2);
-    public static Cell c12 = new Cell(1,2,2);
+    public static final Cell c11 = new Cell(1,1,2);
+    public static final Cell c02 = new Cell(0,2,2);
+    public static final Cell c12 = new Cell(1,2,2);
 
-    public static Cell c20 = new Cell(2,0,2);
-    public static Cell c21 = new Cell(2,1,2);
-    public static Cell c22 = new Cell(2,2,2);
+    public static final Cell c20 = new Cell(2,0,2);
+    public static final Cell c21 = new Cell(2,1,2);
+    public static final Cell c22 = new Cell(2,2,2);
+
+    public static Cell getDummyC11WithEdges(){
+        Cell copyC11 = Cell.createDummy(c11);
+        for (Cell c : getAll()) {
+            if(!copyC11.equals(c))
+                copyC11.edges.add(new Cell.Edge(Cell.createDummy(c),copyC11));
+        }
+        return copyC11;
+    }
+    
 
     public static Cell[] getAll(){
         return new Cell[]{c00,c01,c02,c10,c11,c12,c20,c21,c22};
@@ -36,128 +46,107 @@ public final class TestBoard {
      */
     public static GraphBoard createSolid3x3Board(){
 
-        GraphBoard gg = new GraphBoard(10,10);
+        GraphBoard gb = new GraphBoard(3,3);
 
-        c00 = new Cell(0,0,2);
-        c01 = new Cell(0,1,2);
-        c10 = new Cell(1,0,2);
+        TestBoard.c00.edges.add(new Cell.Edge(TestBoard.c01,TestBoard.c00));
+        TestBoard.c00.edges.add(new Cell.Edge(TestBoard.c10,TestBoard.c00));
+        TestBoard.c00.edges.add(new Cell.Edge(TestBoard.c11,TestBoard.c00));
 
-        c11 = new Cell(1,1,2);
-        c02 = new Cell(0,2,2);
-        c12 = new Cell(1,2,2);
+        TestBoard.c01.edges.add(new Cell.Edge(TestBoard.c00,TestBoard.c01));
+        TestBoard.c01.edges.add(new Cell.Edge(TestBoard.c10,TestBoard.c01));
+        TestBoard.c01.edges.add(new Cell.Edge(TestBoard.c11,TestBoard.c01));
+        TestBoard.c01.edges.add(new Cell.Edge(TestBoard.c02,TestBoard.c01));
+        TestBoard.c01.edges.add(new Cell.Edge(TestBoard.c12,TestBoard.c01));
 
-        c20 = new Cell(2,0,2);
-        c21 = new Cell(2,1,2);
-        c22 = new Cell(2,2,2);
+        TestBoard.c02.edges.add(new Cell.Edge(TestBoard.c01,TestBoard.c02));
+        TestBoard.c02.edges.add(new Cell.Edge(TestBoard.c11,TestBoard.c02));
+        TestBoard.c02.edges.add(new Cell.Edge(TestBoard.c12,TestBoard.c02));
 
-        c00.edges.add(new Cell.Edge(c01,c00));
-        c00.edges.add(new Cell.Edge(c10,c00));
-        c00.edges.add(new Cell.Edge(c11,c00));
+        TestBoard.c10.edges.add(new Cell.Edge(TestBoard.c00,TestBoard.c10));
+        TestBoard.c10.edges.add(new Cell.Edge(TestBoard.c01,TestBoard.c10));
+        TestBoard.c10.edges.add(new Cell.Edge(TestBoard.c11,TestBoard.c10));
+        TestBoard.c10.edges.add(new Cell.Edge(TestBoard.c21,TestBoard.c10));
+        TestBoard.c10.edges.add(new Cell.Edge(TestBoard.c20,TestBoard.c10));
 
-        c01.edges.add(new Cell.Edge(c00,c01));
-        c01.edges.add(new Cell.Edge(c10,c01));
-        c01.edges.add(new Cell.Edge(c11,c01));
-        c01.edges.add(new Cell.Edge(c02,c01));
-        c01.edges.add(new Cell.Edge(c12,c01));
+        TestBoard.c11.edges.add(new Cell.Edge(TestBoard.c00,TestBoard.c11));
+        TestBoard.c11.edges.add(new Cell.Edge(TestBoard.c01,TestBoard.c11));
+        TestBoard.c11.edges.add(new Cell.Edge(TestBoard.c02,TestBoard.c11));
+        TestBoard.c11.edges.add(new Cell.Edge(TestBoard.c10,TestBoard.c11));
+        TestBoard.c11.edges.add(new Cell.Edge(TestBoard.c12,TestBoard.c11));
+        TestBoard.c11.edges.add(new Cell.Edge(TestBoard.c20,TestBoard.c11));
+        TestBoard.c11.edges.add(new Cell.Edge(TestBoard.c21,TestBoard.c11));
+        TestBoard.c11.edges.add(new Cell.Edge(TestBoard.c22,TestBoard.c11));
 
-        c02.edges.add(new Cell.Edge(c01,c02));
-        c02.edges.add(new Cell.Edge(c11,c02));
-        c02.edges.add(new Cell.Edge(c12,c02));
+        TestBoard.c12.edges.add(new Cell.Edge(TestBoard.c01,TestBoard.c12));
+        TestBoard.c12.edges.add(new Cell.Edge(TestBoard.c02,TestBoard.c12));
+        TestBoard.c12.edges.add(new Cell.Edge(TestBoard.c11,TestBoard.c12));
+        TestBoard.c12.edges.add(new Cell.Edge(TestBoard.c21,TestBoard.c12));
+        TestBoard.c12.edges.add(new Cell.Edge(TestBoard.c22,TestBoard.c12));
 
-        c10.edges.add(new Cell.Edge(c00,c10));
-        c10.edges.add(new Cell.Edge(c01,c10));
-        c10.edges.add(new Cell.Edge(c11,c10));
-        c10.edges.add(new Cell.Edge(c21,c10));
-        c10.edges.add(new Cell.Edge(c20,c10));
+        TestBoard.c21.edges.add(new Cell.Edge(TestBoard.c10,TestBoard.c21));
+        TestBoard.c21.edges.add(new Cell.Edge(TestBoard.c11,TestBoard.c21));
+        TestBoard.c21.edges.add(new Cell.Edge(TestBoard.c12,TestBoard.c21));
+        TestBoard.c21.edges.add(new Cell.Edge(TestBoard.c20,TestBoard.c21));
+        TestBoard.c21.edges.add(new Cell.Edge(TestBoard.c22,TestBoard.c21));
 
-        c11.edges.add(new Cell.Edge(c00,c11));
-        c11.edges.add(new Cell.Edge(c01,c11));
-        c11.edges.add(new Cell.Edge(c02,c11));
-        c11.edges.add(new Cell.Edge(c10,c11));
-        c11.edges.add(new Cell.Edge(c12,c11));
-        c11.edges.add(new Cell.Edge(c20,c11));
-        c11.edges.add(new Cell.Edge(c21,c11));
-        c11.edges.add(new Cell.Edge(c22,c11));
+        TestBoard.c22.edges.add(new Cell.Edge(TestBoard.c12,TestBoard.c22));
+        TestBoard.c22.edges.add(new Cell.Edge(TestBoard.c21,TestBoard.c22));
+        TestBoard.c22.edges.add(new Cell.Edge(TestBoard.c11,TestBoard.c22));
 
-        c12.edges.add(new Cell.Edge(c01,c12));
-        c12.edges.add(new Cell.Edge(c02,c12));
-        c12.edges.add(new Cell.Edge(c11,c12));
-        c12.edges.add(new Cell.Edge(c21,c12));
-        c12.edges.add(new Cell.Edge(c22,c12));
+        TestBoard.c20.edges.add(new Cell.Edge(TestBoard.c10,TestBoard.c20));
+        TestBoard.c20.edges.add(new Cell.Edge(TestBoard.c21,TestBoard.c20));
+        TestBoard.c20.edges.add(new Cell.Edge(TestBoard.c11,TestBoard.c20));
 
-        c21.edges.add(new Cell.Edge(c10,c21));
-        c21.edges.add(new Cell.Edge(c11,c21));
-        c21.edges.add(new Cell.Edge(c12,c21));
-        c21.edges.add(new Cell.Edge(c20,c21));
-        c21.edges.add(new Cell.Edge(c22,c21));
-
-        c22.edges.add(new Cell.Edge(c12,c22));
-        c22.edges.add(new Cell.Edge(c21,c22));
-        c22.edges.add(new Cell.Edge(c11,c22));
-
-        c20.edges.add(new Cell.Edge(c10,c20));
-        c20.edges.add(new Cell.Edge(c21,c20));
-        c20.edges.add(new Cell.Edge(c11,c20));
-
-        gg.start = c00;
-        return gg;
+        gb.start = TestBoard.c00;
+        return gb;
     }
 
     public static GraphBoard create3x3BoardWithoutC11(){
-        c00 = new Cell(0,0,2);
-        c01 = new Cell(0,1,2);
-        c10 = new Cell(1,0,2);
 
-        c02 = new Cell(0,2,2);
-        c12 = new Cell(1,2,2);
+        GraphBoard gb = new GraphBoard(10,10);
 
-        c20 = new Cell(2,0,2);
-        c21 = new Cell(2,1,2);
-        c22 = new Cell(2,2,2);
+        TestBoard.c00.edges.add(new Cell.Edge( TestBoard.c01, TestBoard.c00));
+        TestBoard.c00.edges.add(new Cell.Edge(TestBoard.c10,TestBoard.c00));
+        TestBoard.c00.edges.add(new Cell.Edge(TestBoard.c12,TestBoard.c00));
 
-        c00.edges.add(new Cell.Edge(c01,c00));
-        c00.edges.add(new Cell.Edge(c10,c00));
-        c00.edges.add(new Cell.Edge(c12,c00));
+        TestBoard.c01.edges.add(new Cell.Edge(TestBoard.c00,TestBoard.c01));
+        TestBoard.c01.edges.add(new Cell.Edge(TestBoard.c10,TestBoard.c01));
+        TestBoard.c01.edges.add(new Cell.Edge(TestBoard.c21,TestBoard.c01));
+        TestBoard.c01.edges.add(new Cell.Edge(TestBoard.c02,TestBoard.c01));
+        TestBoard.c01.edges.add(new Cell.Edge(TestBoard.c12,TestBoard.c01));
 
-        c01.edges.add(new Cell.Edge(c00,c01));
-        c01.edges.add(new Cell.Edge(c10,c01));
-        c01.edges.add(new Cell.Edge(c21,c01));
-        c01.edges.add(new Cell.Edge(c02,c01));
-        c01.edges.add(new Cell.Edge(c12,c01));
+        TestBoard.c02.edges.add(new Cell.Edge(TestBoard.c01,TestBoard.c02));
+        TestBoard.c02.edges.add(new Cell.Edge(TestBoard.c10,TestBoard.c02));
+        TestBoard.c02.edges.add(new Cell.Edge(TestBoard.c12,TestBoard.c02));
 
-        c02.edges.add(new Cell.Edge(c01,c02));
-        c02.edges.add(new Cell.Edge(c10,c02));
-        c02.edges.add(new Cell.Edge(c12,c02));
+        TestBoard.c10.edges.add(new Cell.Edge(TestBoard.c00,TestBoard.c10));
+        TestBoard.c10.edges.add(new Cell.Edge(TestBoard.c01,TestBoard.c10));
+        TestBoard.c10.edges.add(new Cell.Edge(TestBoard.c12,TestBoard.c10));
+        TestBoard.c10.edges.add(new Cell.Edge(TestBoard.c21,TestBoard.c10));
+        TestBoard.c10.edges.add(new Cell.Edge(TestBoard.c20,TestBoard.c10));
 
-        c10.edges.add(new Cell.Edge(c00,c10));
-        c10.edges.add(new Cell.Edge(c01,c10));
-        c10.edges.add(new Cell.Edge(c12,c10));
-        c10.edges.add(new Cell.Edge(c21,c10));
-        c10.edges.add(new Cell.Edge(c20,c10));
+        TestBoard.c12.edges.add(new Cell.Edge(TestBoard.c01,TestBoard.c12));
+        TestBoard.c12.edges.add(new Cell.Edge(TestBoard.c02,TestBoard.c12));
+        TestBoard.c12.edges.add(new Cell.Edge(TestBoard.c10,TestBoard.c12));
+        TestBoard.c12.edges.add(new Cell.Edge(TestBoard.c21,TestBoard.c12));
+        TestBoard.c12.edges.add(new Cell.Edge(TestBoard.c22,TestBoard.c12));
 
-        c12.edges.add(new Cell.Edge(c01,c12));
-        c12.edges.add(new Cell.Edge(c02,c12));
-        c12.edges.add(new Cell.Edge(c10,c12));
-        c12.edges.add(new Cell.Edge(c21,c12));
-        c12.edges.add(new Cell.Edge(c22,c12));
+        TestBoard.c21.edges.add(new Cell.Edge(TestBoard.c10,TestBoard.c21));
+        TestBoard.c21.edges.add(new Cell.Edge(TestBoard.c10,TestBoard.c21));
+        TestBoard.c21.edges.add(new Cell.Edge(TestBoard.c12,TestBoard.c21));
+        TestBoard.c21.edges.add(new Cell.Edge(TestBoard.c20,TestBoard.c21));
+        TestBoard.c21.edges.add(new Cell.Edge(TestBoard.c22,TestBoard.c21));
 
-        c21.edges.add(new Cell.Edge(c10,c21));
-        c21.edges.add(new Cell.Edge(c10,c21));
-        c21.edges.add(new Cell.Edge(c12,c21));
-        c21.edges.add(new Cell.Edge(c20,c21));
-        c21.edges.add(new Cell.Edge(c22,c21));
+        TestBoard.c22.edges.add(new Cell.Edge(TestBoard.c12,TestBoard.c22));
+        TestBoard.c22.edges.add(new Cell.Edge(TestBoard.c21,TestBoard.c22));
+        TestBoard.c22.edges.add(new Cell.Edge(TestBoard.c10,TestBoard.c22));
 
-        c22.edges.add(new Cell.Edge(c12,c22));
-        c22.edges.add(new Cell.Edge(c21,c22));
-        c22.edges.add(new Cell.Edge(c10,c22));
+        TestBoard.c20.edges.add(new Cell.Edge(TestBoard.c10,TestBoard.c20));
+        TestBoard.c20.edges.add(new Cell.Edge(TestBoard.c21,TestBoard.c20));
+        TestBoard.c20.edges.add(new Cell.Edge(TestBoard.c12,TestBoard.c20));
 
-        c20.edges.add(new Cell.Edge(c10,c20));
-        c20.edges.add(new Cell.Edge(c21,c20));
-        c20.edges.add(new Cell.Edge(c12,c20));
-
-        GraphBoard gg = new GraphBoard(3,3);
-        gg.start = c00;
-        return gg;
+        gb.start = TestBoard.c00;
+        return gb;
     }
 
 }

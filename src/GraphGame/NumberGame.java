@@ -4,9 +4,12 @@ package GraphGame;
 import GraphGame.concurrent.Manager;
 import GraphGame.interfaces.GraphAction;
 import GraphGame.interfaces.Functional;
+import GraphGame.interfaces.Slide;
 import GraphGame.interfaces.UpdateListener;
+import game.GameStatus;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -16,7 +19,7 @@ import static GraphGame.interfaces.Functional.*;
 /***********************************
  * Created by preston on 2/15/17.
  ***********************************/
-public class NumberGame implements UpdateListener {
+public class NumberGame implements UpdateListener, NumberSlider {
 
     private int numRows;
     private int numColumns;
@@ -52,7 +55,7 @@ public class NumberGame implements UpdateListener {
 
     /***********************************
      * <pre>
-     *  Better walk function. Reasoning:<br>
+     *  Better walk function:<br>
      *  1) A cell's EDGES do not always have this cell as an edge in the opposite direction<br>
      *  2) However, it is impossible for a cell to not have an edge that
      *      does NOT contain the cell in its list of EDGES<br>
@@ -234,7 +237,7 @@ public class NumberGame implements UpdateListener {
         return nextStart;
     }
 
-    public void slide(Direction d){
+    public void slide(Direction d, Slide slide){
         Cell current = this.start;
         int startValue = 0;
 
@@ -249,7 +252,7 @@ public class NumberGame implements UpdateListener {
         while(current != null){
             Cell finalCurrent = current;
             int finalStartValue = startValue;
-            Manager.getInstance().postSlide(() -> SLIDE.slide(finalCurrent, d, finalStartValue, this), current, d.opposite(), startValue, this);
+            Manager.getInstance().postSlide(() -> slide.slide(finalCurrent, d, finalStartValue, this), current, d.opposite(), startValue, this);
             current = getNext(d, current);
         }
     }
@@ -336,6 +339,53 @@ public class NumberGame implements UpdateListener {
 
     @Override
     public void notifyStart() {
-        walkEdge(RIGHT, UPDATE);
+        slide(RIGHT, UPDATE);
+    }
+
+    @Override
+    public void resizeBoard(int height, int width, int winningValue) {
+
+    }
+
+    @Override
+    public void reset() {
+        start = null;
+    }
+
+    @Override
+    public void setValues(int[][] ref) {
+        start = null;
+        for (int i = 0; i < ref.length; i++) {
+            for (int j = 0; j < ref[i].length; j++) {
+                int value = ref[i][j];
+                if(value != 0)
+                    this.addCell(i,j);
+            }
+        }
+    }
+
+    @Override
+    public Cell placeRandomValue() {
+        return null;
+    }
+
+    @Override
+    public boolean slide(SlideDirection dir) {
+        return false;
+    }
+
+    @Override
+    public ArrayList<Cell> getNonEmptyTiles() {
+        return null;
+    }
+
+    @Override
+    public GameStatus getStatus() {
+        return null;
+    }
+
+    @Override
+    public void undo() {
+
     }
 }

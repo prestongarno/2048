@@ -1,31 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/GraphGame/NumberGame.java" line="37" />
+    <bookmark url="file://$PROJECT_DIR$/src/GraphGame/NumberGame.java" line="40" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d814c86-f066-460e-85af-d33f854fd2f4" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/GraphGame/concurrent/Manager.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/GraphGame/interfaces/Functional.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/GraphGame/interfaces/GraphAction.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/GraphGame/interfaces/UpdateListener.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/tests/ConcurrentTests.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/twentyfourtyeight/GraphGame/Cell$Edge.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/twentyfourtyeight/GraphGame/GraphBoard$GraphAction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/twentyfourtyeight/GraphGame/GraphBoard.class" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/GraphGame/GraphBoard.java" afterPath="$PROJECT_DIR$/src/GraphGame/NumberGame.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/twentyfourtyeight/GraphGame/Cell.class" afterPath="$PROJECT_DIR$/out/production/twentyfourtyeight/GraphGame/Cell.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/twentyfourtyeight/GraphGame/Direction$1.class" afterPath="$PROJECT_DIR$/out/production/twentyfourtyeight/GraphGame/Direction$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/twentyfourtyeight/GraphGame/Direction.class" afterPath="$PROJECT_DIR$/out/production/twentyfourtyeight/GraphGame/Direction.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/twentyfourtyeight/tests/GraphHelperMethods.class" afterPath="$PROJECT_DIR$/out/production/twentyfourtyeight/tests/GraphHelperMethods.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/twentyfourtyeight/tests/GraphInsert.class" afterPath="$PROJECT_DIR$/out/production/twentyfourtyeight/tests/GraphInsert.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/twentyfourtyeight/GraphGame/NumberGame.class" afterPath="$PROJECT_DIR$/out/production/twentyfourtyeight/GraphGame/NumberGame.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/twentyfourtyeight/tests/ConcurrentTests.class" afterPath="$PROJECT_DIR$/out/production/twentyfourtyeight/tests/ConcurrentTests.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/twentyfourtyeight/tests/TestBoard.class" afterPath="$PROJECT_DIR$/out/production/twentyfourtyeight/tests/TestBoard.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GraphGame/Cell.java" afterPath="$PROJECT_DIR$/src/GraphGame/Cell.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GraphGame/Direction.java" afterPath="$PROJECT_DIR$/src/GraphGame/Direction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tests/GraphHelperMethods.java" afterPath="$PROJECT_DIR$/src/tests/GraphHelperMethods.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tests/GraphInsert.java" afterPath="$PROJECT_DIR$/src/tests/GraphInsert.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GraphGame/NumberGame.java" afterPath="$PROJECT_DIR$/src/GraphGame/NumberGame.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GraphGame/interfaces/Functional.java" afterPath="$PROJECT_DIR$/src/GraphGame/interfaces/Functional.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tests/ConcurrentTests.java" afterPath="$PROJECT_DIR$/src/tests/ConcurrentTests.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tests/TestBoard.java" afterPath="$PROJECT_DIR$/src/tests/TestBoard.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -49,7 +36,78 @@
     <favorites_list name="2048" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="Cell.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GraphGame/Cell.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="76">
+              <caret line="355" column="28" lean-forward="true" selection-start-line="355" selection-start-column="28" selection-end-line="355" selection-end-column="28" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NumberGame.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/GraphGame/NumberGame.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="171">
+              <caret line="211" column="5" lean-forward="true" selection-start-line="211" selection-start-column="5" selection-end-line="211" selection-end-column="5" />
+              <folding>
+                <element signature="docComment;class#NumberGame#0" expanded="false" />
+                <element signature="method#NumberGame#0;class#NumberGame#0" expanded="false" />
+                <element signature="method#setStart#0;class#NumberGame#0" expanded="false" />
+                <element signature="docComment;method#directWalk#0;class#NumberGame#0" expanded="false" />
+                <element signature="method#directWalk#0;class#NumberGame#0" expanded="false" />
+                <element signature="docComment;method#addCell#0;class#NumberGame#0" expanded="false" />
+                <element signature="method#addCell#0;class#NumberGame#0" expanded="false" />
+                <element signature="docComment;method#addCell#1;class#NumberGame#0" expanded="false" />
+                <element signature="method#addCell#1;class#NumberGame#0" expanded="false" />
+                <element signature="docComment;method#getCell#0;class#NumberGame#0" expanded="false" />
+                <element signature="docComment;method#doStuff#0;class#NumberGame#0" expanded="false" />
+                <element signature="method#doStuff#0;class#NumberGame#0" expanded="false" />
+                <element signature="docComment;method#sweepHorizontal#0;class#NumberGame#0" expanded="false" />
+                <element signature="method#sweepHorizontal#0;class#NumberGame#0" expanded="false" />
+                <element signature="method#slide#0;class#NumberGame#0" expanded="false" />
+                <element signature="method#walkEdge#0;class#NumberGame#0" expanded="false" />
+                <element signature="method#getNext#0;class#NumberGame#0" expanded="false" />
+                <element signature="method#getTopRightCorner#0;class#NumberGame#0" expanded="false" />
+                <element signature="method#getBottomLeftCorner#0;class#NumberGame#0" expanded="false" />
+                <element signature="docComment;method#printGraphicalBoard#0;class#NumberGame#0" expanded="false" />
+                <element signature="method#printGraphicalBoard#0;class#NumberGame#0" expanded="false" />
+                <element signature="docComment;method#printCellsWithMatrices#0;class#NumberGame#0" expanded="false" />
+                <element signature="method#resizeBoard#0;class#NumberGame#0" expanded="false" />
+                <element signature="method#setValues#0;class#NumberGame#0" expanded="false" />
+                <element signature="method#undo#0;class#NumberGame#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Functional.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GraphGame/interfaces/Functional.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="741">
+              <caret line="66" column="38" lean-forward="false" selection-start-line="66" selection-start-column="38" selection-end-line="66" selection-end-column="38" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TestBoard.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/tests/TestBoard.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3325">
+              <caret line="179" column="40" lean-forward="false" selection-start-line="179" selection-start-column="40" selection-end-line="179" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -62,7 +120,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>createBoard</find>
       <find>hasEdge</find>
       <find>walk</find>
       <find>static</find>
@@ -92,6 +149,7 @@
       <find>c11</find>
       <find>HashM</find>
       <find>Impl</find>
+      <find>cell</find>
     </findStrings>
     <replaceStrings>
       <replace>getStart()</replace>
@@ -114,7 +172,6 @@
       <replace>***********************************/</replace>
       <replace>/***********************************</replace>
       <replace>* &lt;br&gt;***********************************/</replace>
-      <replace>current</replace>
       <replace>alBoard();</replace>
       <replace>PERFECT_BOARD_TEST</replace>
       <replace>PERFECT_SQUARE_BOARD</replace>
@@ -124,6 +181,7 @@
       <replace>, )</replace>
       <replace>), )</replace>
       <replace>), c00)</replace>
+      <replace>current</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -169,17 +227,17 @@
         <option value="$PROJECT_DIR$/src/GraphGame/interfaces/Slide.java" />
         <option value="$PROJECT_DIR$/src/GraphGame/interfaces/DeletionQueue.java" />
         <option value="$PROJECT_DIR$/src/tests/GraphInsert.java" />
-        <option value="$PROJECT_DIR$/src/tests/TestBoard.java" />
         <option value="$PROJECT_DIR$/src/GraphGame/Direction.java" />
         <option value="$PROJECT_DIR$/src/GraphGame/interfaces/UpdateQueue.java" />
         <option value="$PROJECT_DIR$/src/GraphGame/interfaces/UpdateListener.java" />
         <option value="$PROJECT_DIR$/src/GraphGame/GraphBoard.java" />
         <option value="$PROJECT_DIR$/src/GraphGame/Cell.java" />
         <option value="$PROJECT_DIR$/src/GraphGame/interfaces/Impl.java" />
-        <option value="$PROJECT_DIR$/src/tests/ConcurrentTests.java" />
-        <option value="$PROJECT_DIR$/src/GraphGame/NumberGame.java" />
         <option value="$PROJECT_DIR$/src/GraphGame/concurrent/Manager.java" />
+        <option value="$PROJECT_DIR$/src/tests/TestBoard.java" />
         <option value="$PROJECT_DIR$/src/GraphGame/interfaces/Functional.java" />
+        <option value="$PROJECT_DIR$/src/GraphGame/NumberGame.java" />
+        <option value="$PROJECT_DIR$/src/tests/ConcurrentTests.java" />
       </list>
     </option>
   </component>
@@ -190,9 +248,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1966" />
-    <option name="width" value="1874" />
-    <option name="height" value="1080" />
+    <option name="x" value="57" />
+    <option name="y" value="24" />
+    <option name="width" value="1623" />
+    <option name="height" value="1026" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -320,27 +379,26 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="2048" />
+              <option name="myItemId" value="twentyfourtyeight" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="2048" />
+              <option name="myItemId" value="twentyfourtyeight" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="2048" />
+              <option name="myItemId" value="twentyfourtyeight" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="2048" />
+              <option name="myItemId" value="twentyfourtyeight" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -350,11 +408,11 @@
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="2048" />
+              <option name="myItemId" value="twentyfourtyeight" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="2048" />
+              <option name="myItemId" value="twentyfourtyeight" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -368,11 +426,11 @@
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="2048" />
+              <option name="myItemId" value="twentyfourtyeight" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="2048" />
+              <option name="myItemId" value="twentyfourtyeight" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -386,11 +444,11 @@
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="2048" />
+              <option name="myItemId" value="twentyfourtyeight" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="2048" />
+              <option name="myItemId" value="twentyfourtyeight" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -408,11 +466,11 @@
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="2048" />
+              <option name="myItemId" value="twentyfourtyeight" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="2048" />
+              <option name="myItemId" value="twentyfourtyeight" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -428,33 +486,16 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="2048" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="2048" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="game" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.import" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Console Font" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../ATMPrj" />
@@ -472,59 +513,7 @@
       <recent name="game" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ConcurrentTests.testPrintConcurrent">
-    <configuration default="false" name="GraphInsert.targetAnyIncorrectAdcajentRefs" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="twentyfourtyeight" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="tests" />
-      <option name="MAIN_CLASS_NAME" value="tests.GraphInsert" />
-      <option name="METHOD_NAME" value="targetAnyIncorrectAdcajentRefs" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration default="false" name="GraphInsert.printUsingSweep" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="twentyfourtyeight" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="tests" />
-      <option name="MAIN_CLASS_NAME" value="tests.GraphInsert" />
-      <option name="METHOD_NAME" value="printUsingSweep" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="JUnit.ConcurrentTests.slideRow">
     <configuration default="false" name="GraphInsert.createSquareBoard" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -590,6 +579,58 @@
       <option name="PACKAGE_NAME" value="tests" />
       <option name="MAIN_CLASS_NAME" value="tests.ConcurrentTests" />
       <option name="METHOD_NAME" value="testPrintConcurrent" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="ConcurrentTests.slideRow" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="twentyfourtyeight" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="tests" />
+      <option name="MAIN_CLASS_NAME" value="tests.ConcurrentTests" />
+      <option name="METHOD_NAME" value="slideRow" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="ConcurrentTests.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="twentyfourtyeight" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="tests" />
+      <option name="MAIN_CLASS_NAME" value="tests.ConcurrentTests" />
+      <option name="METHOD_NAME" value="test" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -688,136 +729,6 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="SUITE_NAME" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="GROUP_NAME" />
-      <option name="TEST_OBJECT" value="CLASS" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="OUTPUT_DIRECTORY" />
-      <option name="ANNOTATION_TYPE" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <option name="USE_DEFAULT_REPORTERS" value="false" />
-      <option name="PROPERTIES_FILE" />
-      <envs />
-      <properties />
-      <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="Cold Fusion runner description" factoryName="Cold Fusion" custom_browser="" web_path="">
-      <method />
-    </configuration>
-    <configuration default="true" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="myFilePath" />
-      <option name="GLUE" />
-      <option name="myNameFilter" />
-      <option name="myGeneratedName" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="FlashRunConfigurationType" factoryName="Flash App">
-      <option name="BCName" value="" />
-      <option name="IOSSimulatorSdkPath" value="" />
-      <option name="adlOptions" value="" />
-      <option name="airProgramParameters" value="" />
-      <option name="appDescriptorForEmulator" value="Android" />
-      <option name="debugTransport" value="USB" />
-      <option name="debuggerSdkRaw" value="BC SDK" />
-      <option name="emulator" value="NexusOne" />
-      <option name="emulatorAdlOptions" value="" />
-      <option name="fastPackaging" value="true" />
-      <option name="fullScreenHeight" value="0" />
-      <option name="fullScreenWidth" value="0" />
-      <option name="launchUrl" value="false" />
-      <option name="launcherParameters">
-        <LauncherParameters>
-          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
-          <option name="launcherType" value="OSDefault" />
-          <option name="newPlayerInstance" value="false" />
-          <option name="playerPath" value="/usr/bin/flashplayerdebugger" />
-        </LauncherParameters>
-      </option>
-      <option name="mobileRunTarget" value="Emulator" />
-      <option name="moduleName" value="" />
-      <option name="overriddenMainClass" value="" />
-      <option name="overriddenOutputFileName" value="" />
-      <option name="overrideMainClass" value="false" />
-      <option name="runTrusted" value="true" />
-      <option name="screenDpi" value="0" />
-      <option name="screenHeight" value="0" />
-      <option name="screenWidth" value="0" />
-      <option name="url" value="http://" />
-      <option name="usbDebugPort" value="7936" />
-      <method />
-    </configuration>
-    <configuration default="true" type="FlexUnitRunConfigurationType" factoryName="FlexUnit" appDescriptorForEmulator="Android" class_name="" emulatorAdlOptions="" method_name="" package_name="" scope="Class">
-      <option name="BCName" value="" />
-      <option name="launcherParameters">
-        <LauncherParameters>
-          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
-          <option name="launcherType" value="OSDefault" />
-          <option name="newPlayerInstance" value="false" />
-          <option name="playerPath" value="/usr/bin/flashplayerdebugger" />
-        </LauncherParameters>
-      </option>
-      <option name="moduleName" value="" />
-      <option name="trusted" value="true" />
-      <method />
-    </configuration>
     <configuration default="true" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -832,15 +743,6 @@
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <method />
-    </configuration>
-    <configuration default="true" type="GrailsRunConfigurationType" factoryName="Grails">
-      <setting name="vmparams" value="" />
-      <setting name="cmdLine" value="run-app" />
-      <setting name="passParentEnv" value="true" />
-      <setting name="launchBrowser" value="true" />
-      <setting name="launchBrowserUrl" value="" />
-      <setting name="depsClasspath" value="false" />
       <method />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
@@ -885,15 +787,6 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
-      <config-file value="" />
-      <node-interpreter value="project" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
-      <method />
-    </configuration>
     <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" />
@@ -927,12 +820,6 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
-    <configuration default="true" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <envs />
-      <method />
-    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
@@ -961,42 +848,20 @@
       <listeners />
       <method />
     </configuration>
-    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <gulpfile />
-      <tasks />
-      <arguments />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
-      <command value="run" />
-      <scripts />
-      <node-interpreter value="project" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="osgi.bnd.run" factoryName="Run Launcher">
-      <method />
-    </configuration>
-    <configuration default="true" type="osgi.bnd.run" factoryName="Test Launcher (JUnit)">
-      <method />
-    </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="JUnit.GraphInsert.targetAnyIncorrectAdcajentRefs" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.GraphInsert.printUsingSweep" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.GraphInsert.createSquareBoard" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.GraphInsert.testAddCellInBottomRightCorner" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.ConcurrentTests.testPrintConcurrent" />
+      <item index="0" class="java.lang.String" itemvalue="JUnit.GraphInsert.createSquareBoard" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.GraphInsert.testAddCellInBottomRightCorner" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.ConcurrentTests.testPrintConcurrent" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.ConcurrentTests.slideRow" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.ConcurrentTests.test" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.ConcurrentTests.testPrintConcurrent" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.GraphInsert.createSquareBoard" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.GraphInsert.testAddCellInBottomRightCorner" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.GraphInsert.targetAnyIncorrectAdcajentRefs" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.GraphInsert.printUsingSweep" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.ConcurrentTests.slideRow" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.ConcurrentTests.testPrintConcurrent" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.ConcurrentTests.test" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.GraphInsert.createSquareBoard" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.GraphInsert.testAddCellInBottomRightCorner" />
       </list>
     </recent_temporary>
   </component>
@@ -1044,35 +909,35 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ConcurrentTests_testPrintConcurrent - 2017.02.23 at 06h 41m 09s.xml">
-      <configuration name="ConcurrentTests.testPrintConcurrent" configurationId="JUnit" />
+    <history-entry file="ConcurrentTests_slideRow - 2017.02.23 at 09h 32m 34s.xml">
+      <configuration name="ConcurrentTests.slideRow" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ConcurrentTests_testPrintConcurrent - 2017.02.23 at 06h 46m 39s.xml">
-      <configuration name="ConcurrentTests.testPrintConcurrent" configurationId="JUnit" />
+    <history-entry file="ConcurrentTests_slideRow - 2017.02.23 at 09h 37m 27s.xml">
+      <configuration name="ConcurrentTests.slideRow" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ConcurrentTests_testPrintConcurrent - 2017.02.23 at 06h 47m 28s.xml">
-      <configuration name="ConcurrentTests.testPrintConcurrent" configurationId="JUnit" />
+    <history-entry file="ConcurrentTests_slideRow - 2017.02.23 at 09h 38m 29s.xml">
+      <configuration name="ConcurrentTests.slideRow" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ConcurrentTests_testPrintConcurrent - 2017.02.23 at 06h 47m 43s.xml">
-      <configuration name="ConcurrentTests.testPrintConcurrent" configurationId="JUnit" />
+    <history-entry file="ConcurrentTests_slideRow - 2017.02.23 at 09h 39m 03s.xml">
+      <configuration name="ConcurrentTests.slideRow" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ConcurrentTests_testPrintConcurrent - 2017.02.23 at 06h 48m 02s.xml">
-      <configuration name="ConcurrentTests.testPrintConcurrent" configurationId="JUnit" />
+    <history-entry file="ConcurrentTests_slideRow - 2017.02.23 at 09h 47m 58s.xml">
+      <configuration name="ConcurrentTests.slideRow" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ConcurrentTests_testPrintConcurrent - 2017.02.23 at 06h 48m 24s.xml">
-      <configuration name="ConcurrentTests.testPrintConcurrent" configurationId="JUnit" />
+    <history-entry file="ConcurrentTests_slideRow - 2017.02.23 at 10h 00m 28s.xml">
+      <configuration name="ConcurrentTests.slideRow" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ConcurrentTests_testPrintConcurrent - 2017.02.23 at 06h 49m 43s.xml">
-      <configuration name="ConcurrentTests.testPrintConcurrent" configurationId="JUnit" />
+    <history-entry file="ConcurrentTests_slideRow - 2017.02.23 at 10h 24m 22s.xml">
+      <configuration name="ConcurrentTests.slideRow" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ConcurrentTests_testPrintConcurrent - 2017.02.23 at 06h 50m 21s.xml">
-      <configuration name="ConcurrentTests.testPrintConcurrent" configurationId="JUnit" />
+    <history-entry file="ConcurrentTests_slideRow - 2017.02.23 at 10h 24m 45s.xml">
+      <configuration name="ConcurrentTests.slideRow" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ConcurrentTests_testPrintConcurrent - 2017.02.23 at 06h 51m 34s.xml">
-      <configuration name="ConcurrentTests.testPrintConcurrent" configurationId="JUnit" />
+    <history-entry file="ConcurrentTests_slideRow - 2017.02.23 at 10h 25m 33s.xml">
+      <configuration name="ConcurrentTests.slideRow" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ConcurrentTests_testPrintConcurrent - 2017.02.23 at 06h 51m 58s.xml">
-      <configuration name="ConcurrentTests.testPrintConcurrent" configurationId="JUnit" />
+    <history-entry file="ConcurrentTests_slideRow - 2017.02.23 at 10h 44m 03s.xml">
+      <configuration name="ConcurrentTests.slideRow" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
@@ -1088,7 +953,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1966" y="0" width="1874" height="1080" extended-state="6" />
+    <frame x="57" y="24" width="1623" height="1026" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1100,27 +965,27 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289183" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2711029" sideWeight="0.4918919" order="12" side_tool="false" content_ui="tabs" x="2036" y="144" width="1920" height="984" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7204595" sideWeight="0.4918919" order="12" side_tool="false" content_ui="tabs" x="2036" y="144" width="1920" height="984" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17341356" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32864866" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17313617" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17177244" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6208972" sideWeight="0.4962162" order="10" side_tool="false" content_ui="tabs" x="817" y="29" width="1065" height="1007" />
+      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41219962" sideWeight="0.4962162" order="10" side_tool="false" content_ui="tabs" x="817" y="29" width="1065" height="1007" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17128775" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5026681" sideWeight="0.5081081" order="11" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32864866" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1195,22 +1060,22 @@
           <option name="timeStamp" value="226" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/GraphGame/interfaces/Functional.java</url>
-          <line>15</line>
+          <url>file://$PROJECT_DIR$/src/tests/ConcurrentTests.java</url>
+          <line>26</line>
           <properties />
-          <option name="timeStamp" value="230" />
+          <option name="timeStamp" value="232" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/tests/ConcurrentTests.java</url>
-          <line>20</line>
+          <line>39</line>
           <properties />
-          <option name="timeStamp" value="232" />
+          <option name="timeStamp" value="234" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="233" />
+      <option name="time" value="241" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1420,26 +1285,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/tests/TestBoard.java">
+    <entry file="file://$PROJECT_DIR$/src/GraphGame/interfaces/UpdateListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2988">
-          <caret line="172" column="18" lean-forward="false" selection-start-line="172" selection-start-column="18" selection-end-line="172" selection-end-column="18" />
-          <folding>
-            <element signature="docComment;class#TestBoard#0" expanded="false" />
-            <element signature="e#1397#1398#0" expanded="false" />
-            <element signature="e#1467#1468#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="162">
+          <caret line="9" column="1" lean-forward="true" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GraphGame/SlideDirection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="50" lean-forward="true" selection-start-line="5" selection-start-column="50" selection-end-line="5" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tests/GraphHelperMethods.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/tests/GraphInsert.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+        <state relative-caret-position="187">
+          <caret line="26" column="53" lean-forward="true" selection-start-line="26" selection-start-column="53" selection-end-line="26" selection-end-column="53" />
           <folding>
             <element signature="docComment;class#GraphInsert#0" expanded="false" />
             <element signature="docComment;field#PERFECT_SQUARE_BOARD#0;class#GraphInsert#0" expanded="false" />
-            <element signature="method#createSquareBoard#0;class#GraphInsert#0" expanded="false" />
             <element signature="docComment;method#targetAnyIncorrectAdcajentRefs#0;class#GraphInsert#0" expanded="false" />
             <element signature="method#targetAnyIncorrectAdcajentRefs#0;class#GraphInsert#0" expanded="false" />
             <element signature="docComment;method#createDummyAdjacents#0;class#GraphInsert#0" expanded="false" />
@@ -1473,152 +1347,98 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GraphGame/interfaces/Slide.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
+        <state relative-caret-position="170">
           <caret line="11" column="9" lean-forward="false" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GraphGame/Direction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+        <state relative-caret-position="1083">
+          <caret line="63" column="37" lean-forward="false" selection-start-line="63" selection-start-column="37" selection-end-line="63" selection-end-column="37" />
           <folding>
             <element signature="docComment;class#Direction#0" expanded="false" />
             <element signature="docComment;method#isTo#0;class#Direction#0" expanded="false" />
-            <element signature="method#isTo#0;class#Direction#0" expanded="false" />
-            <element signature="method#opposite#0;class#Direction#0" expanded="false" />
-            <element signature="method#nextValue#0;class#Direction#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GraphGame/interfaces/UpdateListener.java">
+    <entry file="file://$PROJECT_DIR$/src/GraphGame/Cell.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="1" lean-forward="true" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GraphGame/SlideDirection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="50" lean-forward="true" selection-start-line="5" selection-start-column="50" selection-end-line="5" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GraphGame/concurrent/Manager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="15" column="34" lean-forward="false" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
+        <state relative-caret-position="76">
+          <caret line="355" column="28" lean-forward="true" selection-start-line="355" selection-start-column="28" selection-end-line="355" selection-end-column="28" />
           <folding>
-            <element signature="e#656#657#0" expanded="true" />
-            <element signature="e#719#720#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GraphGame/interfaces/Functional.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="8" column="7" lean-forward="false" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
+        <state relative-caret-position="741">
+          <caret line="66" column="38" lean-forward="false" selection-start-line="66" selection-start-column="38" selection-end-line="66" selection-end-column="38" />
           <folding>
-            <element signature="docComment;field#printGraphicalBoard#0;class#Functional#0" expanded="false" />
-            <element signature="docComment;field#printCell#0;class#Functional#0" expanded="false" />
-            <element signature="docComment;field#printCellShort#0;class#Functional#0" expanded="false" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tests/TestBoard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3325">
+          <caret line="179" column="40" lean-forward="false" selection-start-line="179" selection-start-column="40" selection-end-line="179" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tests/ConcurrentTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="5" column="12" lean-forward="false" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GraphGame/concurrent/Manager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="29" column="5" lean-forward="false" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GraphGame/NumberGame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-752">
-          <caret line="197" column="0" lean-forward="true" selection-start-line="197" selection-start-column="0" selection-end-line="197" selection-end-column="0" />
+        <state relative-caret-position="171">
+          <caret line="211" column="5" lean-forward="true" selection-start-line="211" selection-start-column="5" selection-end-line="211" selection-end-column="5" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#788#789#0" expanded="true" />
-            <element signature="e#818#819#0" expanded="true" />
-            <element signature="e#852#853#0" expanded="true" />
-            <element signature="e#885#886#0" expanded="true" />
-            <element signature="e#915#916#0" expanded="true" />
-            <element signature="e#943#944#0" expanded="true" />
-            <element signature="e#10423#10424#0" expanded="true" />
-            <element signature="e#10485#10486#0" expanded="true" />
-            <element signature="e#10532#10533#0" expanded="true" />
-            <element signature="e#10571#10572#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/tests/ConcurrentTests.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="65" lean-forward="true" selection-start-line="8" selection-start-column="65" selection-end-line="8" selection-end-column="65" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/tests/GraphHelperMethods.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GraphGame/Cell.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1836">
-          <caret line="363" column="51" lean-forward="false" selection-start-line="363" selection-start-column="51" selection-end-line="363" selection-end-column="51" />
-          <folding>
-            <element signature="docComment;class#Cell#0" expanded="false" />
-            <element signature="docComment;field#EDGES#0;class#Cell#0" expanded="false" />
-            <element signature="docComment;field#pathCounter#0;class#Cell#0" expanded="false" />
-            <element signature="method#Cell#1;class#Cell#0" expanded="false" />
-            <element signature="docComment;method#addEdge#0;class#Cell#0" expanded="false" />
-            <element signature="method#addEdge#0;class#Cell#0" expanded="false" />
-            <element signature="docComment;method#removeEdge#0;class#Cell#0" expanded="false" />
-            <element signature="method#removeEdge#0;class#Cell#0" expanded="false" />
-            <element signature="docComment;method#hasAdjacents#0;class#Cell#0" expanded="false" />
-            <element signature="docComment;method#get#0;class#Cell#0" expanded="false" />
-            <element signature="docComment;method#hasEdge#0;class#Cell#0" expanded="false" />
-            <element signature="method#hasEdge#0;class#Cell#0" expanded="false" />
-            <element signature="docComment;method#hasEdge#1;class#Cell#0" expanded="false" />
-            <element signature="docComment;method#isTo#0;class#Cell#0" expanded="false" />
-            <element signature="docComment;method#getEdges#0;class#Cell#0" expanded="false" />
-            <element signature="method#getEdges#0;class#Cell#0" expanded="false" />
-            <element signature="docComment;method#getEdgeTo#0;class#Cell#0" expanded="false" />
-            <element signature="method#getEdgeTo#0;class#Cell#0" expanded="false" />
-            <element signature="docComment;method#distanceTo#0;class#Cell#0" expanded="false" />
-            <element signature="docComment;method#distanceTo#1;class#Cell#0" expanded="false" />
-            <element signature="docComment;method#closerToOrigin#0;class#Cell#0" expanded="false" />
-            <element signature="method#closerToOrigin#0;class#Cell#0" expanded="false" />
-            <element signature="docComment;method#getClosest#0;class#Cell#0" expanded="false" />
-            <element signature="method#getClosest#0;class#Cell#0" expanded="false" />
-            <element signature="method#equals#0;class#Cell#0" expanded="false" />
-            <element signature="method#toString#0;class#Cell#0" expanded="false" />
-            <element signature="method#hashCode#0;class#Cell#0" expanded="false" />
-            <element signature="method#getCloserTo#0;class#Cell#0" expanded="false" />
-            <element signature="docComment;method#createDummy#0;class#Cell#0" expanded="false" />
-            <element signature="method#createDummy#0;class#Cell#0" expanded="false" />
-            <element signature="docComment;method#createDummyWithEdges#0;class#Cell#0" expanded="false" />
-            <element signature="method#createDummyWithEdges#0;class#Cell#0" expanded="false" />
-            <element signature="method#compareTo#0;class#Cell#0" expanded="false" />
-            <element signature="docComment;method#unlink#0;class#Cell#0" expanded="false" />
-            <element signature="method#unlink#0;class#Cell#0" expanded="false" />
-            <element signature="method#getClosestEdge#0;class#Cell#0" expanded="false" />
-            <element signature="docComment;method#getCloserConstrained#0;class#Cell#0" expanded="false" />
-            <element signature="method#getCloserConstrained#0;class#Cell#0" expanded="false" />
-            <element signature="method#setCoord#0;class#Cell#0" expanded="false" />
-            <element signature="method#update#0;class#Cell#0" expanded="false" />
-            <element signature="method#updateAdjacents#0;class#Cell#0" expanded="false" />
-            <element signature="e#10512#10581#0" expanded="false" />
-            <element signature="e#10779#10822#0" expanded="false" />
-            <element signature="e#11114#11177#0" expanded="false" />
+            <element signature="docComment;class#NumberGame#0" expanded="false" />
+            <element signature="method#NumberGame#0;class#NumberGame#0" expanded="false" />
+            <element signature="method#setStart#0;class#NumberGame#0" expanded="false" />
+            <element signature="docComment;method#directWalk#0;class#NumberGame#0" expanded="false" />
+            <element signature="method#directWalk#0;class#NumberGame#0" expanded="false" />
+            <element signature="docComment;method#addCell#0;class#NumberGame#0" expanded="false" />
+            <element signature="method#addCell#0;class#NumberGame#0" expanded="false" />
+            <element signature="docComment;method#addCell#1;class#NumberGame#0" expanded="false" />
+            <element signature="method#addCell#1;class#NumberGame#0" expanded="false" />
+            <element signature="docComment;method#getCell#0;class#NumberGame#0" expanded="false" />
+            <element signature="docComment;method#doStuff#0;class#NumberGame#0" expanded="false" />
+            <element signature="method#doStuff#0;class#NumberGame#0" expanded="false" />
+            <element signature="docComment;method#sweepHorizontal#0;class#NumberGame#0" expanded="false" />
+            <element signature="method#sweepHorizontal#0;class#NumberGame#0" expanded="false" />
+            <element signature="method#slide#0;class#NumberGame#0" expanded="false" />
+            <element signature="method#walkEdge#0;class#NumberGame#0" expanded="false" />
+            <element signature="method#getNext#0;class#NumberGame#0" expanded="false" />
+            <element signature="method#getTopRightCorner#0;class#NumberGame#0" expanded="false" />
+            <element signature="method#getBottomLeftCorner#0;class#NumberGame#0" expanded="false" />
+            <element signature="docComment;method#printGraphicalBoard#0;class#NumberGame#0" expanded="false" />
+            <element signature="method#printGraphicalBoard#0;class#NumberGame#0" expanded="false" />
+            <element signature="docComment;method#printCellsWithMatrices#0;class#NumberGame#0" expanded="false" />
+            <element signature="method#resizeBoard#0;class#NumberGame#0" expanded="false" />
+            <element signature="method#setValues#0;class#NumberGame#0" expanded="false" />
+            <element signature="method#undo#0;class#NumberGame#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1680,7 +1500,6 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>

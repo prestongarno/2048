@@ -118,11 +118,11 @@ public final class TestBoard {
         return gb;
     }
 
+    //doesnt work
     public static NumberGame create3x3BoardWithoutC11(){
 
         NumberGame gb = new NumberGame(10,10);
-
-        resetStaticCells();
+        /*resetStaticCells();
 
         c00.EDGES.put(Direction.isTo(c00, c01), c01);
         c00.EDGES.put(Direction.isTo(c00,c10), c10);
@@ -165,6 +165,7 @@ public final class TestBoard {
         c20.EDGES.put(Direction.isTo(c20,c11), c11);
 
         gb.start = c00;
+        return gb;*/
         return gb;
     }
 
@@ -176,6 +177,20 @@ public final class TestBoard {
 
         for (int a = 0; a < board.getNumRows(); a++) {
             for (int b = 0; b < board.getNumColumns(); b++) {
+                current = new Cell(a,b,4);
+                board.addCell(current);
+            }
+        }
+
+        return board;
+    }
+
+    public static NumberGame createSquareBoard(int xFilled, int yFilled, int xBoardSize, int yBoardSize) {
+        NumberGame board = new NumberGame(xBoardSize, yBoardSize);
+        Cell current;
+
+        for (int a = 0; a < xBoardSize; a++) {
+            for (int b = 0; b < yBoardSize; b++) {
                 current = new Cell(a,b,4);
                 board.addCell(current);
             }

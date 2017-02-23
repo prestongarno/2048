@@ -13,26 +13,27 @@ public class Functional {
 
     public static final Slide SLIDE = (cell, direction, startValue, updateQueue) -> {
 
-        cell.setCoord(direction, direction.nextValue(startValue));
+        Cell current = cell;
+        current.setCoord(direction, startValue);
 
-        Cell previous = cell;
-        cell = cell.get(direction);
+        Cell previous = current;
+        current = current.get(direction);
 
         Cell c1;
         Cell c2;
 
-        while (cell != null) {
+        while (current != null) {
 
-            if(cell.value == previous.value){
+            if(previous != null && current.value == previous.value){
 
-                cell.value = 0;
+                current.value = 0;
                 previous.value += previous.value;
 
-                cell.row = 2147483647;
-                cell.column = 2147483647;
+                current.row = 2147483647;
+                current.column = 2147483647;
 
-                c1 = cell.get(direction);
-                c2 = cell.get(direction.opposite());
+                c1 = current.get(direction);
+                c2 = current.get(direction.opposite());
 
                 if(c1 != null){
                     c1.EDGES.remove(direction.opposite());
@@ -46,14 +47,15 @@ public class Functional {
                         c2.EDGES.put(direction, c1);
                 }
 
-                previous = cell;
-                cell = cell.get(direction);
+                previous = current;
+                current = current.get(direction);
                 previous.EDGES.clear();
+                previous = null;
 
             } else {
-                cell.setCoord(direction, direction.nextValue(startValue));
-                previous = cell;
-                cell = cell.get(direction);
+                current.setCoord(direction, direction.nextValue(startValue));
+                previous = current;
+                current = current.get(direction);
             }
 
             startValue = direction.nextValue(startValue);
@@ -69,13 +71,11 @@ public class Functional {
         }
     };
 
-    public static final GraphAction UPDATE = (cell) -> {
-            Cell current = cell;
-
-            while(current != null){
-                current.update();
-                current = current.get(LEFT);
-            }
+    public static final Slide UPDATE = (cell, direction, startValue, updateQueue) -> {
+        while(cell != null){
+            cell.update();
+            cell = cell.get(direction);
+        }
     };
 
     public static final GraphAction DELETE = (cell -> cell.EDGES.clear());

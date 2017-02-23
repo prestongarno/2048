@@ -1,15 +1,9 @@
 package tests;
 
 import GraphGame.Cell;
-import GraphGame.Cell.*;
 import GraphGame.Direction;
-import GraphGame.GraphBoard;
-import com.sun.org.apache.xpath.internal.SourceTree;
+import GraphGame.NumberGame;
 import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 
 import static org.junit.Assert.*;
 import static tests.TestBoard.*;
@@ -21,7 +15,7 @@ import static tests.TestBoard.*;
 @SuppressWarnings("Duplicates")
 public class GraphHelperMethods {
 
-    static final GraphBoard gb = new GraphBoard(6,6);
+    static final NumberGame gb = new NumberGame(6,6);
 
     @Test
     public void testOriginCompareUnequal()
@@ -78,7 +72,7 @@ public class GraphHelperMethods {
     public void testRelationshipEnumWorks(){
         Cell c = new Cell(0,0,0);
         Cell c1 = new Cell(0,1,0);
-        assertEquals(Direction.RIGHT, Edge.isTo(c, c1));
+        assertEquals(Direction.RIGHT, Direction.isTo(c, c1));
     }
 
     @Test
@@ -92,19 +86,19 @@ public class GraphHelperMethods {
     public void testRelationshipEnumWorks3(){
         Cell c = new Cell(0,0,0);
         Cell c1 = new Cell(1,1,0);
-        assertEquals(Direction.BTM_RIGHT, Edge.isTo(c, c1));
-        assertEquals(Direction.TOP_LEFT, Edge.isTo(c1, c));
+        assertEquals(Direction.BTM_RIGHT, Direction.isTo(c, c1));
+        assertEquals(Direction.TOP_LEFT, Direction.isTo(c1, c));
     }
 
     @Test
     public void abstractBoardCreationFactoryImplementor(){
-        GraphBoard gg = TestBoard.create3x3BoardWithoutC11();
-        gg.printGraphicalBoard(gg.getStart());
+        NumberGame gg = TestBoard.create3x3BoardWithoutC11();
+        gg.printGraphicalBoard();
     }
 
     /*@Test
     public void abstractBoardCreationFactoryImplementor2(){
-        GraphBoard gg = TestBoard.createSolid3x3Board();
+        NumberGame gg = TestBoard.createSolid3x3Board();
         gg.printGraphicalBoard(gg.getStart());
         Cell target = new Cell(3, 3, 2);
         (gg.walk(target, gg.getStart())).addEdge(target);
@@ -113,7 +107,7 @@ public class GraphHelperMethods {
 
     @Test
     public void abstractBoardCreationFactoryImplementor3(){
-        GraphBoard gg = TestBoard.createSolid3x3Board();
+        NumberGame gg = TestBoard.createSolid3x3Board();
         gg.printGraphicalBoard(gg.getStart());
         Cell target = new Cell(100, 100, 2);
         (gg.walk(target, gg.getStart())).addEdge(target);
@@ -122,7 +116,7 @@ public class GraphHelperMethods {
 
     @Test
     public void abstractBoardCreationFactoryImplementor4(){
-        GraphBoard gg = TestBoard.createSolid3x3Board();
+        NumberGame gg = TestBoard.createSolid3x3Board();
         gg.printGraphicalBoard(gg.getStart());
         Cell target = new Cell(2, 5, 2);
         (gg.walk(target, gg.getStart())).addEdge(target);
@@ -131,7 +125,7 @@ public class GraphHelperMethods {
 
     @Test
     public void abstractBoardCreationFactoryImplementor5(){
-        GraphBoard gg = TestBoard.createSolid3x3Board();
+        NumberGame gg = TestBoard.createSolid3x3Board();
         gg.printGraphicalBoard(gg.getStart());
         Cell target = new Cell(2, 3, 2);
         (gg.walk(target, gg.getStart())).addEdge(target);
@@ -139,7 +133,7 @@ public class GraphHelperMethods {
     }
     @Test
     public void abstractBoardCreationFactoryImplementor6(){
-        GraphBoard gg = TestBoard.createSolid3x3Board();
+        NumberGame gg = TestBoard.createSolid3x3Board();
         gg.printGraphicalBoard(gg.getStart());
         int row = 3;
         int column = 0;
@@ -147,7 +141,7 @@ public class GraphHelperMethods {
         for (int i = 0; i < 200; i++) {
             Cell target = new Cell(row, column, value);
             (gg.walk(target, gg.getStart())).addEdge(target);
-            Iterator<Edge> it = target.edges.iterator();
+            Iterator<Edge> it = target.EDGES.iterator();
             while(it.hasNext()){
                 Edge e = it.next();
                 if(e != null && !e.get().hasEdge(target)){

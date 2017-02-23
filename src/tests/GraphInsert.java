@@ -2,7 +2,8 @@ package tests;
 
 import GraphGame.Cell;
 import GraphGame.Direction;
-import GraphGame.GraphBoard;
+import GraphGame.NumberGame;
+import GraphGame.interfaces.GraphAction;
 import org.junit.Test;
 
 
@@ -19,36 +20,58 @@ import static tests.TestBoard.*;
  */
 public class GraphInsert {
 
+    /**Range of the perfect board test*/
+    static final int PERFECT_SQUARE_BOARD = 20;
+
+    @Test
+    public void createSquareBoard() throws Exception {
+        NumberGame board = new NumberGame(PERFECT_SQUARE_BOARD,PERFECT_SQUARE_BOARD);
+        Cell current;
+
+        for (int x = 0; x < board.getNumRows(); x++) {
+            for (int y = 0; y < board.getNumColumns(); y++) {
+                current = new Cell(x,y,4);
+                board.addCell(current);
+            }
+        }
+        board.printGraphicalBoard();
+    }
+
     /**
-     * Add cells to come up with a perfect 30x30 board
+     * addForUpdate cells to come up with a perfect 30x30 board
      * Check all cells references for inconsistencies with
      */
     @Test
     public void targetAnyIncorrectAdcajentRefs() throws Exception {
-        GraphBoard board = new GraphBoard(12,12);
+        NumberGame board = new NumberGame(PERFECT_SQUARE_BOARD,PERFECT_SQUARE_BOARD);
         Cell current;
         Cell dummy;
 
         for (int x = 0; x < board.getNumRows(); x++) {
             for (int y = 0; y < board.getNumColumns(); y++) {
-                current = new Cell(x,y,2);
+                current = new Cell(x,y,4);
                 board.addCell(current);
             }
         }
+        board.printGraphicalBoard();
 
-        //test for incorrect edges
+        //test for incorrect EDGES
         board.doStuff(board.start, testForCorrectEdges);
+
+        board.addCell(new Cell(1000, 1000, 1000));
     }
 
-    final GraphBoard.GraphAction testForCorrectEdges = cell -> {
-        ArrayList<Cell> adjacents = GraphInsert.createDummyAdjacents(cell, 12);
-        System.out.println("Checking Cell: " + cell);
+    final GraphAction testForCorrectEdges = cell -> {
+        ArrayList<Cell> adjacents = GraphInsert.createDummyAdjacents(cell, PERFECT_SQUARE_BOARD);
+        //System.out.println("Checking Cell: " + cell + "...");
         for(Cell c : adjacents){
             Cell actual = cell.get(c.isTo(cell));
             //System.out.println(cell + " - > checking for: " + actual);
             assertTrue("Cell[" +c.row + "," + c.column + "] - > checking for: " + actual, c.equals(actual));
         }
     };
+
+
 
     /**
      * Creates a list of cells that would be adjacent in a perfectly at-rest board
@@ -63,7 +86,7 @@ public class GraphInsert {
         Cell btmLeft = new Cell(current.row+1, current.column-1,2);
         Cell btmRight = new Cell(current.row+1, current.column+1,2);
         Cell topRight = new Cell(current.row-1, current.column+1,2);
-        Cell topLeft = new Cell(current.row-1, current.column-11,2);
+        Cell topLeft = new Cell(current.row-1, current.column-1,2);
         Cell[] vals = {above, below, left, right, btmLeft, btmRight, topLeft, topRight};
         ArrayList<Cell> cells = new ArrayList<>(8);
         for(Cell c : vals){
@@ -76,7 +99,7 @@ public class GraphInsert {
 
     @Test
     public void testAddFirstCell(){
-        GraphBoard board = new GraphBoard(8,8);
+        NumberGame board = new NumberGame(8,8);
         Cell c = new Cell(2,2,2);
         board.addCell(2,2);
         assertEquals(c, board.getStart());
@@ -90,15 +113,8 @@ public class GraphInsert {
     }
 
     @Test
-    public void testCloserEdgeMethod(){
-        Cell.Edge e1 = new Cell.Edge(c10,c00);
-        Cell.Edge e2 = new Cell.Edge(c11,c00);
-        assertEquals(e1, c00.getClosest(e1,e2));
-    }
-
-    @Test
     public void test3CellsPointCorrectly(){
-        GraphBoard b = new GraphBoard(8,8);
+        NumberGame b = new NumberGame(8,8);
         b.addCell(c12);
         b.addCell(c21);
         b.addCell(c22);
@@ -111,11 +127,11 @@ public class GraphInsert {
 
     @Test
     public void testInsertOutOfOrder(){
-        GraphBoard b = new GraphBoard(8,8);
+        NumberGame b = new NumberGame(8,8);
         b.addCell(c21);
         b.addCell(c22);
         b.addCell(c12);
-        b.printGraphicalBoard(b.getStart());
+        b.printGraphicalBoard();
         assertEquals(c12, b.getStart());
         assertTrue(c12.get(Direction.BELOW) == c22);
         assertTrue(c22.get(Direction.ABOVE) == c12);
@@ -126,14 +142,14 @@ public class GraphInsert {
 
     @Test
     public void testInsertMore(){
-        GraphBoard b = new GraphBoard(8,8);
+        NumberGame b = new NumberGame(8,8);
         b.addCell(c21);
         b.addCell(c22);
         b.addCell(c12);
         b.addCell(c00);
         b.addCell(c02);
         b.addCell(c11);
-        b.printGraphicalBoard(b.getStart());
+        b.printGraphicalBoard();
         assertTrue(c12.get(Direction.BELOW) == c22);
         assertTrue(c22.get(Direction.ABOVE) == c12);
         assertTrue(c21.get(Direction.TOP_RIGHT) == c12);
@@ -143,16 +159,16 @@ public class GraphInsert {
 
     @Test
     public void testThreeByThreeBoard(){
-        GraphBoard gg = new GraphBoard(3,3);
+        NumberGame gg = new NumberGame(3,3);
         for(Cell c : TestBoard.getAll()){
             gg.addCell(c);
         }
-        gg.printGraphicalBoard(gg.getStart());
+        gg.printGraphicalBoard();
     }
 
     @Test
     public void breakMyBoard(){
-        GraphBoard gg = new GraphBoard(500,500);
+        NumberGame gg = new NumberGame(500,500);
         Random r = new Random();
         int x, y, v;
         Cell c;
@@ -167,7 +183,7 @@ public class GraphInsert {
                 v=4;
             c = new Cell(x,y,v);
             cells.add(gg.addCell(c));
-            if(c.edges.size() > 8){
+            if(c.EDGES.size() > 8){
                 throw new IllegalArgumentException("something's wrong");
             }
         }
@@ -181,13 +197,13 @@ public class GraphInsert {
                 }
             }
         }
-        gg.printGraphicalBoard(gg.getStart());
+        gg.printGraphicalBoard();
     }
 
     @Test
     public void testGetAdjacents(){
 
-        GraphBoard gg = create3x3BoardWithoutC11();
+        NumberGame gg = create3x3BoardWithoutC11();
 
         Cell expected = TestBoard.getDummyC11WithEdges();
 
@@ -217,11 +233,11 @@ public class GraphInsert {
         }
 
         ArrayList<Cell> cells = new ArrayList<>(8);
-        for(Cell.Edge e : expected.edges){
-            cells.add(e.get());
+        for(Cell c : expected.EDGES.values()){
+            cells.add(c);
         }
-        for(Cell.Edge e : inserted.edges){
-            if(!cells.contains(e.get()))
+        for(Cell e : inserted.EDGES.values()){
+            if(!cells.contains(e))
                 return false;
         }
         return true;
@@ -229,7 +245,7 @@ public class GraphInsert {
 
     @Test
     public void testNewWalkFunction(){
-        GraphBoard gg = TestBoard.createSolid3x3Board();
+        NumberGame gg = TestBoard.createSolid3x3Board();
         Cell target = new Cell(3, 3, 100000);
         //asserts that the target is returned
         assertEquals(target, gg.directWalk(target, gg.start));
@@ -241,16 +257,16 @@ public class GraphInsert {
 
     @Test
     public void walkTo1000cellsAwayInTheory() throws Exception {
-        GraphBoard gg = TestBoard.create3x3BoardWithoutC11();
+        NumberGame gg = TestBoard.create3x3BoardWithoutC11();
         Cell target = new Cell(1000, 1000, 999999);
         assertEquals(target, gg.directWalk(target, gg.start));
-        gg.printGraphicalBoard(gg.getStart());
+        gg.printGraphicalBoard();
     }
 
     @Test (expected = NullPointerException.class)
     public void testDirectWalkOnEmptyBoard() throws Exception {
         Cell cell = new Cell (4,2,2);
-        GraphBoard gb = new GraphBoard(8,8);
+        NumberGame gb = new NumberGame(8,8);
         Cell returned = gb.directWalk(cell, gb.getStart());
     }
 
@@ -258,7 +274,7 @@ public class GraphInsert {
     public void testDirectWalkOnSingleCellBoard() throws Exception {
         Cell cell = new Cell (4,2,2);
         Cell startCell = new Cell(1,1,4);
-        GraphBoard gb = new GraphBoard(8,8);
+        NumberGame gb = new NumberGame(8,8);
         gb.setStart(startCell);
         Cell returned = gb.directWalk(cell, gb.getStart());
         assertTrue(cell.hasEdge(startCell));
@@ -267,7 +283,7 @@ public class GraphInsert {
     @Test
     public void testInsertC31On3x3() throws Exception {
         Cell c31 = new Cell(3,1,4);
-        GraphBoard gg = TestBoard.createSolid3x3Board();
+        NumberGame gg = TestBoard.createSolid3x3Board();
         //make sure the directWalk() function returns c31
         assertEquals(c31, gg.directWalk(c31, gg.getStart()));
         //make sure c31 now has the closest edge
@@ -280,14 +296,14 @@ public class GraphInsert {
     @Test (expected = IllegalArgumentException.class)
     public void testInsertingNegativeColumnCellOn3x3Board() throws Exception {
         Cell c31 = new Cell(3,-1,4);
-        GraphBoard gg = TestBoard.create3x3BoardWithoutC11();
+        NumberGame gg = TestBoard.create3x3BoardWithoutC11();
         gg.addCell(c31);
     }
 
     @Test
     public void testReferencingWhenInsertingExistingCell() throws Exception {
         Cell c22Dummy = Cell.createDummy(c22);
-        GraphBoard gg = TestBoard.createSolid3x3Board();
+        NumberGame gg = TestBoard.createSolid3x3Board();
         //When inserting a cell that exists already, directWalk() does not return a
         //reference to the directWalk() target, but to the one that already exists
         assertTrue(gg.directWalk(c22Dummy, gg.getStart()) == c22);
@@ -302,7 +318,7 @@ public class GraphInsert {
 
     @Test
     public void testGetAllSolid3x3Board() throws Exception {
-        GraphBoard gb = TestBoard.createSolid3x3Board();
+        NumberGame gb = TestBoard.createSolid3x3Board();
         for (Cell c : TestBoard.getAll()) {
             assertTrue(c == gb.getCell(c.row, c.column));
             System.out.println("Found: " + c);
@@ -311,20 +327,21 @@ public class GraphInsert {
 
     @Test
     public void testAddCellInBottomRightCorner() throws Exception {
-        GraphBoard gb = TestBoard.createSolid3x3Board();
+        NumberGame gb = TestBoard.createSolid3x3Board();
         assertNull(gb.getCell(3,3));
         Cell newCell = gb.addCell(3,3);
         System.out.println(newCell);
         System.out.println(TestBoard.c22);
-        gb.printGraphicalBoard(gb.getStart());
+        gb.printGraphicalBoard();
     }
 
     @Test
     public void printUsingSweep() throws Exception {
-        GraphBoard gb = TestBoard.createSolid3x3Board();
+        NumberGame gb = TestBoard.createSolid3x3Board();
         gb.addCell(3,3);
         gb.addCell(2,9);
         gb.addCell(0,10);
-        gb.doStuff(gb.getStart(), GraphBoard.printGraphicalBoard);
+        gb.printGraphicalBoard();
+        gb.printCellsWithMatrices();
     }
 }

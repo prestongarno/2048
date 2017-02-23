@@ -1,7 +1,8 @@
 package tests;
 
 import GraphGame.Cell;
-import GraphGame.GraphBoard;
+import GraphGame.Direction;
+import GraphGame.NumberGame;
 
 /**
  * ========================================================================
@@ -26,7 +27,7 @@ public final class TestBoard {
         Cell copyC11 = Cell.createDummy(c11);
         for (Cell c : getAll()) {
             if(!copyC11.equals(c))
-                copyC11.edges.add(new Cell.Edge(Cell.createDummy(c),copyC11));
+                copyC11.EDGES.put(Direction.isTo(copyC11, c), Cell.createDummy(c));
         }
         return copyC11;
     }
@@ -56,115 +57,131 @@ public final class TestBoard {
      * This is to make Unit testing multiple situations, etc easy,
      * since if an exception is thrown, just call this method and
      * the board, along with all of the cells, will be reset
-     * @return A new GraphBoard instance, with TestBoard.c00 as the start
+     * @return A new NumberGame instance, with c00 as the start
      */
-    public static GraphBoard createSolid3x3Board(){
+    public static NumberGame createSolid3x3Board(){
 
-        GraphBoard gb = new GraphBoard(10,10);
+        NumberGame gb = new NumberGame(10,10);
 
         resetStaticCells();
 
-        TestBoard.c00.edges.add(new Cell.Edge(TestBoard.c01,TestBoard.c00));
-        TestBoard.c00.edges.add(new Cell.Edge(TestBoard.c10,TestBoard.c00));
-        TestBoard.c00.edges.add(new Cell.Edge(TestBoard.c11,TestBoard.c00));
+        c00.EDGES.put(Direction.isTo(c00, c01), c01);
+        c00.EDGES.put(Direction.isTo(c00,c10), c10);
+        c00.EDGES.put(Direction.isTo(c00,c11), c11);
 
-        TestBoard.c01.edges.add(new Cell.Edge(TestBoard.c00,TestBoard.c01));
-        TestBoard.c01.edges.add(new Cell.Edge(TestBoard.c10,TestBoard.c01));
-        TestBoard.c01.edges.add(new Cell.Edge(TestBoard.c11,TestBoard.c01));
-        TestBoard.c01.edges.add(new Cell.Edge(TestBoard.c02,TestBoard.c01));
-        TestBoard.c01.edges.add(new Cell.Edge(TestBoard.c12,TestBoard.c01));
+        c01.EDGES.put(Direction.isTo(c01,c00), c00);
+        c01.EDGES.put(Direction.isTo(c01,c10), c10);
+        c01.EDGES.put(Direction.isTo(c01,c11), c11);
+        c01.EDGES.put(Direction.isTo(c01,c02), c02);
+        c01.EDGES.put(Direction.isTo(c01,c12), c12);
 
-        TestBoard.c02.edges.add(new Cell.Edge(TestBoard.c01,TestBoard.c02));
-        TestBoard.c02.edges.add(new Cell.Edge(TestBoard.c11,TestBoard.c02));
-        TestBoard.c02.edges.add(new Cell.Edge(TestBoard.c12,TestBoard.c02));
+        c02.EDGES.put(Direction.isTo(c02,c01), c01);
+        c02.EDGES.put(Direction.isTo(c02,c11), c11);
+        c02.EDGES.put(Direction.isTo(c02,c12), c12);
+        
+        c10.EDGES.put(Direction.isTo(c10,c00), c00);
+        c10.EDGES.put(Direction.isTo(c10,c01), c01);
+        c10.EDGES.put(Direction.isTo(c10,c11), c11);
+        c10.EDGES.put(Direction.isTo(c10,c21), c21);
+        c10.EDGES.put(Direction.isTo(c10,c20), c20);
 
-        TestBoard.c10.edges.add(new Cell.Edge(TestBoard.c00,TestBoard.c10));
-        TestBoard.c10.edges.add(new Cell.Edge(TestBoard.c01,TestBoard.c10));
-        TestBoard.c10.edges.add(new Cell.Edge(TestBoard.c11,TestBoard.c10));
-        TestBoard.c10.edges.add(new Cell.Edge(TestBoard.c21,TestBoard.c10));
-        TestBoard.c10.edges.add(new Cell.Edge(TestBoard.c20,TestBoard.c10));
+        c11.EDGES.put(Direction.isTo(c11,c00), c00);
+        c11.EDGES.put(Direction.isTo(c11,c01), c01);
+        c11.EDGES.put(Direction.isTo(c11,c02), c02);
+        c11.EDGES.put(Direction.isTo(c11,c10), c10);
+        c11.EDGES.put(Direction.isTo(c11,c12), c12);
+        c11.EDGES.put(Direction.isTo(c11,c20), c20);
+        c11.EDGES.put(Direction.isTo(c11,c21), c21);
+        c11.EDGES.put(Direction.isTo(c22,c11), c11);
 
-        TestBoard.c11.edges.add(new Cell.Edge(TestBoard.c00,TestBoard.c11));
-        TestBoard.c11.edges.add(new Cell.Edge(TestBoard.c01,TestBoard.c11));
-        TestBoard.c11.edges.add(new Cell.Edge(TestBoard.c02,TestBoard.c11));
-        TestBoard.c11.edges.add(new Cell.Edge(TestBoard.c10,TestBoard.c11));
-        TestBoard.c11.edges.add(new Cell.Edge(TestBoard.c12,TestBoard.c11));
-        TestBoard.c11.edges.add(new Cell.Edge(TestBoard.c20,TestBoard.c11));
-        TestBoard.c11.edges.add(new Cell.Edge(TestBoard.c21,TestBoard.c11));
-        TestBoard.c11.edges.add(new Cell.Edge(TestBoard.c22,TestBoard.c11));
+        c12.EDGES.put(Direction.isTo(c12,c01), c01);
+        c12.EDGES.put(Direction.isTo(c12,c02), c01);
+        c12.EDGES.put(Direction.isTo(c12,c11), c11);
+        c12.EDGES.put(Direction.isTo(c12,c21), c21);
+        c12.EDGES.put(Direction.isTo(c12,c22), c22);
 
-        TestBoard.c12.edges.add(new Cell.Edge(TestBoard.c01,TestBoard.c12));
-        TestBoard.c12.edges.add(new Cell.Edge(TestBoard.c02,TestBoard.c12));
-        TestBoard.c12.edges.add(new Cell.Edge(TestBoard.c11,TestBoard.c12));
-        TestBoard.c12.edges.add(new Cell.Edge(TestBoard.c21,TestBoard.c12));
-        TestBoard.c12.edges.add(new Cell.Edge(TestBoard.c22,TestBoard.c12));
+        c21.EDGES.put(Direction.isTo(c21,c10), c10);
+        c21.EDGES.put(Direction.isTo(c21,c11), c11);
+        c21.EDGES.put(Direction.isTo(c21,c12), c12);
+        c21.EDGES.put(Direction.isTo(c21,c20), c20);
+        c21.EDGES.put(Direction.isTo(c21,c22), c22);
 
-        TestBoard.c21.edges.add(new Cell.Edge(TestBoard.c10,TestBoard.c21));
-        TestBoard.c21.edges.add(new Cell.Edge(TestBoard.c11,TestBoard.c21));
-        TestBoard.c21.edges.add(new Cell.Edge(TestBoard.c12,TestBoard.c21));
-        TestBoard.c21.edges.add(new Cell.Edge(TestBoard.c20,TestBoard.c21));
-        TestBoard.c21.edges.add(new Cell.Edge(TestBoard.c22,TestBoard.c21));
+        c22.EDGES.put(Direction.isTo(c22,c12), c12);
+        c22.EDGES.put(Direction.isTo(c22,c21), c21);
+        c22.EDGES.put(Direction.isTo(c22,c11), c11);
 
-        TestBoard.c22.edges.add(new Cell.Edge(TestBoard.c12,TestBoard.c22));
-        TestBoard.c22.edges.add(new Cell.Edge(TestBoard.c21,TestBoard.c22));
-        TestBoard.c22.edges.add(new Cell.Edge(TestBoard.c11,TestBoard.c22));
+        c20.EDGES.put(Direction.isTo(c20,c10), c10);
+        c20.EDGES.put(Direction.isTo(c20,c21), c21);
+        c20.EDGES.put(Direction.isTo(c20,c11), c11);
 
-        TestBoard.c20.edges.add(new Cell.Edge(TestBoard.c10,TestBoard.c20));
-        TestBoard.c20.edges.add(new Cell.Edge(TestBoard.c21,TestBoard.c20));
-        TestBoard.c20.edges.add(new Cell.Edge(TestBoard.c11,TestBoard.c20));
-
-        gb.start = TestBoard.c00;
+        gb.start = c00;
         return gb;
     }
 
-    public static GraphBoard create3x3BoardWithoutC11(){
+    public static NumberGame create3x3BoardWithoutC11(){
 
-        GraphBoard gb = new GraphBoard(10,10);
+        NumberGame gb = new NumberGame(10,10);
 
         resetStaticCells();
 
-        TestBoard.c00.edges.add(new Cell.Edge( TestBoard.c01, TestBoard.c00));
-        TestBoard.c00.edges.add(new Cell.Edge(TestBoard.c10,TestBoard.c00));
-        TestBoard.c00.edges.add(new Cell.Edge(TestBoard.c12,TestBoard.c00));
+        c00.EDGES.put(Direction.isTo(c00, c01), c01);
+        c00.EDGES.put(Direction.isTo(c00,c10), c10);
+        c00.EDGES.put(Direction.isTo(c00,c11), c11);
 
-        TestBoard.c01.edges.add(new Cell.Edge(TestBoard.c00,TestBoard.c01));
-        TestBoard.c01.edges.add(new Cell.Edge(TestBoard.c10,TestBoard.c01));
-        TestBoard.c01.edges.add(new Cell.Edge(TestBoard.c21,TestBoard.c01));
-        TestBoard.c01.edges.add(new Cell.Edge(TestBoard.c02,TestBoard.c01));
-        TestBoard.c01.edges.add(new Cell.Edge(TestBoard.c12,TestBoard.c01));
+        c01.EDGES.put(Direction.isTo(c01,c00), c00);
+        c01.EDGES.put(Direction.isTo(c01,c10), c10);
+        c01.EDGES.put(Direction.isTo(c01,c11), c11);
+        c01.EDGES.put(Direction.isTo(c01,c02), c02);
+        c01.EDGES.put(Direction.isTo(c01,c12), c12);
 
-        TestBoard.c02.edges.add(new Cell.Edge(TestBoard.c01,TestBoard.c02));
-        TestBoard.c02.edges.add(new Cell.Edge(TestBoard.c10,TestBoard.c02));
-        TestBoard.c02.edges.add(new Cell.Edge(TestBoard.c12,TestBoard.c02));
+        c02.EDGES.put(Direction.isTo(c02,c01), c01);
+        c02.EDGES.put(Direction.isTo(c02,c11), c11);
+        c02.EDGES.put(Direction.isTo(c02,c12), c12);
 
-        TestBoard.c10.edges.add(new Cell.Edge(TestBoard.c00,TestBoard.c10));
-        TestBoard.c10.edges.add(new Cell.Edge(TestBoard.c01,TestBoard.c10));
-        TestBoard.c10.edges.add(new Cell.Edge(TestBoard.c12,TestBoard.c10));
-        TestBoard.c10.edges.add(new Cell.Edge(TestBoard.c21,TestBoard.c10));
-        TestBoard.c10.edges.add(new Cell.Edge(TestBoard.c20,TestBoard.c10));
+        c10.EDGES.put(Direction.isTo(c10,c00), c00);
+        c10.EDGES.put(Direction.isTo(c10,c01), c01);
+        c10.EDGES.put(Direction.isTo(c10,c11), c11);
+        c10.EDGES.put(Direction.isTo(c10,c21), c21);
+        c10.EDGES.put(Direction.isTo(c10,c20), c20);
 
-        TestBoard.c12.edges.add(new Cell.Edge(TestBoard.c01,TestBoard.c12));
-        TestBoard.c12.edges.add(new Cell.Edge(TestBoard.c02,TestBoard.c12));
-        TestBoard.c12.edges.add(new Cell.Edge(TestBoard.c10,TestBoard.c12));
-        TestBoard.c12.edges.add(new Cell.Edge(TestBoard.c21,TestBoard.c12));
-        TestBoard.c12.edges.add(new Cell.Edge(TestBoard.c22,TestBoard.c12));
+        c12.EDGES.put(Direction.isTo(c12,c01), c01);
+        c12.EDGES.put(Direction.isTo(c12,c02), c01);
+        c12.EDGES.put(Direction.isTo(c12,c11), c11);
+        c12.EDGES.put(Direction.isTo(c12,c21), c21);
+        c12.EDGES.put(Direction.isTo(c12,c22), c22);
 
-        TestBoard.c21.edges.add(new Cell.Edge(TestBoard.c10,TestBoard.c21));
-        TestBoard.c21.edges.add(new Cell.Edge(TestBoard.c10,TestBoard.c21));
-        TestBoard.c21.edges.add(new Cell.Edge(TestBoard.c12,TestBoard.c21));
-        TestBoard.c21.edges.add(new Cell.Edge(TestBoard.c20,TestBoard.c21));
-        TestBoard.c21.edges.add(new Cell.Edge(TestBoard.c22,TestBoard.c21));
+        c21.EDGES.put(Direction.isTo(c21,c10), c10);
+        c21.EDGES.put(Direction.isTo(c21,c11), c11);
+        c21.EDGES.put(Direction.isTo(c21,c12), c12);
+        c21.EDGES.put(Direction.isTo(c21,c20), c20);
+        c21.EDGES.put(Direction.isTo(c21,c22), c22);
 
-        TestBoard.c22.edges.add(new Cell.Edge(TestBoard.c12,TestBoard.c22));
-        TestBoard.c22.edges.add(new Cell.Edge(TestBoard.c21,TestBoard.c22));
-        TestBoard.c22.edges.add(new Cell.Edge(TestBoard.c10,TestBoard.c22));
+        c22.EDGES.put(Direction.isTo(c22,c12), c12);
+        c22.EDGES.put(Direction.isTo(c22,c21), c21);
+        c22.EDGES.put(Direction.isTo(c22,c11), c11);
 
-        TestBoard.c20.edges.add(new Cell.Edge(TestBoard.c10,TestBoard.c20));
-        TestBoard.c20.edges.add(new Cell.Edge(TestBoard.c21,TestBoard.c20));
-        TestBoard.c20.edges.add(new Cell.Edge(TestBoard.c12,TestBoard.c20));
+        c20.EDGES.put(Direction.isTo(c20,c10), c10);
+        c20.EDGES.put(Direction.isTo(c20,c21), c21);
+        c20.EDGES.put(Direction.isTo(c20,c11), c11);
 
-        gb.start = TestBoard.c00;
+        gb.start = c00;
         return gb;
+    }
+
+
+
+    public static NumberGame createSquareBoard(int x, int y) {
+        NumberGame board = new NumberGame(x, y);
+        Cell current;
+
+        for (int a = 0; a < board.getNumRows(); a++) {
+            for (int b = 0; b < board.getNumColumns(); b++) {
+                current = new Cell(a,b,4);
+                board.addCell(current);
+            }
+        }
+
+        return board;
     }
 
 }

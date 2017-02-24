@@ -7,7 +7,7 @@ public enum Direction {
     TOP_LEFT, BTM_RIGHT, BTM_LEFT, ABOVE, BELOW, LEFT, RIGHT, TOP_RIGHT;
 
     public static final Direction[] values = {TOP_LEFT, BTM_RIGHT,
-            BTM_LEFT, ABOVE, BELOW, LEFT, RIGHT, TOP_RIGHT};
+             ABOVE, BELOW, LEFT, RIGHT, TOP_RIGHT, BTM_LEFT};
 
     private Cell cell;
 
@@ -34,7 +34,7 @@ public enum Direction {
         } else if (other.column > parent.column){
             return RIGHT;
         } else {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(parent + " ==//==" + other);
         }
     }
 
@@ -67,7 +67,7 @@ public enum Direction {
         } else if (this == RIGHT || this == BELOW){
             return current + 1;
         } else {
-            throw new IllegalArgumentException("Cannot slide diagonally!");
+            throw new IllegalArgumentException("Cannot walk diagonally!");
         }
     }
 }

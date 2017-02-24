@@ -1,6 +1,10 @@
 package GraphGame.interfaces;
 
 import GraphGame.Cell;
+import GraphGame.Direction;
+import GraphGame.NumberGame;
+
+import java.util.Map;
 
 import static GraphGame.Direction.*;
 
@@ -9,9 +13,22 @@ import static GraphGame.Direction.*;
  * 2048 - by Preston Garno on 2/22/17
  * =========================================================================
  */
-public class Functional {
+public class impl {
 
-    public static final Slide SLIDE = (cell, direction, startValue, updateQueue) -> {
+    public static final Walk SLIDE = (cell, direction) -> {
+
+        direction = direction.opposite();
+
+        int startValue;
+        if(direction == RIGHT | direction == BELOW){
+            startValue = 0;
+        } else if(direction == ABOVE){
+            startValue = NumberGame.getNumRows();
+        } else if(direction == LEFT){
+            startValue = NumberGame.getNumColumns();
+        } else {
+            throw new IllegalArgumentException("Cannot walk diagonally!");
+        }
 
         Cell current = cell;
         current.setCoord(direction, startValue);
@@ -29,8 +46,8 @@ public class Functional {
                 current.value = 0;
                 previous.value += previous.value;
 
-                current.row = 2147483647;
-                current.column = 2147483647;
+                current.row = 1000000000;
+                current.column = 1000000000;
 
                 c1 = current.get(direction);
                 c2 = current.get(direction.opposite());
@@ -47,31 +64,20 @@ public class Functional {
                         c2.EDGES.put(direction, c1);
                 }
 
-                previous = current;
                 current = current.get(direction);
-                previous.EDGES.clear();
                 previous = null;
 
             } else {
                 current.setCoord(direction, direction.nextValue(startValue));
                 previous = current;
                 current = current.get(direction);
+                startValue = direction.nextValue(startValue);
             }
-
-            startValue = direction.nextValue(startValue);
-        }
-
-        switch (direction){
-            case LEFT:
-                if(previous.get(TOP_LEFT) == null && previous.get(BTM_LEFT) == null) {
-                    updateQueue.notifyStart();
-                    System.out.println("NOTIFYING DONE AT : " + previous);
-                }
-                break;
         }
     };
 
-    public static final Slide UPDATE = (cell, direction, startValue, updateQueue) -> {
+    public static final Walk UPDATE = (cell, direction) -> {
+        direction = direction.opposite();
         while(cell != null){
             cell.update();
             cell = cell.get(direction);
@@ -104,7 +110,12 @@ public class Functional {
     /**************************
      * Print a cell
      *************************/
-    public static final GraphAction printCell = System.out::println;
+    public static final GraphAction printCell = (Cell cell) -> {
+        System.out.println("Cell @" + cell.toShortString() + "___________________");
+        for (Map.Entry<Direction, Cell> entry : cell.EDGES.entrySet()) {
+            System.out.printf("\tEdge:\t%-3s ==%-20s\n", entry.getKey(), entry.getValue().toShortString());
+        }
+    };
     /**************************
      * Print a cell only Row,Column
      *************************/

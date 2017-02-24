@@ -1,12 +1,11 @@
 package GraphGame;
 
+import com.sun.javafx.geom.Edge;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static GraphGame.Direction.*;
@@ -27,9 +26,10 @@ public class Cell implements Comparable<Cell> {
 
     /**
      * Integer can be used to track amount of
-     * steps a cell takes on it's way to insert/delete/slide
+     * steps a cell takes on it's way to insert/delete/walk
      */
     public int pathCounter;
+    private Cell closestEdge;
 
     public Cell() {
         this(0, 0, 0);
@@ -61,7 +61,15 @@ public class Cell implements Comparable<Cell> {
             EDGES.replace(Direction.isTo(this, c), c);
             currentEdge = c;
         }
+        if(closestEdge == null || currentEdge.distanceTo(this) < closestEdge.distanceTo(this)){
+            closestEdge = currentEdge;
+        }
         return currentEdge;
+    }
+
+    public void setAllEdges(ConcurrentHashMap<Direction, Cell> edges)
+    {
+        this.EDGES = edges;
     }
 
     /**
@@ -82,7 +90,7 @@ public class Cell implements Comparable<Cell> {
      * @return true if this cell has adjacents
      */
     public boolean hasAdjacents() {
-        return EDGES == null;
+        return EDGES != null && EDGES.size() > 0;
     }
 
     /**
@@ -185,7 +193,8 @@ public class Cell implements Comparable<Cell> {
      * @return int > 0
      */
     public int distanceTo(Cell cell) {
-        return Math.abs(this.row - cell.row) + Math.abs(this.column - cell.column);
+        //System.out.println(cell.toShortString() + "distance to - " + this.toShortString() + Math.abs(Math.abs(this.row - cell.row) + Math.abs(this.column - cell.column)));
+        return Math.abs(Math.abs(this.row - cell.row) + Math.abs(this.column - cell.column));
     }
 
     /**
@@ -200,6 +209,8 @@ public class Cell implements Comparable<Cell> {
         }
         int thisTotal = this.row + this.column;
         int thatTotal = other.row + other.column;
+
+        //System.out.println(thisTotal +" < " + thatTotal + " = " + (thisTotal < thatTotal));
 
         if (thisTotal == thatTotal) {
             return this.row < other.row;
@@ -239,6 +250,8 @@ public class Cell implements Comparable<Cell> {
         sb.append(" ");
         sb.append(column);
         sb.append(" ]");
+        sb.append("V=");
+        sb.append(this.value);
         if (this.EDGES.size() > 0) {
             if(this.row < 9 && this.column < 9)
                 sb.append("\t");
@@ -318,11 +331,7 @@ public class Cell implements Comparable<Cell> {
     }
 
     public Cell getClosestEdge() {
-        Cell c = null;
-        for (Cell curr : this.getEdges()) {
-            c = (Cell.getCloserTo(c, curr, this));
-        }
-        return c;
+        return closestEdge;
     }
 
     /**
@@ -342,6 +351,19 @@ public class Cell implements Comparable<Cell> {
         return closest;
     }
 
+    public Cell getCloserConstrained(Cell target, Direction direction)
+    {
+        Cell closest = null;
+        if(this.isTo(target) == direction)
+            closest = this;
+        for(Cell c : EDGES.values()){
+            if(c.isTo(target) == direction && Cell.getCloserTo(closest, c, target) == c){
+                closest = c;
+            }
+        }
+        return closest;
+    }
+
     public void setCoord(Direction d, int value)
     {
         if(d == ABOVE || d == BELOW){
@@ -352,48 +374,82 @@ public class Cell implements Comparable<Cell> {
     }
 
     public void update(){
-        Collection<Cell> cells = this.EDGES.values();
-        for(Cell c : cells){
-            this.EDGES = updateAdjacents(this, c, this.EDGES);
+        Cell current;
+        Cell next;
+        for(Direction dir : EnumSet.allOf(Direction.class)){
+            current = EDGES.get(dir);
+            if(current == null){
+                updateAdjacents(this, this, dir);
+            } else if(current.row == 1000000000){
+                for (Direction d : EnumSet.allOf(Direction.class)) {
+                    next = current.get(d);
+                    if(next != null && next.row != 1000000000)
+                        updateAdjacents(this, current.get(d), dir);
+                }
+            } else {
+                updateAdjacents(this, current, dir);
+            }
         }
+
+        for (Cell c : EDGES.values()) {
+            if(c.row == 1000000000)
+                EDGES.values().remove(c);
+        }
+
+        /*if(this.updateMethodCallCount > 60) {
+            System.out.print("!!!!!!!!!");
+            System.out.print("update()-> " + this.toShortString() +updateMethodCallCount +" calls\n");
+        }*/
+        updateMethodCallCount = 0;
     }
 
-    public static ConcurrentHashMap<Direction, Cell> updateAdjacents(
-            Cell orig,
-            Cell adjacent,
-            ConcurrentHashMap<Direction, Cell> map){
+    private int updateMethodCallCount = 0;
 
+    public static void updateAdjacents(Cell orig, Cell adjacent, Direction dir){
+        orig.updateMethodCallCount++;
         if(adjacent == null){
-            return map;
+            return;
         }
-        //System.out.println("Adj search : " + orig + " curr = " + adjacent);
-        //Get the current closest value
         Direction to = adjacent.isTo(orig);
-        Cell curr = map.get(to);
-        if(curr == null){
-            map.put(to, adjacent);
+        if(to == null){
+            for (Cell c : adjacent.EDGES.values()) {
+                updateAdjacents(orig, c, dir);
+            }
+            return;
         }
 
-        // enters block if the current closest cell
-        // is further from orig than the adjacent cell
-        if(curr != adjacent && Cell.getCloserTo(curr, adjacent, orig) == adjacent){
+        if(to != dir)
+            return;
 
-            map.replace(to, adjacent);
-            //add new cell to the cell's EDGES
-            Cell toUpdate = adjacent.addEdge(orig);
+        Cell curr = orig.get(to);
 
-            //will recurse  if this cell has an edge cell that is closer to
-            // the added cell, which also lies in the same direction relative to added cell
-            Cell[] edgeCells = adjacent.getEdges();
-            for (int i = 0; i <edgeCells.length; i++) {
+        if(Cell.getCloserTo(adjacent, curr, orig) == adjacent && adjacent != curr && adjacent.row != 1000000000){
+            orig.EDGES.replace(to, adjacent);
+            for (Direction d : EnumSet.allOf(Direction.class)) {
 
-                Cell cConst = edgeCells[i].getCloserConstrained(orig);
-                if(cConst!=orig && cConst != adjacent) {
-                    return updateAdjacents(orig, cConst, map);
+                Cell nextCell = adjacent.get(d);
+                if(nextCell!= null && nextCell.isTo(orig) == dir && nextCell != orig && nextCell != adjacent)
+                {
+                    updateAdjacents(orig, adjacent, dir);
                 }
             }
         }
-        return map;
+    }
+
+    public Cell getClosestDeleted(Cell current){
+        Cell closest = current;
+        Cell next;
+        Direction d = current.isTo(this);
+        for (Cell c : current.getEdges()) {
+            next = getCloserConstrained(this);
+            if(Cell.getCloserTo(closest, next, this) == next && next != this){
+                closest = next;
+            }
+        }
+        if(closest.getCloserConstrained(this) != closest){
+            return getClosestDeleted(closest);
+        }
+        return closest;
     }
 
     public String toShortString()

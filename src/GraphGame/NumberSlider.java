@@ -48,7 +48,7 @@ public interface NumberSlider {
     Cell placeRandomValue();
 
     /**
-     * Slide all the tiles in the board in the requested direction
+     * Walk all the tiles in the board in the requested direction
      * @param dir move direction of the tiles
      *
      * @return true when the board changes

@@ -3,40 +3,51 @@ package GraphGame;
 
 import GraphGame.concurrent.Manager;
 import GraphGame.interfaces.GraphAction;
-import GraphGame.interfaces.Functional;
-import GraphGame.interfaces.Slide;
-import GraphGame.interfaces.UpdateListener;
+import GraphGame.interfaces.impl;
+import GraphGame.interfaces.Walk;
+import GraphGame.interfaces.WalkListener;
 import game.GameStatus;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CountDownLatch;
 
 import static GraphGame.Direction.*;
-import static GraphGame.interfaces.Functional.*;
+import static GraphGame.interfaces.impl.SLIDE;
 
 /***********************************
  * Created by preston on 2/15/17.
  ***********************************/
-public class NumberGame implements UpdateListener, NumberSlider {
+public class NumberGame implements WalkListener, NumberSlider {
 
-    private int numRows;
-    private int numColumns;
+    //hack to wait for slide threads
+    private final CountDownLatch latch;
+
+    /**Static so I don't have to pass a
+     * max value on the slide() to other threads*/
+    private static int numColumns;
+    /**Static so I don't have to pass a
+     * max value on the slide() to other threads*/
+    private static int numRows;
     private int size;
 
     public Cell start;
 
     public NumberGame(int numRows, int numColumns) {
-        this.numRows = numRows;
-        this.numColumns = numColumns;
+        NumberGame.numRows = numRows;
+        NumberGame.numColumns = numColumns;
+        this.latch = new CountDownLatch(1);
     }
 
-    public int getNumRows() {
+    public static int getNumRows() {
         return numRows;
     }
 
-    public int getNumColumns() {
+    public static int getNumColumns() {
         return numColumns;
     }
 
@@ -72,12 +83,17 @@ public class NumberGame implements UpdateListener, NumberSlider {
      *<br>**********************************/
     public Cell directWalk(Cell target, Cell current) {
 
-        if (current.isTo(target) == null){
+        while(current.isTo(target) != null){
+            target.addEdge(current);
+            current = current.addEdge(target);
+        }
+        return current;
+        /*if (current.isTo(target) == null){
             return current;
         } else {
             target.addEdge(current);
             return directWalk(target, current.addEdge(target));
-        }
+        }*/
     }
 
     /***********************************
@@ -104,14 +120,19 @@ public class NumberGame implements UpdateListener, NumberSlider {
             // FIXME: 2/20/17 handle duplicate cells
             return null;
         }
-
-        HashMap<Direction, Cell> nap = new HashMap<>(8);
-        nap = getAdjacentsForNewCell(cell, cell.getClosestEdge(), nap);
-        Iterator<Cell> ii = nap.values().iterator();
-        while(ii.hasNext()){
-            cell.addEdge(ii.next());
-            ii.remove();
+        System.out.println("Adding: " + cell);
+        //ConcurrentHashMap<Direction, Cell> nap = new ConcurrentHashMap<>(8);
+        //cell.EDGES = (getAdjacentsForNewCell(cell, cell.getClosestEdge(), cell.EDGES));
+        //cell.update();
+        Iterator<Cell> it;
+        Cell next;
+        for(Direction d : Direction.values()){
+            next = getAdjacent(cell, cell.getClosestEdge(), d);
+            if(next != null){
+                cell.addEdge(next);
+            }
         }
+        Manager.getInstance().post(Cell::update, cell);
         return cell;
     }
 
@@ -143,10 +164,10 @@ public class NumberGame implements UpdateListener, NumberSlider {
      * @param adjacent the current closest known adjacent
      * @return a set of the closest cells to be inserted
      ***********************************/
-    public static HashMap<Direction, Cell> getAdjacentsForNewCell(
+    public static ConcurrentHashMap<Direction, Cell> getAdjacentsForNewCell(
             Cell orig,
             Cell adjacent,
-            HashMap<Direction, Cell> map){
+            ConcurrentHashMap<Direction, Cell> map){
 
         if(adjacent == null){
             return map;
@@ -170,15 +191,50 @@ public class NumberGame implements UpdateListener, NumberSlider {
             //will recurse  if this cell has an edge cell that is closer to
             // the added cell, which also lies in the same direction relative to added cell
             Cell[] edgeCells = adjacent.getEdges();
-            for (int i = 0; i <edgeCells.length; i++) {
+            for (Cell edgeCell : edgeCells) {
 
-                Cell cConst = edgeCells[i].getCloserConstrained(orig);
-                if(cConst!=orig && cConst != adjacent) {
+                Cell cConst = edgeCell.getCloserConstrained(orig);
+                if (cConst != orig && cConst != adjacent) {
                     map = getAdjacentsForNewCell(orig, cConst, map);
                 }
             }
         }
         return map;
+    }
+
+    public static Cell getAdjacent(
+            Cell target,
+            Cell current,
+            Direction direction){
+
+        Cell next = null;
+        for (Cell c : current.EDGES.values()) {
+            if (c.isTo(target) == direction) {
+                next = c;
+            }
+        }
+        if(next == null){
+            next = current.getEdgeTo(target);
+            if(next != null && next != target)
+                getAdjacent(target, next, direction);
+            else return null;
+        }
+
+        Direction nextDir = next.isTo(target);
+        if(next.getCloserConstrained(target) == next && nextDir == direction){
+            (next.addEdge(target)).update();
+            return current;
+        } else if(nextDir == direction || next.hasAdjacents()){
+            next = next.getCloserConstrained(target);
+            while(next != current && current != target){
+                current = next;
+                next = next.getCloserConstrained(target);
+            }
+            (next.addEdge(target)).update();
+            return current;
+        } else {
+            return null;
+        }
     }
 
     /**********************************
@@ -201,10 +257,10 @@ public class NumberGame implements UpdateListener, NumberSlider {
 
     /**
      * Method performs an action on the every cell on the board
-     * // TODO: 2/20/17 add direction parameter to make this work for the slide() methods
-     * @param graphAction the func interface to execute
+     * @param startingPoint use this.getStart() to walk the board correctly
+     * @param graphAction the action to execute on each cell
      */
-    public void doStuff(Cell startingPoint, GraphAction graphAction)
+    public void sweepBoard(Cell startingPoint, GraphAction graphAction)
     {
         while(startingPoint != null){
             startingPoint = sweepHorizontal(startingPoint, graphAction);
@@ -237,41 +293,26 @@ public class NumberGame implements UpdateListener, NumberSlider {
         return nextStart;
     }
 
-    public void slide(Direction d, Slide slide){
+    public synchronized void walk(Direction d, Walk walk) throws InterruptedException {
         Cell current = this.start;
-        int startValue = 0;
 
         if(d == RIGHT){
             current = getTopRightCorner();
-            startValue = this.getNumColumns();
         } else if (d == BELOW){
             current = getBottomLeftCorner();
-            startValue = this.getNumRows();
         }
 
+        Cell finalCurrent;
         while(current != null){
-            Cell finalCurrent = current;
-            int finalStartValue = startValue;
-            Manager.getInstance().postSlide(() -> slide.slide(finalCurrent, d, finalStartValue, this), current, d.opposite(), startValue, this);
+            finalCurrent = current;
             current = getNext(d, current);
-        }
-    }
-
-    public void walkEdge(Direction d, GraphAction g){
-        Cell current = this.start;
-        int startValue = 0;
-
-        if(d == RIGHT){
-            current = getTopRightCorner();
-            startValue = this.getNumColumns();
-        } else if (d == BELOW){
-            current = getBottomLeftCorner();
-            startValue = this.getNumRows();
-        }
-
-        while(current != null){
-            Manager.getInstance().post(g, current);
-            current = getNext(d, current);
+            if(current == null){
+                Manager.getInstance().postWalk(walk, finalCurrent, d, this);
+                latch.await();
+                onComplete(d, walk);
+            } else {
+                Manager.getInstance().postWalk(walk, finalCurrent, d, null);
+            }
         }
     }
 
@@ -327,19 +368,57 @@ public class NumberGame implements UpdateListener, NumberSlider {
      ***********************************/
     public void printGraphicalBoard() {
         System.out.println("\n");
-        this.doStuff(this.start, Functional.printGraphicalBoard);
+        this.sweepBoard(this.start, impl.printGraphicalBoard);
     }
 
     /***********************************
      * Print the game board
      ***********************************/
     public void printCellsWithMatrices() {
-        this.doStuff(this.start, Functional.printCell);
+        this.sweepBoard(this.start, impl.printCell);
     }
 
     @Override
-    public void notifyStart() {
-        slide(RIGHT, UPDATE);
+    public void onComplete(Direction from, Walk which) {
+        if(which == SLIDE){
+            resetStart();
+            try{
+                walk(from, impl.UPDATE);
+            } catch (InterruptedException ie){
+                ie.printStackTrace();
+            }
+        } else {
+            this.printGraphicalBoard();
+        }
+    }
+
+    @Override
+    public CountDownLatch getLatch() {
+        return this.latch;
+    }
+
+    private void resetStart(){
+        Cell lastClosest = start;
+        Cell closest = start;
+        if(this.start != null){
+            while(closest.hasAdjacents()){
+                System.out.println("FUUUUUUUUUUUUUUUUUUUUUUCK");
+                for (Cell c :
+                        closest.EDGES.values()) {
+                    if (c.closerToOrigin(closest)){
+                        closest = c;
+                        System.out.println("to --> " + c.toShortString());
+                    }
+                }
+                if(closest == lastClosest){
+                    this.start = closest;
+                    return;
+                } else
+                    lastClosest = closest;
+            }
+        }
+        System.out.println(this.start);
+        this.start = closest;
     }
 
     @Override

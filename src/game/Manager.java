@@ -110,7 +110,7 @@ public class Manager //implements NumberSlider
     }
 
     @Override
-    public boolean slide(SlideDirection dir) {
+    public boolean walk(SlideDirection dir) {
         switch (dir)
         {
             case UP:

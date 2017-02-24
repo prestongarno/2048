@@ -375,6 +375,16 @@ public class NumberGame implements UpdateListener, NumberSlider {
     }
 
     @Override
+    public boolean slide(SlideDirection dir) {
+        return false;
+    }
+
+    @Override
+    public boolean slide(SlideDirection dir) {
+        return false;
+    }
+
+    @Override
     public ArrayList<Cell> getNonEmptyTiles() {
         return null;
     }

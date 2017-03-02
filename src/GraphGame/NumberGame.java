@@ -10,12 +10,13 @@ import game.GameStatus;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;
 
 import static GraphGame.Direction.*;
-import static GraphGame.interfaces.impl.SLIDE;
 
 
 /***********************************************************************************************
@@ -23,7 +24,7 @@ import static GraphGame.interfaces.impl.SLIDE;
  ***********************************************************************************************/
  public class NumberGame implements WalkListener, NumberSlider {
 
-    //hack to wait for slide threads
+    /**  latch to make the main thread wait (hacky)  */
     private final CountDownLatch latch;
 
     /**Static so I don't have to pass a
@@ -32,7 +33,7 @@ import static GraphGame.interfaces.impl.SLIDE;
     /**Static so I don't have to pass a
      * max value on the slide() to other threads*/
     private static int numRows;
-    private int size;
+    private int winningValue;
 
     public Cell start;
 
@@ -68,8 +69,6 @@ import static GraphGame.interfaces.impl.SLIDE;
         return start;
     }
 
-
-
     /***********************************************************************************************
      * set the start cell
      * @param c the closest cell to the origin
@@ -101,18 +100,32 @@ import static GraphGame.interfaces.impl.SLIDE;
      * 		@return the cell at the location
      *<br>**********************************************************************************************/
     public Cell directWalk(Cell target, Cell current) {
-
         while(current.isTo(target) != null){
             target.addEdge(current);
             current = current.addEdge(target);
         }
         return current;
-        /*if (current.isTo(target) == null){
-            return current;
-        } else {
-            target.addEdge(current);
-            return directWalk(target, current.addEdge(target));
-        }*/
+    }
+
+    /***********************************************************************************************<br>
+     * Insert a cell into the board at
+     * @param x location
+     * @param y location
+     * 		@return The parameter cell that was inserted, or null if the spot is occupied
+     * 		@throws IllegalArgumentException if the cell has negative values or out of bounds values
+     * <br>***********************************************************************************************/
+    public Cell addCell(int x, int y){
+        if(x < 0 | y < 0 | x > numRows | y > numColumns)
+            throw new IllegalArgumentException("Illegal location!");
+
+        Cell cell = new Cell(x,y,2);
+
+        if(start == null){
+            this.start = cell;
+            return start;
+        }
+
+        return this.addCell(cell);
     }
 
     /***********************************************************************************************
@@ -136,43 +149,17 @@ import static GraphGame.interfaces.impl.SLIDE;
         }
 
         if(current != cell) {
-            // FIXME: 2/20/17 handle duplicate cells
             return null;
         }
-        //System.out.println("Adding: " + cell);
-        //ConcurrentHashMap<Direction, Cell> nap = new ConcurrentHashMap<>(8);
-        //cell.EDGES = (getAdjacentsForNewCell(cell, cell.getClosestEdge(), cell.EDGES));
-        //cell.update();
-        Iterator<Cell> it;
-        Cell next;
-        for(Direction d : Direction.values()){
-            next = getAdjacent(cell, cell.getClosestEdge(), d);
-            if(next != null){
-                cell.addEdge(next);
-            }
-        }
-        Manager.getInstance().post(Cell::update, cell);
+
+        HashMap<Direction, Cell> nap = new HashMap<>(8);
+        nap = getAdjacentsForNewCell(cell, cell.getClosestEdge(), nap);
+        Iterator<Cell> ii = nap.values().iterator();
+            while(ii.hasNext()){
+                cell.addEdge(ii.next());
+                ii.remove();
+                }
         return cell;
-    }
-
-    /***********************************************************************************************<br>
-     * Insert a cell into the board at
-     * @param x location
-     * @param y location
-     * 		@return The parameter cell that was inserted, or null if the spot is occupied
-     * <br>***********************************************************************************************/
-    public Cell addCell(int x, int y){
-        if(x < 0 | y < 0 | x > numRows | y > numColumns)
-            throw new IllegalArgumentException("Illegal location!");
-
-        Cell cell = new Cell(x,y,2);
-
-        if(start == null){
-            this.start = cell;
-            return start;
-        }
-
-        return this.addCell(cell);
     }
 
     /***********************************************************************************************
@@ -183,47 +170,43 @@ import static GraphGame.interfaces.impl.SLIDE;
      * @param adjacent the current closest known adjacent
      * 		@return a set of the closest cells to be inserted
      ***********************************************************************************************/
-    public static ConcurrentHashMap<Direction, Cell> getAdjacentsForNewCell(
+    public HashMap<Direction, Cell> getAdjacentsForNewCell(
             Cell orig,
             Cell adjacent,
-            ConcurrentHashMap<Direction, Cell> map){
+            HashMap<Direction, Cell> map) {
 
-        if(adjacent == null){
+        if (adjacent == null) {
             return map;
         }
-        //System.out.println("Adj search : " + orig + " curr = " + adjacent);
-        //Get the current closest value
+
         Direction to = adjacent.isTo(orig);
         Cell curr = map.get(to);
-        if(curr == null){
+        if (curr == null) {
             map.put(to, adjacent);
         }
 
-        // enters block if the current closest cell
-        // is further from orig than the adjacent cell
-        if(curr != adjacent && Cell.getCloserTo(curr, adjacent, orig) == adjacent){
+        if (curr != adjacent && Cell.getCloserTo(curr, adjacent, orig) == adjacent) {
 
             map.replace(to, adjacent);
-            //add new cell to the cell's EDGES
             Cell toUpdate = adjacent.addEdge(orig);
-           //will recurse  if this cell has an edge cell that is closer to
-            // the added cell, which also lies in the same direction relative to added cell
-            Cell[] edgeCells = adjacent.getEdges();
-            for (Cell edgeCell : edgeCells) {
 
-                Cell cConst = edgeCell.getCloserConstrained(orig);
-                if (cConst != orig && cConst != adjacent) {
+            Cell[] edgeCells = adjacent.getEdges();
+            for (int i = 0; i < edgeCells.length; i++) {
+                Cell cConst = edgeCells[i].getCloserConstrained(orig);
+                if (cConst != orig) {
                     map = getAdjacentsForNewCell(orig, cConst, map);
                 }
             }
         }
         return map;
     }
+
     /**********************************************************************************************
     * get an adjacent cell in a specific direction
      * @param target the cell of interest
      * @param current the current cell in in 'direction' relative to the cell
      * @param direction the direction to get the adjacent cell
+     *                  --not working
     ***********************************************************************************************/
     public static Cell getAdjacent(
             Cell target,
@@ -267,8 +250,6 @@ import static GraphGame.interfaces.impl.SLIDE;
     {
         Cell dummyCell = new Cell(x,y,-5000);
         Cell currentCell = directWalk(dummyCell, getStart());
-        //remove cells that point to dummy from the walk
-        dummyCell.unlink();
         if(dummyCell == currentCell){
             return null;
         }
@@ -313,10 +294,12 @@ import static GraphGame.interfaces.impl.SLIDE;
 
         return nextStart;
     }
+
     /**********************************************************************************************
      * Walk a row or column
      * @param d the direction to walk
      * @param walk the action to perform on th row
+     *             @throws InterruptedException if something goes wrong when main thread waits
     ***********************************************************************************************/
     public synchronized void walk(Direction d, Walk walk) throws InterruptedException {
         Cell current = this.start;
@@ -327,17 +310,13 @@ import static GraphGame.interfaces.impl.SLIDE;
             current = getBottomLeftCorner();
         }
 
+
         Cell finalCurrent;
         while(current != null){
             finalCurrent = current;
             current = getNext(d, current);
-            if(current == null){
-                Manager.getInstance().postWalk(walk, finalCurrent, d, this);
-                latch.await();
-                onComplete(d, walk);
-            } else {
-                Manager.getInstance().postWalk(walk, finalCurrent, d, null);
-            }
+                walk.walk(finalCurrent, d);
+                //Manager.getInstance().postWalk(walk, finalCurrent, d, this);
         }
     }
 
@@ -412,6 +391,7 @@ import static GraphGame.interfaces.impl.SLIDE;
     public void printCellsWithMatrices() {
         this.sweepBoard(this.start, impl.printCell);
     }
+
     /**********************************************************************************************
      * called when the slide method is complete
      * @param from the direction that the slide/walk was done
@@ -419,17 +399,18 @@ import static GraphGame.interfaces.impl.SLIDE;
     ***********************************************************************************************/
     @Override
     public void onComplete(Direction from, Walk which) {
-        if(which == SLIDE){
+        if(which.equals(impl.getSlide())){
             resetStart();
             try{
-                walk(from, impl.UPDATE);
+                walk(from, impl.getUpdate());
             } catch (InterruptedException ie){
                 ie.printStackTrace();
             }
-        } else {
-            this.printGraphicalBoard();
+        }else {
+            this.printCellsWithMatrices();
         }
     }
+
     /**********************************************************************************************
     * Get the latch
      * 		@return the latch for the game board
@@ -445,15 +426,17 @@ import static GraphGame.interfaces.impl.SLIDE;
     private void resetStart(){
         Cell lastClosest = start;
         Cell closest = start;
+
         if(this.start != null){
             while(closest.hasAdjacents()){
+
                 for (Cell c :
                         closest.EDGES.values()) {
                     if (c.closerToOrigin(closest)){
                         closest = c;
-                        //System.out.println("to --> " + c.toShortString());
                     }
                 }
+
                 if(closest == lastClosest){
                     this.start = closest;
                     return;
@@ -461,9 +444,9 @@ import static GraphGame.interfaces.impl.SLIDE;
                     lastClosest = closest;
             }
         }
-        //System.out.println(this.start);
         this.start = closest;
     }
+
     /**********************************************************************************************
      * resize the board
      * @param height the height of the board
@@ -472,12 +455,22 @@ import static GraphGame.interfaces.impl.SLIDE;
     ***********************************************************************************************/
     @Override
     public void resizeBoard(int height, int width, int winningValue) {
+        if(height < 0 | width < 0)
+            throw new IllegalArgumentException("No negative board sizes!");
 
+        int i;
+        for (i = 2; i <= winningValue; i *= 2) {}
+        if(i < winningValue)
+            throw new IllegalArgumentException("Winning value must be a multiple of two!");
+
+        NumberGame.numColumns = width;
+        NumberGame.numRows = height;
+        this.winningValue = winningValue;
     }
 
-    /**********************************************************************************************
+    /***********************************
      * reset the game board
-    ***********************************************************************************************/
+    ***********************************/
     @Override
     public void reset() {
         start = null;
@@ -509,15 +502,29 @@ import static GraphGame.interfaces.impl.SLIDE;
     }
 
     /**********************************************************************************************
+     * Walk all the tiles in the board in the requested direction
+     * @param dir move direction of the tiles
      *
+     * @return true when the board changes
      ***********************************************************************************************/
     @Override
     public boolean slide(SlideDirection dir) {
-        return false;
+        Direction myImpl = Direction.mapToslideDirection(dir);
+
+        try {
+            this.walk(myImpl, impl.getSlide());
+            resetStart();
+            this.walk(myImpl, impl.getUpdate());
+            this.walk(myImpl, impl.getUpdate());
+            return true;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     /**********************************************************************************************
-     *
+     * @return an arraylist of Cells. Each cell holds the (row,column) and value of a tile
      ***********************************************************************************************/
     @Override
     public ArrayList<Cell> getNonEmptyTiles() {
@@ -525,7 +532,8 @@ import static GraphGame.interfaces.impl.SLIDE;
     }
 
     /**********************************************************************************************
-     *
+     * Return the current state of the game
+     * @return one of the possible values of GameStatus enum
      ***********************************************************************************************/
     @Override
     public GameStatus getStatus() {
@@ -533,10 +541,24 @@ import static GraphGame.interfaces.impl.SLIDE;
     }
 
     /**********************************************************************************************
+     * Undo the most recent action, i.e. restore the board to its previous
+     * state. Calling this method multiple times will ultimately restore
+     * the gam to the very first initial state of the board holding two
+     * random values. Further attempt to undo beyond this state will throw
+     * an IllegalStateException.
      *
+     * @throws IllegalStateException when undo is not possible
      ***********************************************************************************************/
     @Override
     public void undo() {
+
+    }
+
+    /**********************************************************************************************
+     * restore a move
+     * @param move the move that was done
+     ***********************************************************************************************/
+    public void restore(UndoStack.Movement move) {
 
     }
 }

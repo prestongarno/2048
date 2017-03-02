@@ -3,9 +3,11 @@ package tests;
 import GraphGame.Cell;
 import GraphGame.Direction;
 import GraphGame.NumberGame;
+import GraphGame.SlideDirection;
 import GraphGame.concurrent.Manager;
 import static GraphGame.interfaces.impl.*;
 
+import GraphGame.interfaces.impl;
 import org.junit.Test;
 
 /**
@@ -18,12 +20,12 @@ public class ConcurrentTests {
     @Test
     public void testPrintConcurrent() throws Exception {
         //Manager m = Manager.getInstance();
-        NumberGame gb = TestBoard.createSquareBoard(20, 20);
-        //gb.printGraphicalBoard();
-        gb.walk(Direction.RIGHT, SLIDE);
-        //NumberGame.latch.await();
-        //gb.printCellsWithMatrices();
-        //gb.printGraphicalBoard();
+        NumberGame gb = TestBoard.createSquareBoard(10, 10);
+        gb.slide(SlideDirection.LEFT);
+        gb.slide(SlideDirection.UP);
+        gb.slide(SlideDirection.DOWN);
+        gb.printGraphicalBoard();
+        gb.printCellsWithMatrices();
     }
 
     /**
@@ -80,7 +82,7 @@ public class ConcurrentTests {
     public void testSlideEntireBoard() throws Exception {
         NumberGame ng = TestBoard.createSquareBoard(10,10);
         //ng.printGraphicalBoard();
-        ng.walk(Direction.LEFT, SLIDE);
+        ///ng.walk(Direction.LEFT, SLIDE);
         /*try {
             Thread.sleep(5000);
             } catch (InterruptedException i){

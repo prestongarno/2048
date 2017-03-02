@@ -1,8 +1,9 @@
 package GraphGame;
 
-/**
+/***********************************************
  * Created by preston on 2/17/17.
- */
+ ***********************************************/
+
 public enum Direction {
     TOP_LEFT, BTM_RIGHT, BTM_LEFT, ABOVE, BELOW, LEFT, RIGHT, TOP_RIGHT;
 
@@ -11,11 +12,12 @@ public enum Direction {
 
     private Cell cell;
 
-    /**
+    /***********************************************
      * @param parent the original cell
      * @param other  the other cell
      * @return the Direction that other is from parent
-     */
+     ***********************************************/
+
     public static Direction isTo(Cell parent, Cell other) {
         if (other.row > parent.row && other.column > parent.column) {
             return BTM_RIGHT;
@@ -69,5 +71,18 @@ public enum Direction {
         } else {
             throw new IllegalArgumentException("Cannot walk diagonally!");
         }
+    }
+
+    public static Direction mapToslideDirection(SlideDirection slideDirection)
+    {
+        if(slideDirection == SlideDirection.UP)
+            return ABOVE;
+        if(slideDirection == SlideDirection.DOWN)
+            return BELOW;
+        if(slideDirection == SlideDirection.LEFT)
+            return LEFT;
+        if (slideDirection == SlideDirection.RIGHT)
+            return RIGHT;
+        else throw new IllegalStateException("No such direction listed in the rubric!");
     }
 }

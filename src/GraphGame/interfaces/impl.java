@@ -15,74 +15,79 @@ import static GraphGame.Direction.*;
  */
 public class impl {
 
-    public static final Walk SLIDE = (cell, direction) -> {
+    public static Walk getSlide(){
+        return (cell, direction) -> {
 
-        direction = direction.opposite();
+            direction = direction.opposite();
 
-        int startValue;
-        if(direction == RIGHT | direction == BELOW){
-            startValue = 0;
-        } else if(direction == ABOVE){
-            startValue = NumberGame.getNumRows();
-        } else if(direction == LEFT){
-            startValue = NumberGame.getNumColumns();
-        } else {
-            throw new IllegalArgumentException("Cannot walk diagonally!");
-        }
-
-        Cell current = cell;
-        current.setCoord(direction, startValue);
-
-        Cell previous = current;
-        current = current.get(direction);
-
-        Cell c1;
-        Cell c2;
-
-        while (current != null) {
-
-            if(previous != null && current.value == previous.value){
-
-                current.value = 0;
-                previous.value += previous.value;
-
-                current.row = 1000000000;
-                current.column = 1000000000;
-
-                c1 = current.get(direction);
-                c2 = current.get(direction.opposite());
-
-                if(c1 != null){
-                    c1.EDGES.remove(direction.opposite());
-                    if(c2!=null)
-                        c1.EDGES.put(direction.opposite(), c2);
-                }
-
-                if(c2 != null){
-                    c2.EDGES.remove(direction);
-                    if(c1!=null)
-                        c2.EDGES.put(direction, c1);
-                }
-
-                current = current.get(direction);
-                previous = null;
-
+            int startValue;
+            if(direction == RIGHT | direction == ABOVE){
+                startValue = 0;
+            } else if(direction == BELOW){
+                startValue = NumberGame.getNumRows();
+            } else if(direction == LEFT){
+                startValue = NumberGame.getNumColumns();
             } else {
-                current.setCoord(direction, direction.nextValue(startValue));
-                previous = current;
-                current = current.get(direction);
-                startValue = direction.nextValue(startValue);
+                throw new IllegalArgumentException("Cannot walk diagonally!");
             }
-        }
-    };
 
-    public static final Walk UPDATE = (cell, direction) -> {
-        direction = direction.opposite();
-        while(cell != null){
-            cell.update();
-            cell = cell.get(direction);
-        }
-    };
+            Cell current = cell;
+            current.setCoord(direction, startValue);
+
+            Cell previous = current;
+            current = current.get(direction);
+
+            Cell c1;
+            Cell c2;
+
+            while (current != null) {
+
+                if(previous != null && current.value == previous.value){
+
+                    current.value = 0;
+                    previous.value += previous.value;
+
+                    current.row = 1000000000;
+                    current.column = 1000000000;
+
+                    c1 = current.get(direction);
+                    c2 = current.get(direction.opposite());
+
+                    if(c1 != null){
+                        c1.EDGES.remove(direction.opposite());
+                        if(c2!=null)
+                            c1.EDGES.put(direction.opposite(), c2);
+                    }
+
+                    if(c2 != null){
+                        c2.EDGES.remove(direction);
+                        if(c1!=null)
+                            c2.EDGES.put(direction, c1);
+                    }
+
+                    current = current.get(direction);
+                    previous = null;
+
+                } else {
+                    current.setCoord(direction, direction.nextValue(startValue));
+                    previous = current;
+                    current = current.get(direction);
+                    startValue = direction.nextValue(startValue);
+                }
+            }
+        };
+    }
+
+
+    public static final Walk getUpdate() {
+        return (cell, direction) -> {
+            direction = direction.opposite();
+            while (cell != null) {
+                cell.update();
+                cell = cell.get(direction);
+            }
+        };
+    }
 
     public static final GraphAction DELETE = (cell -> cell.EDGES.clear());
     /**************************

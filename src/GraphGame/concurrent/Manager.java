@@ -2,37 +2,34 @@ package GraphGame.concurrent;
 
 import GraphGame.Cell;
 import GraphGame.Direction;
-import GraphGame.NumberGame;
 import GraphGame.interfaces.GraphAction;
 import GraphGame.interfaces.Walk;
 import GraphGame.interfaces.WalkListener;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.LinkedList;
-import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-/**
- * ========================================================================
+/*** ========================================================================
  * 2048 - by Preston Garno on 2/22/17
- * =========================================================================
- */
+ * =========================================================================*/
 public class Manager {
 
+    /**  the executor  */
     private ExecutorService executor;
-    private WalkRunner[] runners;
 
+    /***  the Singleton instance  */
     private static Manager instance;
 
+    /*********************************
+     * Initializes the thread manager instance
+    *********************************/
     private Manager(){
         this.executor = Executors.newFixedThreadPool(8);
-        runners = new WalkRunner[15];
-        for (int i = 0; i < runners.length; i++) {
-            runners[i] = new WalkRunner();
-        }
     }
 
+    /*********************************
+     * @return the manager instance
+    *********************************/
     public static Manager getInstance()
     {
         if(instance == null)
@@ -40,38 +37,58 @@ public class Manager {
         return instance;
     }
 
+    /*********************************
+     * runs an action on a cell
+     * 		@param g the action
+     * 		@param cell the cell to perform it on
+    *********************************/
     public void post(GraphAction g, Cell cell) {
         executor.execute(() -> g.executeOn(cell));
     }
 
+    /*********************************
+     * run a slide action to the manager
+     * 		@param walk the walking action
+     * 		@param cell the cell to start on
+     * 		@param d the direction to go
+     * 		@param ul the walklistener
+    *********************************/
     public void postWalk(Walk walk, Cell cell, Direction d, WalkListener ul) {
         WalkRunner wr = new WalkRunner();
-        /*for (int i = 0; i < runners.length; i++) {
-            if(!runners[i].isRunning){
-                wr = runners[i];
-                break;
-            }
-        }
-        if(wr == null)
-            wr = new WalkRunner();*/
-
         executor.execute(wr.set(walk, cell, d, ul));
     }
 
+    /*********************************
+     * The runner that holds the vars and runnnable, and nulls them on complete
+    *********************************/
     private static final class WalkRunner{
 
+        /*********************************
+         * Create a new runner
+		*********************************/
         WalkRunner(){
             mRunnable = new MyRunnable();
         }
 
+        /*********************************
+         * The Runnable
+		*********************************/
         private final Runnable mRunnable;
 
+        /** represents whether the thread is running */
         boolean isRunning = false;
+        /** the action */
         Walk walk;
+        /** the cell to start the slide */
         Cell startCell;
+        /** the direction to walk */
         Direction direction;
+        /** the listener for completion */
         WalkListener walkListener;
 
+        /*********************************
+         * clear references
+		*********************************/
         private void clear(){
             this.walk = null;
             this.startCell = null;
@@ -79,6 +96,14 @@ public class Manager {
             this.walkListener = null;
         }
 
+        /*********************************
+         * Set the references and get the Runnable
+         * 		@param walk the action
+         * 		@param startCell the cell to start the slide
+         * 		@param direction the direction
+         * 		@param walkListener the listener
+         * @return the Runnable
+		*********************************/
         Runnable set(Walk walk, Cell startCell, Direction direction, @Nullable WalkListener walkListener){
             this.walk = walk;
             this.startCell = startCell;
@@ -87,7 +112,12 @@ public class Manager {
             return mRunnable;
         }
 
+        /*********************************
+         * The Runnable class
+		*********************************/
         private final class MyRunnable implements Runnable{
+
+            /** the usual, releases latch on the completion of the slide/walk*/
             @Override
             public void run() {
                 isRunning = true;

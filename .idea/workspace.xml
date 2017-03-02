@@ -4,13 +4,11 @@
     <bookmark url="file://$PROJECT_DIR$/src/GraphGame/NumberGame.java" line="51" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d814c86-f066-460e-85af-d33f854fd2f4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/twentyfourtyeight/GraphGame/NumberGame.class" afterPath="$PROJECT_DIR$/out/production/twentyfourtyeight/GraphGame/NumberGame.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/twentyfourtyeight/tests/GraphInsert.class" afterPath="$PROJECT_DIR$/out/production/twentyfourtyeight/tests/GraphInsert.class" />
+    <list default="true" id="0d814c86-f066-460e-85af-d33f854fd2f4" name="Default" comment="new walking function">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GraphGame/Direction.java" afterPath="$PROJECT_DIR$/src/GraphGame/Direction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GraphGame/Cell.java" afterPath="$PROJECT_DIR$/src/GraphGame/Cell.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GraphGame/NumberGame.java" afterPath="$PROJECT_DIR$/src/GraphGame/NumberGame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tests/GraphInsert.java" afterPath="$PROJECT_DIR$/src/tests/GraphInsert.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GraphGame/concurrent/Manager.java" afterPath="$PROJECT_DIR$/src/GraphGame/concurrent/Manager.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -42,15 +40,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Cell.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Cell.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GraphGame/Cell.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="69" column="17" lean-forward="false" selection-start-line="69" selection-start-column="17" selection-end-line="69" selection-end-column="17" />
+            <state relative-caret-position="336">
+              <caret line="16" column="67" lean-forward="false" selection-start-line="16" selection-start-column="67" selection-end-line="16" selection-end-column="67" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1994#1995#0" expanded="true" />
-                <element signature="e#2028#2029#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Manager.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/GraphGame/concurrent/Manager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="378">
+              <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#832#833#0" expanded="true" />
+                <element signature="e#895#896#0" expanded="true" />
+                <element signature="e#2239#2240#0" expanded="true" />
+                <element signature="e#2291#2292#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NumberGame.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GraphGame/NumberGame.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="63">
+              <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -185,11 +209,11 @@
         <option value="$PROJECT_DIR$/src/GraphGame/interfaces/impl.java" />
         <option value="$PROJECT_DIR$/src/GraphGame/interfaces/WalkListener.java" />
         <option value="$PROJECT_DIR$/src/tests/ConcurrentTests.java" />
-        <option value="$PROJECT_DIR$/src/GraphGame/concurrent/Manager.java" />
-        <option value="$PROJECT_DIR$/src/GraphGame/Cell.java" />
         <option value="$PROJECT_DIR$/src/tests/GraphInsert.java" />
         <option value="$PROJECT_DIR$/src/GraphGame/Direction.java" />
         <option value="$PROJECT_DIR$/src/GraphGame/NumberGame.java" />
+        <option value="$PROJECT_DIR$/src/GraphGame/Cell.java" />
+        <option value="$PROJECT_DIR$/src/GraphGame/concurrent/Manager.java" />
       </list>
     </option>
   </component>
@@ -200,10 +224,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="58" />
-    <option name="y" value="52" />
-    <option name="width" value="1227" />
-    <option name="height" value="997" />
+    <option name="x" value="1915" />
+    <option name="y" value="-25" />
+    <option name="width" value="1687" />
+    <option name="height" value="1110" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -330,35 +354,27 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="twentyfourtyeight" />
+              <option name="myItemId" value="2048" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="twentyfourtyeight" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="twentyfourtyeight" />
+              <option name="myItemId" value="2048" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="twentyfourtyeight" />
+              <option name="myItemId" value="2048" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="twentyfourtyeight" />
+              <option name="myItemId" value="2048" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -368,29 +384,11 @@
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="twentyfourtyeight" />
+              <option name="myItemId" value="2048" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="twentyfourtyeight" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="twentyfourtyeight" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="twentyfourtyeight" />
+              <option name="myItemId" value="2048" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -402,10 +400,30 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="2048" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="2048" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GraphGame" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="concurrent" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -418,7 +436,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../ATMPrj" />
     <property name="js.eslint.eslintPackage" value="" />
-    <property name="SearchEverywhereHistoryKey" value="Plugins&#9;ACTION&#9;WelcomeScreen.Plugins&#10;plu&#9;ACTION&#9;WelcomeScreen.Plugins&#10;Optimize Im&#9;ACTION&#9;OptimizeImports" />
+    <property name="SearchEverywhereHistoryKey" value="plugins&#9;ACTION&#9;WelcomeScreen.Plugins&#10;Plugins&#9;ACTION&#9;WelcomeScreen.Plugins&#10;plu&#9;ACTION&#9;WelcomeScreen.Plugins&#10;Optimize Im&#9;ACTION&#9;OptimizeImports" />
   </component>
   <component name="RecentsManager">
     <key name="MoveMembersDialog.RECENTS_KEY">
@@ -816,6 +834,8 @@
       <workItem from="1487939781362" duration="665000" />
       <workItem from="1487940464373" duration="27331000" />
       <workItem from="1487977157623" duration="1384000" />
+      <workItem from="1488417329393" duration="225000" />
+      <workItem from="1488417594444" duration="13317000" />
     </task>
     <task id="LOCAL-00001" summary="Using graph for gameBoard instead">
       <created>1487176116892</created>
@@ -867,7 +887,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="146237000" />
+    <option name="totallyTimeSpent" value="159779000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -879,39 +899,42 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="58" y="52" width="1227" height="997" extended-state="4" />
-    <editor active="false" />
+    <frame x="1915" y="-25" width="1687" height="1110" extended-state="4" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975295" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289183" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.8688406" sideWeight="0.4918919" order="12" side_tool="false" content_ui="tabs" x="226" y="109" width="1559" height="1039" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug with JRebel for Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19927007" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
+      <window_info id="Memory View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="WINDOWED" visible="false" show_stripe_button="true" weight="0.4261488" sideWeight="0.4962162" order="10" side_tool="false" content_ui="tabs" x="417" y="109" width="1449" height="1043" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975295" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="right" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.8688406" sideWeight="0.4918919" order="12" side_tool="false" content_ui="tabs" x="226" y="109" width="1559" height="1039" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19926426" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
+      <window_info id="JRebel for Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32864866" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1706716" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32540542" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5026681" sideWeight="0.5081081" order="11" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32864866" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -932,7 +955,7 @@
         <line-breakpoint enabled="true" type="java-line">
           <condition expression="adjacent = null" language="JAVA" />
           <url>file://$PROJECT_DIR$/src/GraphGame/Cell.java</url>
-          <line>426</line>
+          <line>465</line>
           <properties />
           <option name="timeStamp" value="328" />
         </line-breakpoint>
@@ -1166,24 +1189,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GraphGame/concurrent/Manager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1122">
-          <caret line="100" column="0" lean-forward="false" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
-          <folding>
-            <element signature="docComment;class#Manager#0" expanded="false" />
-            <element signature="method#Manager#0;class#Manager#0" expanded="false" />
-            <element signature="method#getInstance#0;class#Manager#0" expanded="false" />
-            <element signature="method#clear#0;class#WalkRunner#0;class#Manager#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/tests/TestBoard.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2839">
           <caret line="171" column="0" lean-forward="false" selection-start-line="171" selection-start-column="0" selection-end-line="171" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1198,9 +1207,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="22" column="40" lean-forward="false" selection-start-line="22" selection-start-column="40" selection-end-line="22" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1209,16 +1215,6 @@
         <state relative-caret-position="0">
           <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GraphGame/NumberGame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="721">
-          <caret line="498" column="12" lean-forward="false" selection-start-line="498" selection-start-column="12" selection-end-line="498" selection-end-column="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1232,14 +1228,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GraphGame/Cell.java">
+    <entry file="file://$PROJECT_DIR$/src/GraphGame/NumberGame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="69" column="17" lean-forward="false" selection-start-line="69" selection-start-column="17" selection-end-line="69" selection-end-column="17" />
+        <state relative-caret-position="63">
+          <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1994#1995#0" expanded="true" />
-            <element signature="e#2028#2029#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GraphGame/Cell.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="16" column="67" lean-forward="false" selection-start-line="16" selection-start-column="67" selection-end-line="16" selection-end-column="67" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GraphGame/concurrent/Manager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#832#833#0" expanded="true" />
+            <element signature="e#895#896#0" expanded="true" />
+            <element signature="e#2239#2240#0" expanded="true" />
+            <element signature="e#2291#2292#0" expanded="true" />
           </folding>
         </state>
       </provider>

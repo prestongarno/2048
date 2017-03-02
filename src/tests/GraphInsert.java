@@ -35,8 +35,8 @@ public class GraphInsert {
                 board.addCell(current);
             }
         }
-        board.printGraphicalBoard();
-        //board.printCellsWithMatrices();
+        //board.printGraphicalBoard();
+        board.printCellsWithMatrices();
     }
 
     /**

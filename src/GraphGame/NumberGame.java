@@ -19,10 +19,11 @@ import java.util.concurrent.CountDownLatch;
 import static GraphGame.Direction.*;
 import static GraphGame.interfaces.impl.SLIDE;
 
+
 /***********************************
  * Created by preston on 2/15/17.
  ***********************************/
-public class NumberGame implements WalkListener, NumberSlider {
+ public class NumberGame implements WalkListener, NumberSlider {
 
     //hack to wait for slide threads
     private final CountDownLatch latch;
@@ -37,24 +38,42 @@ public class NumberGame implements WalkListener, NumberSlider {
 
     public Cell start;
 
+    /***********************************
+     * Create a game board with a certain size
+     * @param numColumns the number of columns
+     * @param numRows the number of rows
+     ***********************************/
     public NumberGame(int numRows, int numColumns) {
         NumberGame.numRows = numRows;
         NumberGame.numColumns = numColumns;
         this.latch = new CountDownLatch(1);
     }
 
+    /***********************************
+     * @return number of Rows
+     ***********************************/
     public static int getNumRows() {
         return numRows;
     }
 
+    /***********************************
+     * @return number of columns
+     ***********************************/
     public static int getNumColumns() {
         return numColumns;
     }
 
+    /***********************************
+     * @return the closest cell to the origin
+     ***********************************/
     public Cell getStart() {
         return start;
     }
 
+    /***********************************
+     * set the start cell
+     * @param c the closest cell to the origin
+     ***********************************/
     public void setStart(Cell c)
     {
         if(start == null || c.closerToOrigin(start)){
@@ -120,7 +139,7 @@ public class NumberGame implements WalkListener, NumberSlider {
             // FIXME: 2/20/17 handle duplicate cells
             return null;
         }
-        System.out.println("Adding: " + cell);
+        //System.out.println("Adding: " + cell);
         //ConcurrentHashMap<Direction, Cell> nap = new ConcurrentHashMap<>(8);
         //cell.EDGES = (getAdjacentsForNewCell(cell, cell.getClosestEdge(), cell.EDGES));
         //cell.update();
@@ -187,8 +206,7 @@ public class NumberGame implements WalkListener, NumberSlider {
             map.replace(to, adjacent);
             //add new cell to the cell's EDGES
             Cell toUpdate = adjacent.addEdge(orig);
-
-            //will recurse  if this cell has an edge cell that is closer to
+           //will recurse  if this cell has an edge cell that is closer to
             // the added cell, which also lies in the same direction relative to added cell
             Cell[] edgeCells = adjacent.getEdges();
             for (Cell edgeCell : edgeCells) {
@@ -201,7 +219,12 @@ public class NumberGame implements WalkListener, NumberSlider {
         }
         return map;
     }
-
+    /**********************************
+    * get an adjacent cell in a specific direction
+     * @param target the cell of interest
+     * @param current the current cell in in 'direction' relative to the cell
+     * @param direction the direction to get the adjacent cell
+    ***********************************/
     public static Cell getAdjacent(
             Cell target,
             Cell current,
@@ -213,22 +236,18 @@ public class NumberGame implements WalkListener, NumberSlider {
                 next = c;
             }
         }
-        if(next == null){
-            next = current.getEdgeTo(target);
-            if(next != null && next != target)
-                getAdjacent(target, next, direction);
-            else return null;
-        }
 
-        Direction nextDir = next.isTo(target);
-        if(next.getCloserConstrained(target) == next && nextDir == direction){
+        if(next == null)
+            return null;
+
+        Cell evenCloser = next.getCloserConstrained(target);
+        if(evenCloser == next){
             (next.addEdge(target)).update();
             return current;
-        } else if(nextDir == direction || next.hasAdjacents()){
-            next = next.getCloserConstrained(target);
-            while(next != current && current != target){
-                current = next;
-                next = next.getCloserConstrained(target);
+        } else if(next.hasAdjacents()){
+            while(next != evenCloser && evenCloser != target){
+                next = evenCloser;
+                evenCloser = evenCloser.getCloserConstrained(target);
             }
             (next.addEdge(target)).update();
             return current;
@@ -237,7 +256,8 @@ public class NumberGame implements WalkListener, NumberSlider {
         }
     }
 
-    /**********************************
+
+   /**********************************
      * Get a cell at an x,y point
      * @param x value
      * @param y value
@@ -292,7 +312,11 @@ public class NumberGame implements WalkListener, NumberSlider {
 
         return nextStart;
     }
-
+    /**********************************
+     * Walk a row or column
+     * @param d the direction to walk
+     * @param walk the action to perform on th row
+    ***********************************/
     public synchronized void walk(Direction d, Walk walk) throws InterruptedException {
         Cell current = this.start;
 
@@ -335,7 +359,9 @@ public class NumberGame implements WalkListener, NumberSlider {
         }
         return next;
     }
-
+    /**********************************
+     * @return the top right corner of the board
+    ***********************************/
     public Cell getTopRightCorner(){
         Cell current = this.getStart();
         while(current != null){
@@ -350,7 +376,9 @@ public class NumberGame implements WalkListener, NumberSlider {
         }
         return current;
     }
-
+    /**********************************
+     * @return the bottom left corner of the board
+    ***********************************/
     public Cell getBottomLeftCorner(){
         Cell current = this.getStart();
         while(current != null){
@@ -377,7 +405,11 @@ public class NumberGame implements WalkListener, NumberSlider {
     public void printCellsWithMatrices() {
         this.sweepBoard(this.start, impl.printCell);
     }
-
+    /**********************************
+     * called when the slide method is complete
+     * @param from the direction that the slide/walk was done
+     * @param which the action that was done
+    ***********************************/
     @Override
     public void onComplete(Direction from, Walk which) {
         if(which == SLIDE){
@@ -391,23 +423,28 @@ public class NumberGame implements WalkListener, NumberSlider {
             this.printGraphicalBoard();
         }
     }
-
+    /**********************************
+    * Get the latch
+     * @return the latch for the game board
+    ***********************************/
     @Override
     public CountDownLatch getLatch() {
         return this.latch;
     }
 
+    /**********************************
+    * update the start cell
+    ***********************************/
     private void resetStart(){
         Cell lastClosest = start;
         Cell closest = start;
         if(this.start != null){
             while(closest.hasAdjacents()){
-                System.out.println("FUUUUUUUUUUUUUUUUUUUUUUCK");
                 for (Cell c :
                         closest.EDGES.values()) {
                     if (c.closerToOrigin(closest)){
                         closest = c;
-                        System.out.println("to --> " + c.toShortString());
+                        //System.out.println("to --> " + c.toShortString());
                     }
                 }
                 if(closest == lastClosest){
@@ -417,20 +454,33 @@ public class NumberGame implements WalkListener, NumberSlider {
                     lastClosest = closest;
             }
         }
-        System.out.println(this.start);
+        //System.out.println(this.start);
         this.start = closest;
     }
-
+    /**********************************
+     * resize the board
+     * @param height the height of the board
+     * @param width the width of the board
+     * @param winningValue the winning value of the game
+    ***********************************/
     @Override
     public void resizeBoard(int height, int width, int winningValue) {
 
     }
 
+    /**********************************
+     * reset the game board
+    ***********************************/
     @Override
     public void reset() {
         start = null;
     }
 
+    /**********************************
+     * set the game board to the values of the
+     * given array
+     * @param ref te values of the game board
+     ***********************************/
     @Override
     public void setValues(int[][] ref) {
         start = null;
@@ -443,11 +493,17 @@ public class NumberGame implements WalkListener, NumberSlider {
         }
     }
 
+    /**********************************
+     * place a tile on the board in a random location
+     ***********************************/
     @Override
     public Cell placeRandomValue() {
         return null;
     }
 
+    /**********************************
+     *
+     ***********************************/
     @Override
     public boolean slide(SlideDirection dir) {
         return false;

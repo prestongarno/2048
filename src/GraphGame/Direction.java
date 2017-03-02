@@ -38,9 +38,8 @@ public enum Direction {
         }
     }
 
-    public Direction opposite(){
-        switch (this)
-        {
+    public Direction opposite() {
+        switch (this) {
             case ABOVE:
                 return BELOW;
             case BELOW:
@@ -60,6 +59,7 @@ public enum Direction {
         }
         throw new NullPointerException("can't add directions...");
     }
+
 
     public int nextValue(int current){
         if(this == LEFT || this == ABOVE){
